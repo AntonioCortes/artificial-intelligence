@@ -1,0 +1,102 @@
+<h1 class="title">Prompt Clásico vs Agente de IA: La Gran Diferencia</h1>
+
+<h2>1. ¿Por qué un Agente NO es lo mismo que un chat donde pones un prompt?</h2>
+
+<p>Para alguien que empieza en el mundo de la IA generativa, la confusión más habitual es pensar que usar <b>Google Antigravity (Gemini)</b> o <b>Claude Code</b> es igual que abrir una página web de chat, escribir una pregunta y copiar la respuesta. En realidad, existe un salto gigantesco entre <b>enviar un prompt a un chatbot</b> y <b>trabajar con un Agente de IA</b>.</p>
+
+<ul>
+	<li><b>Cuando usas solo un Prompt en un chat clásico (Chatbot):</b> El modelo es como un <b>asesor encerrado en una habitación sin ventanas</b>. Solo sabe lo que tú le escribes en el mensaje. Si quieres que arregle un fallo en tu proyecto, tú tienes que buscar el archivo, copiar el código, pegarlo en el chat, leer su respuesta, copiar el código corregido, pegarlo en tu editor, probar si funciona y, si da error, volver a copiar el error al chat.</li>
+	<li><b>Cuando usas un Agente de IA (Antigravity o Claude Code):</b> El modelo sigue teniendo el mismo cerebro inteligente, pero ahora <b>tiene ojos y manos dentro de tu proyecto</b> (llamadas <b>Tools</b> o <b>Herramientas</b>). Cuando tú le pides una tarea, el agente explora las carpetas por sí mismo, lee los archivos necesarios, diseña un plan, crea o modifica múltiples archivos, ejecuta comandos en la terminal para comprobar que todo compila sin errores y, si detecta un fallo, lo corrige automáticamente antes de avisarte de que ha terminado.</li>
+</ul>
+
+<img class="center-horizontal" src="components/gemini/prompt-vs-agente/assets/img/prompt-vs-agente-bucle.svg"/>
+<span class="center-horizontal caption">Figura 1. Comparación visual entre el flujo lineal de un chat tradicional y el bucle autónomo de un Agente de IA.</span>
+
+<h2>2. ¿Cómo funciona un Agente por dentro? El Bucle Agéntico</h2>
+
+<p>Un agente funciona mediante un ciclo continuo conocido como <b>Bucle Agéntico (Agentic Loop)</b> que consta de cuatro fases que se repiten tantas veces como sea necesario hasta cumplir tu objetivo:</p>
+
+<ol>
+	<li><b>Pensar y Planificar (Think &amp; Plan):</b> El agente analiza tu petición y decide cuál es el primer paso lógico. Por ejemplo: <i>"El usuario quiere añadir una vista nueva. Primero debo leer el archivo README.md para entender las reglas del proyecto"</i>.</li>
+	<li><b>Actuar usando Herramientas (Act / Tool Call):</b> En lugar de pedirte a ti el archivo, el agente invoca una herramienta interna (como <b>read_file</b> para leer archivos, <b>edit_file</b> para modificarlos, <b>write_file</b> para crearlos o <b>run_command</b> para ejecutar comandos en la terminal).</li>
+	<li><b>Observar el Resultado (Observe):</b> El sistema le devuelve al agente el contenido real del archivo o la salida de la terminal. Así el agente trabaja sobre datos reales de tu ordenador y no adivinando.</li>
+	<li><b>Iterar y Verificar (Repeat &amp; Verify):</b> Con esa información nueva, el agente vuelve al paso 1, crea los componentes, modifica los JSON de configuración y verifica que no falte ningún enlace ni haya errores de sintaxis. Cuando todo está completo, detiene el bucle y te presenta el resumen final.</li>
+</ol>
+
+<h2>3. Comparativa directa: Chatbot clásico vs Agente de IA</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Característica</th>
+			<th scope="col">Chat de IA Clásico (Solo Prompt)</th>
+			<th scope="col">Agente de IA (Antigravity / Claude Code)</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">Visión de tu proyecto</th>
+			<td>Ciega: solo ve los fragmentos que tú copias y pegas en el chat.</td>
+			<td>Completa: explora carpetas, busca textos y lee los archivos que necesita.</td>
+		</tr>
+		<tr>
+			<th scope="row">Creación y edición de archivos</th>
+			<td>Manual: te muestra el código en pantalla y tú tienes que crear y editar cada archivo.</td>
+			<td>Automática: crea carpetas, escribe archivos nuevos y edita líneas exactas directamente en tu disco.</td>
+		</tr>
+		<tr>
+			<th scope="row">Ejecución de pruebas y comandos</th>
+			<td>Imposible: no tiene acceso a tu terminal ni sabe si el código realmente funciona.</td>
+			<td>Integrada: ejecuta comandos en terminal, lanza tests y lee los logs de error para autocorregirse.</td>
+		</tr>
+		<tr>
+			<th scope="row">Trabajo en paralelo (Subagentes)</th>
+			<td>No existe: solo responde de forma secuencial a un mensaje tras otro.</td>
+			<td>Puede lanzar <b>Subagentes</b> que investigan o generan imágenes/código en paralelo.</td>
+		</tr>
+		<tr>
+			<th scope="row">Conexión con sistemas externos</th>
+			<td>Limitada al texto que tú le proporciones.</td>
+			<td>Conecta con bases de datos, GitHub, Jira o navegadores web mediante <b>MCP</b> y <b>Skills</b>.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Diferencias prácticas entre usar un prompt en un chat clásico y trabajar con un Agente de IA.</span>
+
+<h2>4. Ejemplo real: Qué haces tú vs qué hace el Agente</h2>
+
+<p>Observa la diferencia práctica cuando necesitas añadir una nueva sección a una página web como esta:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-plaintext">
+# ENFOQUE ANTIGUO (Chat clásico sin Agente):
+1. Tú abres README.md, lo copias entero y lo pegas en el chat.
+2. Tú abres constants.json y sidebar.json y los pegas también en el chat.
+3. Le pides a la IA el código HTML y JS de un componente.
+4. Tú creas a mano las carpetas, copias el código archivo por archivo.
+5. Si tienes que crear 15 componentes, repites el proceso 15 veces a mano.
+
+# ENFOQUE MODERNO (Con Agente en Antigravity o Claude Code):
+Tú escribes una sola instrucción:
+"Lee el README.md para ver cómo funciona esta web y añade en el navbar una vista
+para Gemini y otra para Claude desglosadas en el sidebar con ejemplos y diagramas."
+
+El Agente hace automáticamente:
+  [Paso 1] Lee README.md, constants.json, sidebar.js y component-generator.js
+  [Paso 2] Diseña el plan de ejecución estructurado
+  [Paso 3] Crea las carpetas components/gemini y components/claude con sus logos y sidebars
+  [Paso 4] Genera los diagramas SVG y todos los componentes HTML y JS
+  [Paso 5] Registra los imports en js/components-imports.js y verifica todo el proyecto
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo comparativo del flujo de trabajo manual frente al flujo autónomo con un Agente.</span>
+
+<h2>5. ¿Cómo usar correctamente a un Agente sin perder el control?</h2>
+
+<p>Que un agente sea autónomo no significa que haga las cosas a lo loco sin tu supervisión. Tanto Antigravity como Claude te ofrecen mecanismos de control total:</p>
+
+<ul>
+	<li><b>Pedir primero un Plan:</b> Antes de que el agente modifique decenas de archivos, puedes pedirle <i>"primero haz un plan de ejecución"</i> (o usar el comando <b>/plan</b>). Así revisas qué piensa hacer y le das el visto bueno.</li>
+	<li><b>Revisión de cambios (Diffs):</b> Cada vez que el agente edita un archivo, puedes ver en color verde las líneas añadidas y en rojo las eliminadas para aceptar o rechazar cualquier cambio.</li>
+	<li><b>Permisos de terminal y Sandbox:</b> Los agentes ejecutan comandos dentro de un entorno seguro (<b>Sandbox</b>) y, si necesitan ejecutar algo delicado o conectarse al exterior, te piden permiso en pantalla antes de hacerlo.</li>
+</ul>

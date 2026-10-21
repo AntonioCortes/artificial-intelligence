@@ -1,0 +1,82 @@
+<h1 class="title">Menciones con @ (Añadir Archivos y Contexto Exacto)</h1>
+
+<h2>1. ¿Para qué sirve escribir el símbolo <kbd>@</kbd> en Gemini / Antigravity?</h2>
+
+<p>Imagina que tienes un proyecto con 300 archivos y le dices al agente: <i>"Cambia el color del menú lateral"</i>. Aunque el agente es capaz de buscar por las carpetas hasta encontrar dónde está el archivo CSS del menú lateral, eso le llevará varios pasos y tiempo extra. En cambio, si escribes el símbolo <kbd>@</kbd> en el cuadro de chat, se abrirá un <b>menú desplegable interactivo de autocompletado</b> que te permite adjuntar directamente el archivo o carpeta exacta a tu mensaje.</p>
+
+<p>En cuanto escribes <kbd>@</kbd> y empiezas a teclear parte del nombre (por ejemplo, <kbd>@sidebar</kbd>), Antigravity filtra al instante todos los elementos de tu proyecto para que solo tengas que pulsar <kbd>Enter</kbd> o <kbd>Tab</kbd> para seleccionarlo.</p>
+
+<img class="center-horizontal" src="components/gemini/menciones-arroba/assets/img/menciones-arroba-contexto.svg"/>
+<span class="center-horizontal caption">Figura 1. Las cinco categorías de contexto que puedes adjuntar instantáneamente usando el símbolo @ en Antigravity.</span>
+
+<h2>2. Todas las categorías que puedes mencionar con <kbd>@</kbd></h2>
+
+<p>El menú de menciones <kbd>@</kbd> de Antigravity no sirve únicamente para archivos sueltos; permite adjuntar cinco tipos distintos de contexto:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Categoría de Mención</th>
+			<th scope="col">Cómo se escribe</th>
+			<th scope="col">Qué hace exactamente</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">1. Archivos concretos</th>
+			<td><kbd>@README.md</kbd> o <kbd>@js/main.js</kbd></td>
+			<td>Inyecta o señala ese archivo exacto para que el agente lo lea de inmediato sin tener que buscarlo por el proyecto.</td>
+		</tr>
+		<tr>
+			<th scope="row">2. Carpetas completas</th>
+			<td><kbd>@components/main-view/</kbd></td>
+			<td>Le indica al agente que centre su atención o tome como ejemplo todos los archivos contenidos dentro de ese directorio.</td>
+		</tr>
+		<tr>
+			<th scope="row">3. Sesiones de Terminal</th>
+			<td><kbd>@terminal</kbd></td>
+			<td>Pasa al agente el texto y los errores recientes que han salido en tu consola para que diagnostique un fallo sin copiar ni pegar.</td>
+		</tr>
+		<tr>
+			<th scope="row">4. Conversaciones previas</th>
+			<td><kbd>@nombre-conversacion</kbd></td>
+			<td>Conecta tu sesión actual con una conversación anterior para continuar un trabajo previo sin perder el contexto.</td>
+		</tr>
+		<tr>
+			<th scope="row">5. Reglas y Servidores MCP</th>
+			<td><kbd>@GEMINI.md</kbd> o <kbd>@mcp</kbd></td>
+			<td>Adjunta explícitamente una regla o una herramienta/recurso expuesto por un servidor MCP externo.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Tipos de elementos que aparecen al desplegar el menú @ en el chat de Antigravity.</span>
+
+<h2>3. Ejemplos prácticos de Prompts combinando menciones con <kbd>@</kbd></h2>
+
+<p>A continuación tienes ejemplos reales de cómo combinar varias menciones <kbd>@</kbd> en una misma frase para que el agente entienda a la perfección qué archivos son la referencia y cuáles debe modificar:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-plaintext">
+# Ejemplo 1: Usar un archivo como guía y otro como destino
+"Lee las instrucciones de @README.md y registra una nueva vista en
+@components/common/assets/constants.json llamada 'claudeView'."
+
+# Ejemplo 2: Usar una carpeta existente como plantilla para crear otra nueva
+"Fíjate en cómo están estructurados los componentes dentro de @components/bootstrap/
+y crea una estructura idéntica para nuestra nueva vista dentro de @components/gemini/."
+
+# Ejemplo 3: Arreglar un fallo entre el HTML, el CSS y el JS
+"El botón de colapsar el menú definido en @components/common/navbar.html no aplica
+el color de @css/colors.css cuando se ejecuta la función de @js/sidebar.js. Revisa los tres."
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplos de prompts de alta precisión utilizando menciones con @ a archivos y carpetas.</span>
+
+<h2>4. Adjuntar Imágenes y Archivos Multimedia al Chat</h2>
+
+<p>Además del símbolo <kbd>@</kbd>, dado que Gemini es un modelo <b>nativamente multimodal</b> (es capaz de "ver" imágenes, diseños y capturas de pantalla igual que lee texto), en el lienzo de chat de Antigravity puedes:</p>
+
+<ul>
+	<li><b>Arrastrar y soltar (Drag &amp; Drop) o Pegar (<kbd>Ctrl + V</kbd>):</b> Puedes hacer una captura de pantalla de cómo se ve tu página web en el navegador o de un boceto de diseño y pegarla directamente en el chat diciendo: <i>"Mira esta captura: la tabla se sale por la derecha en pantallas móviles, corrige el CSS en @css/content.css"</i>.</li>
+	<li><b>Incluir enlaces dentro de Archivos de Reglas:</b> Incluso dentro de tus propios archivos de reglas (como <b>GEMINI.md</b>), puedes incluir referencias a otros documentos del proyecto usando la sintaxis Markdown y Antigravity las expandirá automáticamente al leer la regla.</li>
+</ul>

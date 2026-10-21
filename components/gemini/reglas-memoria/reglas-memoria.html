@@ -1,0 +1,83 @@
+<h1 class="title">Reglas (GEMINI.md y AGENTS.md) y Memoria del Proyecto</h1>
+
+<h2>1. ¿Qué es una Regla (Rule) explicada para principiantes?</h2>
+
+<p>Imagina que cada vez que contratas a un programador nuevo para ayudarte en esta página web tuvieras que explicarle desde cero: <i>"Recuerda que los títulos llevan la clase title, que las tablas llevan table-striped, que los componentes se registran en components-imports.js..."</i>. Sería agotador repetirlo todos los días.</p>
+
+<p>En <b>Google Antigravity</b>, las <b>Reglas (Rules)</b> son archivos de texto en formato Markdown (llamados <b>GEMINI.md</b> o <b>AGENTS.md</b>) que colocas dentro de tu proyecto. El agente <b>los descubre y los lee automáticamente al empezar a trabajar</b> sin que tú tengas que mencionarlos en el chat. Es, literalmente, la <b>memoria permanente y el manual de normas</b> de tu proyecto.</p>
+
+<h2>2. ¿Dónde se colocan las Reglas y cómo las descubre Antigravity?</h2>
+
+<p>Antigravity busca y aplica reglas siguiendo una jerarquía inteligente desde tu carpeta actual hacia arriba hasta la raíz del repositorio (donde está la carpeta <b>.git</b>), además de tu configuración global personal:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Nivel de Regla</th>
+			<th scope="col">Ruta del Archivo</th>
+			<th scope="col">Alcance y para qué sirve</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">1. Regla Global (Tu ordenador)</th>
+			<td><kbd>~/.gemini/config/GEMINI.md</kbd></td>
+			<td>Se aplica a <b>todos tus proyectos</b>. Ideal para tus preferencias personales (ej: "Háblame siempre en español y explica los cambios paso a paso").</td>
+		</tr>
+		<tr>
+			<th scope="row">2. Regla Raíz del Proyecto</th>
+			<td><kbd>./GEMINI.md</kbd> o <kbd>./AGENTS.md</kbd></td>
+			<td>Se coloca en la carpeta principal del proyecto y se sube a Git para compartirla con todo tu equipo. Define la arquitectura y normas generales.</td>
+		</tr>
+		<tr>
+			<th scope="row">3. Reglas en Carpeta <kbd>.agents</kbd></th>
+			<td><kbd>.agents/rules/*.md</kbd></td>
+			<td>Permite organizar múltiples archivos de reglas temáticos (por ejemplo: <b>estilos-css.md</b>, <b>seguridad.md</b>, <b>testing.md</b>).</td>
+		</tr>
+		<tr>
+			<th scope="row">4. Regla de Subcarpeta (Contextual)</th>
+			<td><kbd>components/GEMINI.md</kbd></td>
+			<td>Solo se activa cuando el agente abre o edita archivos dentro de esa subcarpeta concreta o sus carpetas hijas.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Niveles jerárquicos donde puedes definir archivos de reglas en Antigravity.</span>
+
+<h2>3. Ejemplo real de un archivo <kbd>GEMINI.md</kbd> para este mismo proyecto</h2>
+
+<p>Si quisieras crear un archivo <b>GEMINI.md</b> en la raíz de esta página web para que el agente conozca siempre las reglas del <b>README.md</b> sin tener que pedírselo nunca más, tendría este aspecto:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-markdown">
+# Reglas del Proyecto: Plantilla Web Basada en WebComponents
+
+## 1. Idioma y Estilo de Explicación
+- Escribe todo el contenido de los componentes y comentarios en español.
+- Las explicaciones deben ser didácticas, detalladas y con ejemplos claros.
+
+## 2. Reglas Obligatorias de Maquetación HTML
+- El título principal de cada componente debe usar: &lt;h1 class="title"&gt;Título&lt;/h1&gt;
+- Todas las tablas deben llevar las clases: class="table table-striped table-hover"
+- Todas las imágenes y diagramas deben llevar: class="center-horizontal"
+- Debajo de cada tabla, imagen o bloque de código añade siempre un pie explicativo:
+  &lt;span class="center-horizontal caption"&gt;Texto explicativo&lt;/span&gt;
+- Los bloques de código deben ir en &lt;div class="center-horizontal"&gt;&lt;pre&gt;&lt;code class="language-..."&gt;
+  y tener siempre al menos 2 líneas para que el numerador de líneas funcione.
+
+## 3. Registro de Nuevos Componentes y Vistas
+- Cada componente debe tener su archivo .html y su .js con tagName empezando por "component-".
+- Todo nuevo componente debe importarse en js/components-imports.js.
+- Todo nuevo componente debe enlazarse en el sidebar.json de su vista.
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo completo de archivo GEMINI.md listo para usar en la raíz de un proyecto web.</span>
+
+<h2>4. Cómo gestiona Antigravity la memoria de las Reglas (Deduplicación y Límites)</h2>
+
+<p>Para que las reglas no llenen por completo la memoria (ventana de contexto) del modelo, Antigravity aplica tres mecanismos inteligentes:</p>
+
+<ul>
+	<li><b>Deduplicación automática:</b> Aunque el agente pase varias veces por la misma carpeta, cada archivo de regla se inyecta <b>una única vez</b> por turno de conversación.</li>
+	<li><b>Activación bajo demanda (Progressive Disclosure):</b> Las reglas de directorio solo se cargan cuando el agente trabaja con archivos de ese directorio, y las reglas con activación por decisión del modelo solo se leen completas cuando son relevantes para tu tarea.</li>
+	<li><b>Presupuesto de contexto protegido:</b> Cada archivo de regla tiene un límite máximo de <b>24 KB</b> y existe un presupuesto conjunto de <b>20.000 tokens</b> para reglas activas, garantizando que siempre quede espacio de sobra para tus archivos y tu conversación.</li>
+</ul>

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 450" width="920" height="450">
+  <defs>
+    <marker id="arrBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#059669"/>
+    </marker>
+  </defs>
+  <rect width="920" height="450" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+
+  <!-- Top Half: Chat Tradicional (Prompt Simple) -->
+  <rect x="20" y="20" width="880" height="145" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+  <text x="45" y="48" font-family="sans-serif" font-size="16" font-weight="bold" fill="#1e40af">A) Chat de IA Tradicional (Solo Prompt → Respuesta de texto)</text>
+
+  <rect x="45" y="68" width="190" height="75" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="140" y="95" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e293b">1. Tú escribes un Prompt</text>
+  <text x="140" y="116" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Tienes que copiar y pegar</text>
+  <text x="140" y="132" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">tu código manualmente</text>
+
+  <line x1="235" y1="105" x2="345" y2="105" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrBlue)"/>
+
+  <rect x="350" y="68" width="210" height="75" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="455" y="95" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e293b">2. El Modelo genera texto</text>
+  <text x="455" y="116" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">No ve tus carpetas reales</text>
+  <text x="455" y="132" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">ni puede probar si funciona</text>
+
+  <line x1="560" y1="105" x2="665" y2="105" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrBlue)"/>
+
+  <rect x="670" y="68" width="205" height="75" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="772" y="95" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e293b">3. Tú haces el trabajo</text>
+  <text x="772" y="116" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Copias la respuesta, creas</text>
+  <text x="772" y="132" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">los archivos y pruebas tú</text>
+
+  <!-- Bottom Half: Agente de IA -->
+  <rect x="20" y="185" width="880" height="245" rx="12" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="45" y="215" font-family="sans-serif" font-size="16" font-weight="bold" fill="#065f46">B) Agente de IA (Antigravity / Claude Code): Bucle Autónomo con Herramientas</text>
+
+  <!-- User Goal -->
+  <rect x="40" y="265" width="155" height="90" rx="8" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="117" y="292" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#065f46">1. Tu Objetivo</text>
+  <text x="117" y="314" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">"Lee el README y</text>
+  <text x="117" y="330" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">añade la vista de</text>
+  <text x="117" y="346" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">Gemini y Claude"</text>
+
+  <line x1="195" y1="310" x2="245" y2="310" stroke="#059669" stroke-width="2.5" marker-end="url(#arrGreen)"/>
+
+  <!-- Agent Loop Box -->
+  <rect x="250" y="232" width="420" height="180" rx="12" fill="#d1fae5" stroke="#059669" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="460" y="253" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#065f46">Bucle Agéntico (Se repite hasta terminar la tarea)</text>
+
+  <rect x="270" y="270" width="115" height="60" rx="8" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="327" y="295" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Razona y</text>
+  <text x="327" y="313" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Planifica</text>
+
+  <line x1="385" y1="300" x2="415" y2="300" stroke="#059669" stroke-width="2" marker-end="url(#arrGreen)"/>
+
+  <rect x="420" y="270" width="115" height="60" rx="8" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="477" y="295" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Usa Tools</text>
+  <text x="477" y="313" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">(Lee/Edita/Bash)</text>
+
+  <line x1="535" y1="300" x2="565" y2="300" stroke="#059669" stroke-width="2" marker-end="url(#arrGreen)"/>
+
+  <rect x="570" y="270" width="85" height="60" rx="8" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="612" y="295" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e293b">Observa</text>
+  <text x="612" y="313" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">y Verifica</text>
+
+  <!-- Loop back arrow -->
+  <path d="M 612 330 L 612 362 L 327 362 L 327 335" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrGreen)"/>
+  <text x="470" y="382" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#065f46">¿Hay algún error o falta un paso? → Corrige automáticamente</text>
+
+  <line x1="670" y1="310" x2="710" y2="310" stroke="#059669" stroke-width="2.5" marker-end="url(#arrGreen)"/>
+
+  <!-- Tools & Result -->
+  <rect x="715" y="242" width="165" height="155" rx="8" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="797" y="266" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#065f46">Manos del Agente</text>
+  <text x="797" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">• Leer y buscar archivos</text>
+  <text x="797" y="310" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">• Crear y editar código</text>
+  <text x="797" y="330" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">• Ejecutar terminal/tests</text>
+  <text x="797" y="350" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">• Navegar web / MCP</text>
+  <text x="797" y="376" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#047857">¡Entrega el trabajo hecho!</text>
+</svg>

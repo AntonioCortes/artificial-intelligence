@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" width="920" height="430">
+  <defs>
+    <marker id="arrCe" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#d97757"/>
+    </marker>
+  </defs>
+  <rect width="920" height="430" rx="16" fill="#fafaf9" stroke="#d6d3d1" stroke-width="2"/>
+  <text x="460" y="34" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1e293b">Arquitectura del Ecosistema de Personalización en Claude Code</text>
+
+  <!-- Central Node: Claude Code Agent -->
+  <rect x="320" y="155" width="280" height="125" rx="14" fill="#ffffff" stroke="#d97757" stroke-width="3"/>
+  <rect x="320" y="155" width="280" height="36" rx="14" fill="#d97757"/>
+  <text x="460" y="178" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Agente Principal Claude Code</text>
+  <text x="460" y="210" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#334155">Coordina el desarrollo en tu proyecto</text>
+  <text x="460" y="232" text-anchor="middle" font-family="monospace" font-size="11" fill="#9a3412">Sonnet / Opus / Haiku</text>
+  <text x="460" y="256" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Normal · Auto-Accept · Plan Mode</text>
+
+  <!-- Top Left: Memoria y Comandos -->
+  <rect x="25" y="55" width="250" height="145" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <rect x="25" y="55" width="250" height="32" rx="10" fill="#2563eb"/>
+  <text x="150" y="76" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">1. Memoria y Skills</text>
+  <text x="40" y="106" font-family="monospace" font-size="11" fill="#1e40af">• ./CLAUDE.md (Reglas base)</text>
+  <text x="40" y="128" font-family="monospace" font-size="11" fill="#1e40af">• .claude/rules/*.md</text>
+  <text x="40" y="150" font-family="monospace" font-size="11" fill="#1e40af">• .claude/commands/*.md (/)</text>
+  <text x="40" y="172" font-family="monospace" font-size="11" fill="#1e40af">• .claude/skills/*/SKILL.md</text>
+
+  <line x1="275" y1="140" x2="318" y2="180" stroke="#d97757" stroke-width="2.5" marker-end="url(#arrCe)"/>
+
+  <!-- Bottom Left: Subagentes -->
+  <rect x="25" y="225" width="250" height="165" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+  <rect x="25" y="225" width="250" height="32" rx="10" fill="#7c3aed"/>
+  <text x="150" y="246" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">2. Subagentes (.claude/agents/)</text>
+  <text x="40" y="276" font-family="sans-serif" font-size="11" fill="#334155">Archivos .md con su propio rol,</text>
+  <text x="40" y="294" font-family="sans-serif" font-size="11" fill="#334155">modelo y herramientas permitidas:</text>
+  <text x="40" y="318" font-family="monospace" font-size="11" fill="#5b21b6">• revisor-seguridad.md</text>
+  <text x="40" y="338" font-family="monospace" font-size="11" fill="#5b21b6">• experto-maquetacion.md</text>
+  <text x="40" y="366" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4c1d95">Gestionables con comando /agents</text>
+
+  <line x1="275" y1="290" x2="318" y2="250" stroke="#d97757" stroke-width="2.5" marker-end="url(#arrCe)"/>
+
+  <!-- Top Right: MCP Servers -->
+  <rect x="645" y="55" width="250" height="145" rx="10" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <rect x="645" y="55" width="250" height="32" rx="10" fill="#059669"/>
+  <text x="770" y="76" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">3. Servidores MCP (.mcp.json)</text>
+  <text x="660" y="106" font-family="sans-serif" font-size="11" fill="#334155">Conexión con servicios externos:</text>
+  <text x="660" y="128" font-family="monospace" font-size="11" fill="#065f46">$ claude mcp add ...</text>
+  <text x="660" y="150" font-family="sans-serif" font-size="11" fill="#334155">• GitHub, Sentry, Postgres, Slack</text>
+  <text x="660" y="172" font-family="sans-serif" font-size="11" font-weight="bold" fill="#047857">Inspeccionables con /mcp</text>
+
+  <line x1="645" y1="140" x2="602" y2="180" stroke="#d97757" stroke-width="2.5" marker-end="url(#arrCe)"/>
+
+  <!-- Bottom Right: Hooks & Settings -->
+  <rect x="645" y="225" width="250" height="165" rx="10" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+  <rect x="645" y="225" width="250" height="32" rx="10" fill="#d97706"/>
+  <text x="770" y="246" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">4. Hooks (.claude/settings.json)</text>
+  <text x="660" y="276" font-family="sans-serif" font-size="11" fill="#334155">Automatizaciones deterministas:</text>
+  <text x="660" y="300" font-family="monospace" font-size="11" fill="#92400e">• PreToolUse (validar antes)</text>
+  <text x="660" y="320" font-family="monospace" font-size="11" fill="#92400e">• PostToolUse (formatear código)</text>
+  <text x="660" y="340" font-family="monospace" font-size="11" fill="#92400e">• Notification / Stop</text>
+  <text x="660" y="366" font-family="sans-serif" font-size="11" font-weight="bold" fill="#92400e">+ Permisos de herramientas</text>
+
+  <line x1="645" y1="290" x2="602" y2="250" stroke="#d97757" stroke-width="2.5" marker-end="url(#arrCe)"/>
+</svg>

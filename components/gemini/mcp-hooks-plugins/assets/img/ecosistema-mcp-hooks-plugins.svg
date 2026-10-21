@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" width="920" height="430">
+  <defs>
+    <marker id="arrMcp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#e11d48"/>
+    </marker>
+    <marker id="arrHk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#d97706"/>
+    </marker>
+  </defs>
+  <rect width="920" height="430" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="460" y="34" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1e293b">Arquitectura Completa: MCP Servers, Lifecycle Hooks y Plugins</text>
+
+  <!-- Central Box: Agente Antigravity -->
+  <rect x="315" y="135" width="290" height="145" rx="14" fill="#ffffff" stroke="#2563eb" stroke-width="3"/>
+  <rect x="315" y="135" width="290" height="38" rx="14" fill="#2563eb"/>
+  <text x="460" y="159" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Agente en Antigravity</text>
+  <text x="460" y="192" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#334155">Ejecuta su bucle dentro de un</text>
+  <text x="460" y="210" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e40af">Terminal Sandbox Seguro</text>
+  <text x="460" y="236" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Lee Reglas + Activa Skills +</text>
+  <text x="460" y="254" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Llama a Herramientas (Tools)</text>
+
+  <!-- Left: Lifecycle Hooks -->
+  <rect x="25" y="65" width="235" height="275" rx="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="25" y="65" width="235" height="34" rx="12" fill="#d97706"/>
+  <text x="142" y="87" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">1. Hooks (hooks.json)</text>
+  <text x="142" y="116" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#92400e">Vigilantes del Ciclo de Vida:</text>
+  <text x="40" y="142" font-family="monospace" font-size="11" fill="#78350f">• SessionStart</text>
+  <text x="40" y="164" font-family="monospace" font-size="11" fill="#78350f">• PreInvocation</text>
+  <text x="40" y="186" font-family="monospace" font-size="11" fill="#78350f">• PreToolUse (allow/deny/ask)</text>
+  <text x="40" y="208" font-family="monospace" font-size="11" fill="#78350f">• PostToolUse (ej: linter)</text>
+  <text x="40" y="230" font-family="monospace" font-size="11" fill="#78350f">• PostInvocation</text>
+  <text x="40" y="252" font-family="monospace" font-size="11" fill="#78350f">• Stop (verifica si acabó)</text>
+  <rect x="38" y="272" width="208" height="52" rx="6" fill="#fef3c7"/>
+  <text x="142" y="293" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#92400e">Ejecutan tus scripts antes o</text>
+  <text x="142" y="311" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#92400e">después de cada paso del agente</text>
+
+  <line x1="260" y1="205" x2="310" y2="205" stroke="#d97706" stroke-width="2.5" marker-end="url(#arrHk)"/>
+
+  <!-- Right: MCP Servers -->
+  <rect x="660" y="65" width="235" height="275" rx="12" fill="#fff1f2" stroke="#f43f5e" stroke-width="2"/>
+  <rect x="660" y="65" width="235" height="34" rx="12" fill="#e11d48"/>
+  <text x="777" y="87" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">2. MCP (mcp_config.json)</text>
+  <text x="777" y="116" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#9f1239">"El Puerto USB Universal" hacia:</text>
+  <text x="678" y="142" font-family="sans-serif" font-size="12" fill="#881337">• Bases de datos (PostgreSQL, SQLite)</text>
+  <text x="678" y="166" font-family="sans-serif" font-size="12" fill="#881337">• GitHub / GitLab (PRs, Issues)</text>
+  <text x="678" y="190" font-family="sans-serif" font-size="12" fill="#881337">• Jira / Linear / Notion / Slack</text>
+  <text x="678" y="214" font-family="sans-serif" font-size="12" fill="#881337">• Navegadores / APIs internas</text>
+  <rect x="673" y="236" width="208" height="88" rx="6" fill="#ffe4e6"/>
+  <text x="777" y="258" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#9f1239">2 Transportes soportados:</text>
+  <text x="777" y="278" text-anchor="middle" font-family="monospace" font-size="11" fill="#881337">1) Stdio (Comando local)</text>
+  <text x="777" y="298" text-anchor="middle" font-family="monospace" font-size="11" fill="#881337">2) Streamable HTTP (URL)</text>
+
+  <line x1="605" y1="205" x2="655" y2="205" stroke="#e11d48" stroke-width="2.5" marker-end="url(#arrMcp)"/>
+
+  <!-- Bottom: Plugins Bundle -->
+  <rect x="25" y="355" width="870" height="58" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="460" y="380" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#065f46">3. PLUGINS (.agents/plugins/mi-plugin/plugin.json): El Paquete Todo-en-Uno</text>
+  <text x="460" y="400" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#047857">Un Plugin empaqueta dentro de una sola carpeta compartible: Reglas + Skills + Hooks + Servidores MCP.</text>
+</svg>

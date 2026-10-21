@@ -1,0 +1,89 @@
+<h1 class="title">Cómo escribir buenos Prompts y guiar al Agente</h1>
+
+<h2>1. La regla de oro: La IA no lee tu mente, lee tu contexto</h2>
+
+<p>Aunque los modelos modernos como Gemini y Claude son extraordinariamente inteligentes, el error número uno cuando empezamos a usarlos es dar instrucciones vagas de tres palabras esperando que adivinen cómo está montado nuestro proyecto, qué estilo visual preferimos o a quién va dirigido el texto. Aprender a formular buenas instrucciones (lo que se conoce como <b>Prompt Engineering</b> o <b>Ingeniería de Prompts</b>) multiplica por diez la calidad de los resultados.</p>
+
+<p>Un prompt excelente no tiene por qué ser un texto literario complicado; simplemente debe responder con claridad a <b>cinco preguntas clave</b>:</p>
+
+<ol>
+	<li><b>Contexto (¿Dónde estamos?):</b> Explica brevemente qué es el proyecto o qué archivos debe leer primero para situarse (por ejemplo: <i>"Este proyecto es una plantilla web SPA con WebComponents; lee primero el archivo @README.md"</i>).</li>
+	<li><b>Objetivo (¿Qué quieres conseguir?):</b> Define con precisión qué quieres que cree, modifique o explique.</li>
+	<li><b>Audiencia o Nivel (¿Para quién es?):</b> Si pides explicaciones o documentación, indica para quién es (por ejemplo: <i>"Explícalo para alguien que empieza desde cero y no sabe qué es un MCP ni una Skill"</i>).</li>
+	<li><b>Restricciones y Reglas (¿Qué NO debe hacer o cómo debe estructurarlo?):</b> Por ejemplo: <i>"No pongas toda la información en un solo componente; desglósalo en distintos apartados en el sidebar y respeta las clases CSS del README"</i>.</li>
+	<li><b>Modo de trabajo (¿Planificar primero o ejecutar?):</b> Indícale si quieres que primero diseñe un plan de ejecución y luego lo implemente, o si debe hacerte preguntas antes de empezar.</li>
+</ol>
+
+<h2>2. Ejemplos reales: Prompts malos vs Prompts excelentes</h2>
+
+<p>Observa cómo cambia radicalmente lo que la IA entiende según cómo le pidas la misma tarea:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Situación</th>
+			<th scope="col">Prompt Pobre (Ambiguo)</th>
+			<th scope="col">Prompt Excelente (Claro y accionable)</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">Añadir una funcionalidad</th>
+			<td>"Hazme una página sobre Gemini y Claude."</td>
+			<td>"Lee @README.md para ver cómo funciona esta plantilla. Después añade dos vistas en el navbar (Gemini y Claude), desglosa los temas en el sidebar en varios componentes con ejemplos, tablas y diagramas SVG siguiendo las clases CSS del README."</td>
+		</tr>
+		<tr>
+			<th scope="row">Arreglar un error (Bug)</th>
+			<td>"No se ve el código bien, arréglalo."</td>
+			<td>"En @js/component-generator.js la función addCodeLineNumbers falla cuando una etiqueta code tiene una sola línea sin saltos de línea. Revisa las líneas 27-48 y corrígelo para que no lance un TypeError."</td>
+		</tr>
+		<tr>
+			<th scope="row">Aprender un concepto nuevo</th>
+			<td>"¿Qué es MCP?"</td>
+			<td>"Explícame desde cero qué es un servidor MCP como si nunca hubiera usado IA, usando una analogía sencilla, un diagrama de cómo se conecta con el agente y un ejemplo real del archivo mcp_config.json comentado línea por línea."</td>
+		</tr>
+		<tr>
+			<th scope="row">Refactorizar código</th>
+			<td>"Mejora este archivo."</td>
+			<td>"Revisa @js/sidebar.js y extrae la lógica de filtrado del buscador en una función separada más legible, sin cambiar el comportamiento actual ni romper los submenús desplegables."</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Comparación entre prompts ambiguos y prompts estructurados con contexto y restricciones claras.</span>
+
+<h2>3. Plantilla práctica para pedir tareas complejas a un Agente</h2>
+
+<p>Cuando quieras que el agente de Gemini (Antigravity) o Claude realice un trabajo grande en tu proyecto, puedes seguir esta estructura que nunca falla:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-markdown">
+# 1. CONTEXTO E INVESTIGACIÓN PREVIA
+Lee primero @README.md y revisa la carpeta @components/main-view/ para entender
+cómo se estructuran las vistas, los WebComponents y los estilos de esta página.
+
+# 2. OBJETIVO PRINCIPAL
+Quiero crear una nueva vista llamada "Docker" en la barra de navegación superior
+que enseñe a usar contenedores desde cero hasta Docker Compose.
+
+# 3. REQUISITOS Y RESTRICCIONES
+- Divide el contenido en 4 componentes separados dentro de su sidebar.json.
+- Incluye ejemplos de archivos Dockerfile y docker-compose.yml reales.
+- Genera diagramas en formato SVG para explicar la diferencia entre Imagen y Contenedor.
+- Respeta estrictamente las clases CSS (.title, .center-horizontal, .caption, tablas).
+
+# 4. FLUJO DE EJECUCIÓN
+Primero elabora un plan de ejecución detallado y, una vez lo tengas claro, ejecútalo
+y verifica que todos los componentes estén importados en @js/components-imports.js.
+</code></pre>
+</div>
+<span class="center-horizontal caption">Plantilla reutilizable en cuatro bloques para encargar desarrollos completos al agente.</span>
+
+<h2>4. Cinco trucos profesionales para trabajar con Agentes</h2>
+
+<ul>
+	<li><b>Apunta a los archivos con <kbd>@</kbd>:</b> Siempre que sepas qué archivo contiene las reglas o el código a modificar, menciónalo con <kbd>@nombre-archivo</kbd>. Así el agente va directo al grano en el segundo 1.</li>
+	<li><b>Pide ejemplos y contraejemplos:</b> Si estás aprendiendo algo con la IA, pídele siempre: <i>"Muéstrame un ejemplo de cómo se hace bien y otro de un error típico que debo evitar"</i>.</li>
+	<li><b>Usa criterios de verificación:</b> Si estás programando una aplicación con tests o un servidor, dile al final de tu prompt: <i>"Cuando termines, ejecuta los tests en la terminal para comprobar que todo pasa en verde"</i>.</li>
+	<li><b>Corrige el rumbo a tiempo:</b> Si ves en pantalla que el agente ha entendido mal un requisito mientras está trabajando, no hace falta que esperes diez minutos a que termine; puedes pararlo, aclararle el detalle y dejar que continúe con la idea corregida.</li>
+	<li><b>Convierte tus correcciones en Reglas permanentes:</b> Si notas que en todos tus chats tienes que repetirle la misma norma (por ejemplo: <i>"usa siempre comillas simples y escribe los comentarios en español"</i>), guárdalo en el archivo <b>GEMINI.md</b> o <b>CLAUDE.md</b> de tu proyecto para que lo cumpla siempre de forma automática.</li>
+</ul>

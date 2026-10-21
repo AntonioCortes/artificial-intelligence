@@ -1,0 +1,75 @@
+<h1 class="title">¿Qué es la IA Generativa y cómo funciona?</h1>
+
+<h2>1. Introducción desde cero: ¿Qué es realmente una IA Generativa?</h2>
+
+<p>Si nunca has utilizado herramientas como <b>Gemini</b> (con su entorno <b>Google Antigravity</b>) o <b>Claude</b>, lo primero que necesitas saber es qué hay detrás de la pantalla. A diferencia de los programas informáticos tradicionales —que solo siguen reglas fijas programadas por un humano del tipo <i>"si el usuario pulsa el botón A, muestra la pantalla B"</i>—, la <b>Inteligencia Artificial Generativa</b> es capaz de <b>crear contenido nuevo</b>: redactar textos, programar aplicaciones completas, analizar documentos, encontrar errores en código o diseñar diagramas a partir de instrucciones escritas en tu propio idioma.</p>
+
+<p>El motor que hace esto posible se llama <b>LLM</b> (por sus siglas en inglés, <i>Large Language Model</i> o <b>Gran Modelo de Lenguaje</b>). Puedes imaginar un LLM como un cerebro estadístico gigantesco que ha leído miles de millones de libros, artículos científicos, documentaciones técnicas y repositorios de código en todos los lenguajes de programación existentes. Gracias a ese entrenamiento, comprende tanto el lenguaje humano (español, inglés, etc.) como los lenguajes de las máquinas (JavaScript, Python, HTML, SQL, Bash...).</p>
+
+<h2>2. Conceptos fundamentales que debes conocer antes de empezar</h2>
+
+<p>Cuando trabajes con Gemini o Claude verás que aparecen ciertos términos constantemente. Entender estos cinco conceptos básicos te dará una ventaja enorme desde el primer día:</p>
+
+<ul>
+	<li><b>Prompt (Instrucción):</b> Es simplemente el mensaje, pregunta o tarea que tú le escribes a la IA. Puede ser desde una pregunta corta (<i>"¿Qué significa este error?"</i>) hasta una especificación detallada de varios párrafos pidiendo crear una página web completa.</li>
+	<li><b>Token (La unidad de medida):</b> La IA no lee letra por letra ni palabra por palabra exactamente igual que nosotros; divide el texto en pequeños fragmentos llamados <b>tokens</b>. En español, <b>1 token equivale aproximadamente a tres cuartas partes de una palabra</b> (o unas 3-4 letras). Por ejemplo, 100 tokens son unas 75 palabras. Tanto la memoria de la conversación como la velocidad y el coste de los modelos se miden en tokens.</li>
+	<li><b>Ventana de Contexto (Context Window):</b> Es la <b>memoria a corto plazo</b> o "mesa de trabajo" que tiene la IA durante una conversación. Todo lo que tú escribes, todo lo que la IA te responde y todos los archivos de tu proyecto que la IA lee entran dentro de esta ventana de contexto. Modelos modernos como Gemini o Claude tienen ventanas de contexto enormes (desde 200.000 hasta más de 1.000.000 de tokens, equivalentes a varios libros enteros), pero <b>no son infinitas</b>. Si llenas la mesa de papeles irrelevantes, la IA puede distraerse o perder precisión.</li>
+	<li><b>Alucinación (Hallucination):</b> Como un modelo de lenguaje funciona prediciendo cuál es la respuesta más probable, si le preguntas por algo muy específico que desconoce o a lo que no tiene acceso (por ejemplo, cómo funciona un archivo de tu ordenador que aún no ha leído), un chat básico podría <b>inventarse una respuesta que suena muy convincente pero es falsa</b>. Como veremos en el siguiente apartado, los <b>Agentes</b> solucionan gran parte de este problema porque, en lugar de adivinar, leen directamente tus archivos y comprueban la realidad.</li>
+	<li><b>Pensamiento / Razonamiento (Thinking):</b> Los modelos actuales más avanzados no responden impulsivamente con la primera palabra que se les ocurre. Antes de darte la respuesta final, dedican una fase interna a <b>pensar paso a paso</b>, evaluar alternativas, detectar posibles fallos lógicos y trazar una estrategia.</li>
+</ul>
+
+<img class="center-horizontal" src="components/gemini/ia-generativa/assets/img/flujo-llm-tokens-contexto.svg"/>
+<span class="center-horizontal caption">Figura 1. Flujo interno de un Modelo de Lenguaje (LLM) desde que escribes un prompt hasta que genera la respuesta token a token.</span>
+
+<h2>3. Tabla resumen del vocabulario esencial de IA</h2>
+
+<p>Guarda esta tabla como referencia rápida para entender la jerga que verás en cualquier herramienta de IA generativa:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Término</th>
+			<th scope="col">Analogía en la vida real</th>
+			<th scope="col">Por qué te importa al usar Gemini o Claude</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">LLM (Modelo)</th>
+			<td>El "motor" o "cerebro" que contratas (más rápido o más profundo).</td>
+			<td>Puedes elegir un modelo rápido (como Gemini Flash o Claude Haiku) para dudas sencillas, o uno potente (Gemini Pro o Claude Sonnet/Opus) para tareas difíciles.</td>
+		</tr>
+		<tr>
+			<th scope="row">Prompt</th>
+			<td>El encargo o pliego de condiciones que le das a un compañero.</td>
+			<td>Cuanto más claro sea tu encargo (qué quieres, dónde y con qué reglas), mejor será el resultado a la primera.</td>
+		</tr>
+		<tr>
+			<th scope="row">Tokens</th>
+			<td>Las palabras o sílabas que ocupan espacio en un cuaderno.</td>
+			<td>Leer archivos gigantescos consume miles de tokens. Apuntar a los archivos concretos ahorra tiempo y tokens.</td>
+		</tr>
+		<tr>
+			<th scope="row">Ventana de Contexto</th>
+			<td>La pizarra donde están apuntados los datos de la reunión actual.</td>
+			<td>Cuando cambies de tema por completo, es mejor limpiar el chat o compactarlo para que la pizarra esté ordenada.</td>
+		</tr>
+		<tr>
+			<th scope="row">System Prompt / Reglas</th>
+			<td>El manual de normas de la empresa que todo empleado lee al entrar.</td>
+			<td>Te permite definir una sola vez tus preferencias (en archivos como <b>GEMINI.md</b> o <b>CLAUDE.md</b>) sin repetirlas cada día.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Equivalencias cotidianas de los conceptos fundamentales de la IA generativa.</span>
+
+<h2>4. ¿Qué puede hacer la IA por ti aunque no seas experto?</h2>
+
+<p>Una creencia muy común es pensar que la IA solo sirve para hacerle preguntas sueltas como si fuera un buscador web. Hoy en día, herramientas como <b>Gemini / Antigravity</b> y <b>Claude</b> te permiten:</p>
+
+<ul>
+	<li><b>Entender proyectos que no has creado tú:</b> Puedes pedirle que lea un proyecto entero y te explique con palabras sencillas cómo funciona, qué hace cada carpeta y cómo añadir algo nuevo.</li>
+	<li><b>Crear y modificar código siguiendo reglas existentes:</b> Igual que en este proyecto web base, puedes pedirle que lea el archivo <b>README.md</b>, aprenda las reglas de tu plantilla y genere vistas, componentes, tablas y diagramas respetando al 100% tu estructura.</li>
+	<li><b>Investigar y diagnosticar fallos (Debugging):</b> Cuando algo no funciona o sale un mensaje de error incomprensible, la IA puede leer el error, buscar en qué archivo está el problema, explicarte por qué ocurre y arreglarlo por ti.</li>
+	<li><b>Automatizar tareas repetitivas:</b> Renombrar decenas de archivos, transformar datos de un formato a otro, generar documentación, crear tests automáticos o ejecutar comandos en la terminal sin que tengas que memorizar la sintaxis.</li>
+</ul>

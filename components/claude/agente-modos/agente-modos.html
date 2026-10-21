@@ -1,0 +1,51 @@
+<h1 class="title">El Agente de Claude y sus Modos de Ejecución</h1>
+
+<h2>1. ¿Cómo trabaja el Agente en Claude Code?</h2>
+
+<p>Cuando abres <b>Claude Code</b> en tu proyecto (ya sea desde la terminal escribiendo <kbd>claude</kbd> o usando la extensión oficial en VS Code / Cursor / JetBrains), no estás ante un simple chat de texto: estás frente a un <b>agente autónomo con herramientas integradas</b>.</p>
+
+<p>Por sí mismo, y sin que tengas que instalar nada adicional, el agente de Claude dispone de herramientas nativas para:</p>
+
+<ul>
+	<li><b>Explorar y buscar en tu proyecto (Read / Glob / Grep):</b> Busca archivos por nombre y encuentra en milisegundos en qué línea exacta de qué archivo aparece una función o una clase CSS.</li>
+	<li><b>Crear y editar archivos (Edit / Write):</b> Modifica líneas específicas de tus archivos existentes o crea carpetas y archivos nuevos desde cero.</li>
+	<li><b>Ejecutar comandos de consola (Bash):</b> Puede lanzar el servidor de pruebas, ejecutar <kbd>git status</kbd>, instalar paquetes con <kbd>npm</kbd> o validar que un archivo JSON sea válido.</li>
+	<li><b>Buscar en la web y consultar documentación (WebFetch / WebSearch):</b> Si necesita consultar la documentación actualizada de una librería, puede leerla directamente.</li>
+	<li><b>Lanzar Subagentes (Task / Agent):</b> Puede abrir agentes secundarios en paralelo para investigar el código o dividir una tarea grande.</li>
+</ul>
+
+<h2>2. Los 3 Modos de Ejecución en Claude Code (<kbd>Shift + Tab</kbd>)</h2>
+
+<p>Uno de los secretos mejor guardados para usar Claude como un profesional es saber cambiar entre sus <b>tres modos de ejecución</b> pulsando la combinación de teclas <kbd>Shift + Tab</kbd> en cualquier momento:</p>
+
+<img class="center-horizontal" src="components/claude/agente-modos/assets/img/modos-ejecucion-claude.svg"/>
+<span class="center-horizontal caption">Figura 1. Los tres modos de ejecución de Claude Code y el flujo recomendado pasando de Plan Mode a Auto-Accept Edits.</span>
+
+<ol>
+	<li><b>Plan Mode (Modo Planificación - Solo Lectura):</b> Al pulsar <kbd>Shift + Tab</kbd> hasta ver el indicador <i>Plan Mode on</i>, Claude entra en un estado 100% seguro donde <b>solo puede leer e investigar tu proyecto, pero tiene prohibido modificar archivos</b>. Analiza tu código, te explica qué archivos hay que tocar y te presenta un plan detallado paso a paso.</li>
+	<li><b>Normal Mode (Modo por defecto con confirmación):</b> Cada vez que Claude quiere editar un archivo o ejecutar un comando en la terminal, se detiene, te muestra en pantalla el cambio exacto (en verde lo que añade y en rojo lo que quita) y te pregunta si lo apruebas para esta vez o para toda la sesión.</li>
+	<li><b>Auto-Accept Edits Mode (Aceptar ediciones automáticamente):</b> Cuando ya has revisado el plan de Claude y confías en lo que va a hacer, pulsas <kbd>Shift + Tab</kbd> para activar <i>Auto-Accept Edits</i>. En este modo, Claude crea y modifica todos los archivos del plan de principio a fin sin interrumpirte en cada archivo.</li>
+</ol>
+
+<h2>3. Ejemplo práctico del flujo "Primero Planificar, Luego Ejecutar"</h2>
+
+<p>Así es como se ve una sesión real aplicando este método de dos pasos en Claude Code:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-plaintext">
+# PASO 1: Pulsas Shift+Tab para activar [Plan Mode] y escribes tu petición:
+&gt; Lee @README.md y traza un plan para añadir una vista de Gemini y otra de Claude
+  en la barra de navegación superior, con sus respectivos apartados en el sidebar.
+
+# Claude investiga los archivos sin modificar nada y te responde:
+  "He leído README.md, constants.json y sidebar.js. Propongo este plan:
+   1. Crear carpetas components/gemini y components/claude con common/assets/
+   2. Crear los componentes WebComponent (.html y .js) y sus diagramas SVG
+   3. Registrar todo en js/components-imports.js y constants.json
+   ¿Quieres que proceda con este plan?"
+
+# PASO 2: Pulsas Shift+Tab para pasar a [Auto-Accept Edits] y dices:
+&gt; Adelante, ejecuta el plan completo.
+</code></pre>
+</div>
+<span class="center-horizontal caption">Flujo recomendado en dos pasos: acordar primero el diseño en Plan Mode y ejecutarlo después en Auto-Accept Mode.</span>

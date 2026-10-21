@@ -1,0 +1,164 @@
+<h1 class="title">Servidores MCP, Hooks, Plugins y Sandbox</h1>
+
+<h2>1. ¿Qué es un MCP (Model Context Protocol)? Explicado sin tecnicismos</h2>
+
+<p>Si nunca has oído hablar de <b>MCP</b> (<i>Model Context Protocol</i> o Protocolo de Contexto de Modelos), la forma más fácil de entenderlo es con una analogía cotidiana: <b>MCP es como el puerto USB-C universal para la Inteligencia Artificial</b>.</p>
+
+<p>Antes de que existiera el estándar MCP, la IA solo podía leer los archivos de tu carpeta local. Si querías que la IA consultara una tabla de tu base de datos PostgreSQL, leyera un ticket de Jira, revisara los Pull Requests pendientes en GitHub o buscara un mensaje en Slack, no tenía forma directa de conectarse a esos programas. Con <b>MCP</b>, tú configuras pequeños conectores llamados <b>Servidores MCP</b> y, automáticamente, tu agente gana "superpoderes" (nuevas herramientas) para hablar con bases de datos, APIs y servicios externos de forma segura.</p>
+
+<img class="center-horizontal" src="components/gemini/mcp-hooks-plugins/assets/img/ecosistema-mcp-hooks-plugins.svg"/>
+<span class="center-horizontal caption">Figura 1. Cómo se integran los Servidores MCP, los Lifecycle Hooks y los Plugins alrededor del Agente en Antigravity.</span>
+
+<h3>1.1. ¿Cómo se configura un Servidor MCP en Antigravity (<kbd>mcp_config.json</kbd>)?</h3>
+
+<p>En Antigravity, los servidores MCP se declaran en el archivo global <kbd>~/.gemini/config/mcp_config.json</kbd> (o dentro de un plugin). Existen dos formas de conectar un servidor MCP:</p>
+
+<ul>
+	<li><b>Transporte Stdio (Local):</b> El agente ejecuta un programa instalado en tu propio ordenador (por ejemplo, con Node.js o Python) y se comunica con él localmente.</li>
+	<li><b>Transporte Streamable HTTP (Remoto):</b> El agente se conecta a una dirección web (<kbd>url</kbd>) de un servidor MCP remoto en la nube o en tu empresa.</li>
+</ul>
+
+<div class="center-horizontal">
+<pre><code class="language-json">
+{
+  "mcpServers": {
+    "base-datos-local": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sqlite", "/ruta/a/mi-base-datos.db"],
+      "env": {
+        "DB_READONLY": "true"
+      }
+    },
+    "servidor-empresa-remoto": {
+      "url": "https://mcp.miempresa.com/mcp"
+    }
+  }
+}
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo de archivo mcp_config.json configurando un servidor MCP local por Stdio y otro remoto por HTTP.</span>
+
+<h2>2. ¿Qué son los Hooks (<kbd>hooks.json</kbd>) y para qué sirven?</h2>
+
+<p>Un <b>Hook (Gancho de Ciclo de Vida)</b> es un script o comando automático que tú programas para que se dispare <b>exactamente antes o después de que el agente haga una acción</b>, sin depender de que el agente "se acuerde" de hacerlo.</p>
+
+<p>Por ejemplo: ¿quieres que <b>siempre</b> que el agente edite un archivo se pase automáticamente un comprobador de código (linter)? ¿O quieres prohibir que el agente pueda ejecutar jamás un comando peligroso en la terminal? Para eso se crea el archivo <kbd>.agents/hooks.json</kbd>:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Evento del Hook</th>
+			<th scope="col">Cuándo se dispara exactamente</th>
+			<th scope="col">Ejemplo práctico de uso</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>SessionStart</b></th>
+			<td>Una sola vez al iniciar una conversación nueva.</td>
+			<td>Inyectar un mensaje de bienvenida o comprobar que el entorno de desarrollo está levantado.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>PreToolUse</b></th>
+			<td>Justo <b>antes</b> de que el agente ejecute una herramienta (ej. <kbd>run_command</kbd>).</td>
+			<td>Bloquear comandos peligrosos (<kbd>"decision": "deny"</kbd>), obligar a pedir permiso (<kbd>"ask"</kbd>) o reescribir argumentos (<kbd>"overwrite"</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>PostToolUse</b></th>
+			<td>Justo <b>después</b> de que una herramienta termine de ejecutarse.</td>
+			<td>Ejecutar automáticamente un formateador de código o un linter tras cada cambio.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>PreInvocation / PostInvocation</b></th>
+			<td>Antes o después de cada llamada al modelo de lenguaje.</td>
+			<td>Inyectar recordatorios efímeros (<kbd>ephemeralMessage</kbd>) antes de que el modelo responda.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Stop</b></th>
+			<td>Cuando el agente intenta dar por terminada su tarea y detenerse.</td>
+			<td>Comprobar si los tests siguen fallando y, si es así, devolver <kbd>"decision": "continue"</kbd> para obligarle a seguir arreglándolo.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Los 6 eventos del ciclo de vida soportados en el archivo hooks.json de Antigravity.</span>
+
+<div class="center-horizontal">
+<pre><code class="language-json">
+{
+  "verificar-seguridad-comandos": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/auditar-comando.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo de configuración en .agents/hooks.json que intercepta llamadas a la herramienta run_command.</span>
+
+<h2>3. Plugins (<kbd>plugin.json</kbd>): Cómo empaquetarlo todo para tu equipo</h2>
+
+<p>Si has creado varias <b>Reglas</b>, varias <b>Skills</b>, unos cuantos <b>Hooks</b> y una configuración de <b>Servidores MCP</b> y quieres compartir todo ese "kit de superpoderes" con tus compañeros de trabajo en una sola unidad, puedes crear un <b>Plugin</b> dentro de <kbd>.agents/plugins/&lt;nombre-plugin&gt;/</kbd>:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-plaintext">
+.agents/plugins/kit-desarrollo-web/
+├── plugin.json        # Manifiesto obligatorio: { "name": "kit-desarrollo-web" }
+├── mcp_config.json    # Servidores MCP que activa este plugin
+├── hooks.json         # Hooks de ciclo de vida del plugin
+├── rules/
+│   └── AGENTS.md      # Reglas consolidadas del plugin
+└── skills/
+    └── crear-vista/
+        └── SKILL.md   # Habilidades incluidas en el plugin
+</code></pre>
+</div>
+<span class="center-horizontal caption">Estructura completa de un Plugin en Antigravity que agrupa reglas, skills, hooks y MCP.</span>
+
+<h2>4. Resumen comparativo: ¿Cuándo uso Rule, Skill, Hook, MCP o Plugin?</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Si lo que necesitas es...</th>
+			<th scope="col">Debes usar...</th>
+			<th scope="col">Archivo donde se configura</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">Que la IA respete siempre el estilo y normas de tu código</th>
+			<td><b>Rule (Regla)</b></td>
+			<td><kbd>GEMINI.md</kbd> o <kbd>AGENTS.md</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row">Enseñarle una receta paso a paso para una tarea concreta sin gastar memoria siempre</th>
+			<td><b>Skill (Habilidad)</b></td>
+			<td><kbd>.agents/skills/&lt;nombre&gt;/SKILL.md</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row">Conectar la IA con una base de datos, GitHub, Jira o servicio externo</th>
+			<td><b>MCP Server</b></td>
+			<td><kbd>~/.gemini/config/mcp_config.json</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row">Ejecutar un script validador antes o después de que el agente use una herramienta</th>
+			<td><b>Lifecycle Hook</b></td>
+			<td><kbd>.agents/hooks.json</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row">Empaquetar todo lo anterior para activarlo, desactivarlo o compartirlo</th>
+			<td><b>Plugin</b></td>
+			<td><kbd>.agents/plugins/&lt;nombre&gt;/plugin.json</kbd></td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Guía rápida para elegir el mecanismo de personalización adecuado en Antigravity.</span>

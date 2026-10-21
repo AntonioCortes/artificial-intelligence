@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380" width="920" height="380">
+  <rect width="920" height="380" rx="16" fill="#fafaf9" stroke="#d6d3d1" stroke-width="2"/>
+  <text x="460" y="36" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1e293b">Prefijos Mágicos y Atajos de Teclado en Claude Code</text>
+
+  <!-- Card 1: @ Menciones -->
+  <rect x="25" y="62" width="210" height="215" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="2.5"/>
+  <rect x="25" y="62" width="210" height="40" rx="12" fill="#2563eb"/>
+  <text x="130" y="88" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#ffffff">@ (Mencionar)</text>
+  <text x="130" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e40af">Archivos, Carpetas y MCP</text>
+  <text x="130" y="150" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">@README.md</text>
+  <text x="130" y="170" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">@components/claude/</text>
+  <text x="130" y="190" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">@mcp:recurso</text>
+  <text x="130" y="222" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Autocompleta rutas con</text>
+  <text x="130" y="238" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Tab e inyecta el archivo</text>
+  <text x="130" y="254" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">directo en el contexto</text>
+
+  <!-- Card 2: ! Modo Bash -->
+  <rect x="248" y="62" width="210" height="215" rx="12" fill="#ffffff" stroke="#059669" stroke-width="2.5"/>
+  <rect x="248" y="62" width="210" height="40" rx="12" fill="#059669"/>
+  <text x="353" y="88" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#ffffff">! (Modo Bash)</text>
+  <text x="353" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#065f46">Ejecución Instantánea</text>
+  <text x="353" y="150" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">! git status</text>
+  <text x="353" y="170" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">! ls -la components/</text>
+  <text x="353" y="190" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">! npm test</text>
+  <text x="353" y="222" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Ejecuta el comando en</text>
+  <text x="353" y="238" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">tu terminal al instante</text>
+  <text x="353" y="254" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">y Claude ve el resultado</text>
+
+  <!-- Card 3: # Memoria Rápida -->
+  <rect x="471" y="62" width="210" height="215" rx="12" fill="#ffffff" stroke="#d97757" stroke-width="2.5"/>
+  <rect x="471" y="62" width="210" height="40" rx="12" fill="#d97757"/>
+  <text x="576" y="88" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#ffffff"># (Memoria)</text>
+  <text x="576" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#9a3412">Guardar en CLAUDE.md</text>
+  <text x="576" y="154" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155"># Usa siempre clases</text>
+  <text x="576" y="172" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">Bootstrap 5 en tablas</text>
+  <text x="576" y="222" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Añade una regla nueva</text>
+  <text x="576" y="238" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">directamente a tu archivo</text>
+  <text x="576" y="254" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">de memoria CLAUDE.md</text>
+
+  <!-- Card 4: / Comandos -->
+  <rect x="694" y="62" width="201" height="215" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="2.5"/>
+  <rect x="694" y="62" width="201" height="40" rx="12" fill="#7c3aed"/>
+  <text x="794" y="88" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#ffffff">/ (Comandos)</text>
+  <text x="794" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#5b21b6">Acciones del Sistema</text>
+  <text x="794" y="150" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">/init  /compact</text>
+  <text x="794" y="170" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">/clear /model</text>
+  <text x="794" y="190" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">/agents /mcp</text>
+  <text x="794" y="222" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Ejecuta comandos nativos</text>
+  <text x="794" y="238" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">o tus propios comandos</text>
+  <text x="794" y="254" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">de .claude/commands/</text>
+
+  <!-- Bottom Keyboard Shortcuts Bar -->
+  <rect x="25" y="295" width="870" height="65" rx="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="460" y="320" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e293b">Atajos de Teclado Imprescindibles durante la Conversación:</text>
+  <text x="460" y="344" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#334155">[Shift + Tab] Cambiar Modo (Normal / Auto / Plan)   ·   [Esc] Pausar a Claude al instante   ·   [Esc + Esc] Rebobinar chat a un punto anterior</text>
+</svg>

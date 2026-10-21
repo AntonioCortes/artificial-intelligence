@@ -1,0 +1,74 @@
+{
+    "pageContent" : [
+        {
+            "text" : "Fundamentos de IA y Agentes",
+            "content" : [
+                {
+                    "text" : "1.1. ¿Qué es la IA Generativa?",
+                    "content" : "component-gemini-ia-generativa"
+                },
+                {
+                    "text" : "1.2. Prompt vs Agente de IA",
+                    "content" : "component-gemini-prompt-vs-agente"
+                },
+                {
+                    "text" : "1.3. Cómo escribir buenos Prompts",
+                    "content" : "component-gemini-prompt-engineering"
+                }
+            ]
+        },
+        {
+            "text" : "Ecosistema Gemini y Antigravity",
+            "content" : [
+                {
+                    "text" : "2.1. Modelos y Superficies (IDE, App, CLI)",
+                    "content" : "component-gemini-modelos-superficies"
+                }
+            ]
+        },
+        {
+            "text" : "Menciones y Comandos de Barra",
+            "content" : [
+                {
+                    "text" : "3.1. Menciones con @ (Contexto)",
+                    "content" : "component-gemini-menciones-arroba"
+                },
+                {
+                    "text" : "3.2. Comandos con / (Slash Commands)",
+                    "content" : "component-gemini-slash-commands"
+                }
+            ]
+        },
+        {
+            "text" : "Personalización Skills y MCP",
+            "content" : [
+                {
+                    "text" : "4.1. Reglas (GEMINI.md y AGENTS.md)",
+                    "content" : "component-gemini-reglas-memoria"
+                },
+                {
+                    "text" : "4.2. Skills (Habilidades) y Subagentes",
+                    "content" : "component-gemini-skills-subagentes"
+                },
+                {
+                    "text" : "4.3. Servidores MCP, Hooks y Plugins",
+                    "content" : "component-gemini-mcp-hooks-plugins"
+                }
+            ]
+        }
+    ],
+    "links" : [
+        {
+            "text" : "Documentación Oficial Antigravity",
+            "href" : "https://antigravity.google/docs"
+        },
+        {
+            "text" : "Guía de Skills en Antigravity",
+            "href" : "https://antigravity.google/docs/skills"
+        },
+        {
+            "text" : "Model Context Protocol (MCP)",
+            "href" : "https://antigravity.google/docs/mcp"
+        }
+    ]
+}

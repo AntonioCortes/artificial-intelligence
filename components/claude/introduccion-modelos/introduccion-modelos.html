@@ -1,0 +1,78 @@
+<h1 class="title">¿Qué es Claude y qué Modelos existen?</h1>
+
+<h2>1. ¿Qué es Claude? Introducción desde cero</h2>
+
+<p><b>Claude</b> es la familia de modelos de Inteligencia Artificial y herramientas agénticas desarrollada por <b>Anthropic</b>. Entre los desarrolladores de software, redactores y analistas técnicos, Claude se ha hecho enormemente popular por tres cualidades principales:</p>
+
+<ul>
+	<li><b>Altísima precisión escribiendo y refactorizando código:</b> Entiende proyectos grandes, respeta las convenciones de estilo existentes y genera código muy limpio.</li>
+	<li><b>Comunicación natural y estructurada:</b> Sus explicaciones son claras, directas y menos propensas a repetir frases robóticas.</li>
+	<li><b>Ecosistema Agéntico Completo (Claude Code):</b> Al igual que Google cuenta con Antigravity para Gemini, Anthropic ofrece <b>Claude Code</b>, su herramienta agéntica oficial que trabaja directamente sobre los archivos de tu ordenador desde la terminal o integrada en tu editor (VS Code / JetBrains).</li>
+</ul>
+
+<img class="center-horizontal" src="components/claude/introduccion-modelos/assets/img/familia-modelos-claude.svg"/>
+<span class="center-horizontal caption">Figura 1. Los tres modelos de la familia Claude (Haiku, Sonnet y Opus), el modo Extended Thinking y sus dos superficies de trabajo.</span>
+
+<h2>2. Los 3 Modelos de Claude: Haiku, Sonnet y Opus</h2>
+
+<p>Los nombres de los modelos de Claude están inspirados en tipos de composiciones poéticas, ordenados de menor a mayor tamaño y profundidad. Saber cuándo elegir cada uno (por ejemplo, usando el comando <kbd>/model</kbd>) es fundamental:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Modelo</th>
+			<th scope="col">Características Clave</th>
+			<th scope="col">Cuándo debes elegirlo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>Claude Haiku</b></th>
+			<td>Es el modelo más pequeño, ultrarrápido y muy económico en consumo de tokens.</td>
+			<td>Para preguntas rápidas, transformar formatos sencillos (JSON/CSV), explicar un comando corto o para que lo usen subagentes que solo buscan archivos.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Claude Sonnet</b></th>
+			<td>El equilibrio perfecto entre inteligencia avanzada y rapidez de respuesta.</td>
+			<td>Es el <b>modelo por defecto recomendado para el 90% del trabajo diario</b>: crear componentes, programar funciones, escribir tests y usar el agente.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Claude Opus</b></th>
+			<td>El modelo más grande y con mayor capacidad de razonamiento profundo de Anthropic.</td>
+			<td>Para decisiones de arquitectura críticas, encontrar errores muy sutiles en múltiples archivos o planificar refactorizaciones complejas.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Comparativa de los tres niveles de modelos de Claude.</span>
+
+<h2>3. ¿Qué es el Pensamiento Extendido (Extended Thinking)?</h2>
+
+<p>Tanto en Claude Sonnet como en Claude Opus existe una capacidad llamada <b>Extended Thinking (Pensamiento Extendido)</b>. Cuando está activada, antes de escribir una sola línea de respuesta o de código, Claude abre un bloque interno de reflexión donde desglosa el problema, comprueba casos límite y diseña la solución.</p>
+
+<p>En <b>Claude Code</b>, incluso puedes controlar cuánto quieres que piense en una tarea difícil mediante palabras clave en tu propio prompt (como <b>"think"</b>, <b>"think hard"</b> o <b>"ultrathink"</b>) o activando el pensamiento extendido en el selector de modelo con <kbd>/model</kbd>.</p>
+
+<h2>4. Diferencia entre Claude Web/Desktop y Claude Code</h2>
+
+<p>Puedes usar Claude de dos maneras muy distintas según tu objetivo:</p>
+
+<ol>
+	<li><b>Claude Web y Desktop App (<kbd>claude.ai</kbd>):</b> Es la interfaz de chat visual. Incluye dos funciones muy útiles para principiantes:
+		<ul>
+			<li><b>Artifacts (Artefactos):</b> Cuando le pides a Claude que cree un diagrama, una calculadora en HTML/React o un documento, se abre un panel a la derecha donde puedes ver y probar el resultado en vivo sin salir del chat.</li>
+			<li><b>Projects (Proyectos):</b> Te permite crear un espacio donde subes documentos PDF, manuales o archivos de referencia e instrucciones personalizadas para que todas las conversaciones de ese proyecto los tengan presentes.</li>
+		</ul>
+	</li>
+	<li><b>Claude Code (El Agente en tu Terminal e IDE):</b> En lugar de subir archivos a una web, abres tu terminal en la carpeta de tu proyecto y ejecutas el comando <kbd>claude</kbd>. El agente vive directamente dentro de tu proyecto: lee tus carpetas, edita tus archivos, ejecuta tus tests y se conecta a tus servidores MCP.</li>
+</ol>
+
+<div class="center-horizontal">
+<pre><code class="language-bash">
+# 1. Instalar Claude Code globalmente (requiere tener Node.js instalado)
+npm install -g @anthropic-ai/claude-code
+
+# 2. Entrar en la carpeta de tu proyecto web y lanzar el agente
+cd /ruta/a/mi-proyecto-web
+claude
+</code></pre>
+</div>
+<span class="center-horizontal caption">Cómo instalar y arrancar el agente de Claude Code directamente en la carpeta de tu proyecto.</span>

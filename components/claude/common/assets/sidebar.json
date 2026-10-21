@@ -1,0 +1,62 @@
+{
+    "pageContent" : [
+        {
+            "text" : "Introducción y Modelos",
+            "content" : [
+                {
+                    "text" : "1.1. ¿Qué es Claude y qué Modelos tiene?",
+                    "content" : "component-claude-introduccion-modelos"
+                }
+            ]
+        },
+        {
+            "text" : "Claude Code y Modo Agente",
+            "content" : [
+                {
+                    "text" : "2.1. El Agente y Modos de Ejecución",
+                    "content" : "component-claude-agente-modos"
+                }
+            ]
+        },
+        {
+            "text" : "Menciones Atajos y Comandos",
+            "content" : [
+                {
+                    "text" : "3.1. Menciones @ y Atajos (!, #, Esc)",
+                    "content" : "component-claude-menciones-atajos"
+                },
+                {
+                    "text" : "3.2. Todos los Comandos con /",
+                    "content" : "component-claude-slash-commands"
+                }
+            ]
+        },
+        {
+            "text" : "Memoria Skills Subagentes y MCP",
+            "content" : [
+                {
+                    "text" : "4.1. Memoria (CLAUDE.md) y Skills",
+                    "content" : "component-claude-memoria-skills"
+                },
+                {
+                    "text" : "4.2. Subagentes, MCP, Hooks y Comparativa",
+                    "content" : "component-claude-subagentes-mcp-hooks"
+                }
+            ]
+        }
+    ],
+    "links" : [
+        {
+            "text" : "Documentación Oficial de Claude",
+            "href" : "https://docs.anthropic.com/"
+        },
+        {
+            "text" : "Guía de Claude Code",
+            "href" : "https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview"
+        },
+        {
+            "text" : "Estándar Abierto MCP",
+            "href" : "https://modelcontextprotocol.io/"
+        }
+    ]
+}

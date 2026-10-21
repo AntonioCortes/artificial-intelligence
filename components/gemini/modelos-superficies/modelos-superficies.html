@@ -1,0 +1,92 @@
+<h1 class="title">Modelos de Gemini y Plataforma Google Antigravity</h1>
+
+<h2>1. ¿Qué es Gemini y qué es Google Antigravity (AGY)?</h2>
+
+<p>Es muy frecuente preguntarse por qué a veces oímos hablar de <b>Gemini</b> y otras veces de <b>Antigravity (o AGY)</b>. La distinción es muy sencilla:</p>
+
+<ul>
+	<li><b>Google Gemini</b> es la familia de <b>modelos de Inteligencia Artificial</b> (el "cerebro" creado por Google DeepMind que razona, entiende texto, imágenes y código).</li>
+	<li><b>Google Antigravity (AGY)</b> es la <b>plataforma de desarrollo agéntica</b> (el "cuerpo y entorno de trabajo") donde ese cerebro de Gemini cobra vida para leer tus carpetas, ejecutar comandos en la terminal, usar herramientas MCP, gestionar subagentes y crear artefactos.</li>
+</ul>
+
+<img class="center-horizontal" src="components/gemini/modelos-superficies/assets/img/ecosistema-gemini-antigravity.svg"/>
+<span class="center-horizontal caption">Figura 1. Relación entre la familia de modelos Gemini (el cerebro) y las tres superficies de Google Antigravity.</span>
+
+<h2>2. ¿Qué modelos de Gemini existen y cuál debo elegir?</h2>
+
+<p>Tanto en los ajustes de Antigravity como cuando se lanzan subagentes verás distintos niveles de modelos de Gemini. Cada uno está diseñado para un propósito diferente:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Modelo</th>
+			<th scope="col">Velocidad</th>
+			<th scope="col">Profundidad de Razonamiento</th>
+			<th scope="col">Cuándo debes usarlo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">Gemini Flash Lite (flash_lite)</th>
+			<td>Instantánea</td>
+			<td>Básica / Directa</td>
+			<td>Para tareas muy sencillas, resúmenes rápidos, formateo de texto o subagentes que hacen búsquedas simples.</td>
+		</tr>
+		<tr>
+			<th scope="row">Gemini Flash (flash)</th>
+			<td>Muy rápida</td>
+			<td>Alta</td>
+			<td>Excelente para el trabajo diario ágil: crear componentes sencillos, responder preguntas rápidas, buscar archivos o hacer ediciones puntuales sin esperar.</td>
+		</tr>
+		<tr>
+			<th scope="row">Gemini Pro / Thinking (pro)</th>
+			<td>Moderada (piensa antes de actuar)</td>
+			<td>Máxima (Razonamiento multicapa)</td>
+			<td>Para diseñar arquitecturas complejas, depurar errores difíciles, planificar proyectos enteros o coordinar múltiples archivos y diagramas sin cometer fallos.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Comparativa de los modelos disponibles en el ecosistema Gemini / Antigravity.</span>
+
+<h2>3. Las 3 Superficies de Google Antigravity: IDE, Desktop App y CLI</h2>
+
+<p>Puedes utilizar el mismo agente y las mismas personalizaciones (Skills, Reglas y MCP) desde tres programas distintos según cómo te guste trabajar:</p>
+
+<h3>3.1. Antigravity IDE (El editor de código con IA integrada)</h3>
+
+<p>Es un entorno de desarrollo completo (construido sobre la base de VS Code) pensado para cuando estás escribiendo o revisando código directamente. Ofrece <b>tres modalidades de IA</b> complementarias:</p>
+
+<ol>
+	<li><b>Modalidad Pasiva — Antigravity Tab (Autocompletado y Supercomplete):</b> Mientras escribes código, la IA predice tu siguiente intención. No solo completa la línea actual (<i>Autocomplete</i>), sino que muestra ventanas flotantes con cambios de varias líneas (<i>Supercomplete</i>), añade automáticamente los <b>imports</b> arriba del archivo cuando usas una librería nueva (<i>Tab to Import</i>) y predice a qué línea del archivo vas a querer saltar a continuación para llevarte allí pulsando simplemente <kbd>Tab</kbd> (<i>Tab to Jump</i>). Para aceptar pulsas <kbd>Tab</kbd>, para cancelar <kbd>Esc</kbd>, y para aceptar palabra por palabra <kbd>Ctrl + Flecha Derecha</kbd> (o <kbd>Cmd + Flecha Derecha</kbd> en Mac).</li>
+	<li><b>Modalidad Instructiva — Edición Inline (<kbd>Ctrl + I</kbd> / <kbd>Cmd + I</kbd>):</b> Si seleccionas unas líneas de código con el ratón y pulsas <kbd>Ctrl + I</kbd>, se abre una pequeña caja de texto justo encima del código. Puedes escribir <i>"añade comentarios explicativos"</i> o <i>"convierte este bucle en un map"</i> y la IA modificará únicamente el bloque seleccionado mostrando las diferencias en verde y rojo (<i>Visual Diff Overlays</i>).</li>
+	<li><b>Modalidad Colaborativa — Sidebar Chat &amp; Agent Mode:</b> Es el panel lateral donde hablas con el agente para tareas de múltiples pasos que requieren leer varios archivos, usar la terminal o planificar toda una funcionalidad. Además, encima de tus funciones y clases verás botones rápidos (<i>Inline Code Lenses</i>) para explicar, refactorizar o crear tests con un clic, y botones de <i>Diagnostic Auto-Fix</i> para arreglar errores del compilador automáticamente.</li>
+</ol>
+
+<h3>3.2. Antigravity 2.0 (La aplicación de escritorio para dirigir agentes)</h3>
+
+<p>Es una aplicación de escritorio independiente diseñada para que gestiones uno o varios agentes trabajando en tus proyectos sin necesidad de tener un editor de código tradicional abierto. Su interfaz se divide en:</p>
+
+<ul>
+	<li><b>Barra lateral izquierda (Left-hand Sidebar):</b> Desde donde inicias nuevas conversaciones (<i>New Conversation</i>), cambias de repositorio (<i>Projects</i>), programas tareas recurrentes o temporizadores (<i>Scheduled Tasks</i>), gestionas tus <i>Skills &amp; Customizations</i> y configuras permisos globales o por proyecto (<i>Settings</i>).</li>
+	<li><b>Lienzo de Chat (Chat Canvas):</b> El panel central donde conversas con el agente, usas comandos con <kbd>/</kbd>, mencionas archivos o herramientas con <kbd>@</kbd> y arrastras imágenes o capturas de pantalla.</li>
+	<li><b>Panel Auxiliar (Auxiliary Pane):</b> Donde puedes inspeccionar en tiempo real los <b>Artefactos</b> (planes de ejecución, informes con diagramas, tablas y carruseles generados por el agente), los <b>Subagentes</b> activos, las <b>Tareas en segundo plano (Background Tasks)</b>, los <b>Archivos modificados</b> y las <b>Terminales</b>.</li>
+</ul>
+
+<h3>3.3. Antigravity CLI (<kbd>agy</kbd>) (El agente en tu terminal)</h3>
+
+<p>Si prefieres trabajar directamente desde la consola de comandos de Linux, macOS o Windows, la interfaz de línea de comandos <b>agy</b> te ofrece toda la potencia del agente de forma instantánea:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-bash">
+# 1. Iniciar el agente interactivo en la carpeta actual de tu proyecto
+agy
+
+# 2. Ver todas las opciones y subcomandos disponibles desde la terminal
+agy --help
+
+# 3. Dentro de la interfaz interactiva de agy:
+#    - Escribe /help para ver todos los slash commands
+#    - Pulsa Ctrl+D dos veces (o escribe /exit o /quit) para salir
+</code></pre>
+</div>
+<span class="center-horizontal caption">Comandos básicos para arrancar y utilizar Antigravity CLI (agy) en la terminal.</span>

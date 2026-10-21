@@ -1,0 +1,46 @@
+{
+    "Note": "Este sidebar está definido de la manera antigua que sigue siendo soportada por retrocompatibilidad.",
+    "pageContent" : [
+        {
+            "text" : "Submenu 1",
+            "contentId" : "submenu-1",
+            "content" : [
+                {
+                    "text" : "Grouped content",
+                    "contentId" : "grouped-content-1",
+                    "content" : [
+                        {
+                            "text" : "content 1",
+                            "content" : "anotherView.paths.content1"
+                        },
+                        {
+                            "text" : "content 2",
+                            "content" : "anotherView.paths.content2"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "text" : "Submenu 2",
+            "contentId" : "submenu-2",
+            "content" : [
+                {
+                    "text" : "content 2",
+                    "content" : "anotherView.paths.content2"
+                }
+            ]
+
+        }
+    ],
+    "links" : [
+        {
+            "text" : "Download Source",
+            "href" : "https://bootstrapious.com/tutorial/files/sidebar.zip"
+        },
+        {
+            "text" : "Bootstrap Sidebar",
+            "href" : "https://bootstrapious.com/p/bootstrap-sidebar"
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 390" width="920" height="390">
+  <defs>
+    <marker id="arrAt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect width="920" height="390" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="460" y="36" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1e293b">¿Qué puedes inyectar en tu mensaje al escribir el símbolo @ en Antigravity?</text>
+
+  <!-- Central @ Input Box -->
+  <rect x="330" y="65" width="260" height="70" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="3"/>
+  <text x="460" y="95" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#60a5fa">"Revisa @README.md y..."</text>
+  <text x="460" y="118" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#cbd5e1">Al pulsar @ se despliega el menú</text>
+
+  <!-- 5 Categories below -->
+  <line x1="360" y1="135" x2="105" y2="195" stroke="#2563eb" stroke-width="2" marker-end="url(#arrAt)"/>
+  <line x1="410" y1="135" x2="285" y2="195" stroke="#2563eb" stroke-width="2" marker-end="url(#arrAt)"/>
+  <line x1="460" y1="135" x2="460" y2="195" stroke="#2563eb" stroke-width="2" marker-end="url(#arrAt)"/>
+  <line x1="510" y1="135" x2="635" y2="195" stroke="#2563eb" stroke-width="2" marker-end="url(#arrAt)"/>
+  <line x1="560" y1="135" x2="815" y2="195" stroke="#2563eb" stroke-width="2" marker-end="url(#arrAt)"/>
+
+  <!-- Cat 1: Archivos y Carpetas -->
+  <rect x="25" y="200" width="162" height="155" rx="10" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="25" y="200" width="162" height="32" rx="10" fill="#3b82f6"/>
+  <text x="106" y="221" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">1. Archivos y Carpetas</text>
+  <text x="106" y="250" text-anchor="middle" font-family="monospace" font-size="11" fill="#1d4ed8">@README.md</text>
+  <text x="106" y="270" text-anchor="middle" font-family="monospace" font-size="11" fill="#1d4ed8">@js/sidebar.js</text>
+  <text x="106" y="290" text-anchor="middle" font-family="monospace" font-size="11" fill="#1d4ed8">@components/</text>
+  <text x="106" y="320" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Lee el archivo exacto</text>
+  <text x="106" y="336" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">sin tener que buscarlo</text>
+
+  <!-- Cat 2: Sesiones de Terminal -->
+  <rect x="202" y="200" width="162" height="155" rx="10" fill="#ffffff" stroke="#0d9488" stroke-width="2"/>
+  <rect x="202" y="200" width="162" height="32" rx="10" fill="#0d9488"/>
+  <text x="283" y="221" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">2. Terminal Activa</text>
+  <text x="283" y="255" text-anchor="middle" font-family="monospace" font-size="11" fill="#0f766e">@terminal</text>
+  <text x="283" y="285" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Adjunta la salida</text>
+  <text x="283" y="303" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">y errores de tu consola</text>
+  <text x="283" y="321" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">para que los arregle</text>
+
+  <!-- Cat 3: Conversaciones Previas -->
+  <rect x="379" y="200" width="162" height="155" rx="10" fill="#ffffff" stroke="#8b5cf6" stroke-width="2"/>
+  <rect x="379" y="200" width="162" height="32" rx="10" fill="#8b5cf6"/>
+  <text x="460" y="221" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">3. Chats Anteriores</text>
+  <text x="460" y="255" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b21b6">@conversacion</text>
+  <text x="460" y="285" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Recupera el contexto</text>
+  <text x="460" y="303" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">y decisiones tomadas</text>
+  <text x="460" y="321" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">en una sesión pasada</text>
+
+  <!-- Cat 4: Reglas (Rules) -->
+  <rect x="556" y="200" width="162" height="155" rx="10" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+  <rect x="556" y="200" width="162" height="32" rx="10" fill="#d97706"/>
+  <text x="637" y="221" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">4. Reglas (Rules)</text>
+  <text x="637" y="255" text-anchor="middle" font-family="monospace" font-size="11" fill="#b45309">@GEMINI.md</text>
+  <text x="637" y="275" text-anchor="middle" font-family="monospace" font-size="11" fill="#b45309">@AGENTS.md</text>
+  <text x="637" y="303" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Fuerza la aplicación</text>
+  <text x="637" y="321" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">de guías de estilo</text>
+
+  <!-- Cat 5: Servidores y Tools MCP -->
+  <rect x="733" y="200" width="162" height="155" rx="10" fill="#ffffff" stroke="#e11d48" stroke-width="2"/>
+  <rect x="733" y="200" width="162" height="32" rx="10" fill="#e11d48"/>
+  <text x="814" y="221" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">5. Servidores MCP</text>
+  <text x="814" y="255" text-anchor="middle" font-family="monospace" font-size="11" fill="#be123c">@mcp:github</text>
+  <text x="814" y="275" text-anchor="middle" font-family="monospace" font-size="11" fill="#be123c">@mcp:postgres</text>
+  <text x="814" y="303" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Conecta recursos y</text>
+  <text x="814" y="321" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">herramientas externas</text>
+</svg>

@@ -1,0 +1,16 @@
+{
+    "common" : {
+        "paths" : {
+            "navbar" : "components/common/navbar.html",
+            "sidebar" : "components/common/sidebar.html"
+        }
+    },
+    "mainView" : {
+        "topic" : "Gemini / Antigravity",
+        "basePath" : "components/gemini"
+    },
+    "claudeView" : {
+        "topic" : "Claude",
+        "basePath" : "components/claude"
+    }
+}

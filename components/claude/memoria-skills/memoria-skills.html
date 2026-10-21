@@ -1,0 +1,88 @@
+<h1 class="title">Memoria (CLAUDE.md), Skills y Comandos Personalizados</h1>
+
+<h2>1. ¿Qué es el archivo <kbd>CLAUDE.md</kbd> y por qué es tan importante?</h2>
+
+<p>En el ecosistema de Claude, el archivo <b>CLAUDE.md</b> cumple exactamente la misma misión que <b>GEMINI.md</b> en Antigravity: es la <b>memoria permanente de tu proyecto</b>. Cada vez que abres Claude Code en tu carpeta de trabajo, lo primero que hace de forma automática es leer el archivo <b>CLAUDE.md</b> e inyectar sus instrucciones en su memoria antes de que escribas la primera palabra.</p>
+
+<p>Como vimos en el apartado de comandos <kbd>/</kbd>, no necesitas siquiera escribir este archivo desde cero: basta con ejecutar <kbd>/init</kbd> para que Claude analice tu repositorio y cree un primer borrador completo que luego puedes retocar con <kbd>/memory</kbd> o añadiendo notas rápidas con el prefijo <kbd>#</kbd>.</p>
+
+<h3>1.1. Jerarquía de archivos de memoria en Claude</h3>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Archivo y Ruta</th>
+			<th scope="col">¿Se sube a Git?</th>
+			<th scope="col">Para qué sirve cada uno</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>~/.claude/CLAUDE.md</kbd></th>
+			<td>No (está en tu carpeta de usuario)</td>
+			<td><b>Memoria Global Personal:</b> Tus gustos personales para todos los proyectos de tu ordenador (ej. <i>"Respóndeme siempre en español y explica los cambios"</i>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>./CLAUDE.md</kbd></th>
+			<td>Sí (compartido con el equipo)</td>
+			<td><b>Memoria del Proyecto:</b> Arquitectura de carpetas, cómo añadir nuevas vistas y componentes, clases CSS obligatorias y comandos habituales.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>./CLAUDE.local.md</kbd></th>
+			<td>No (se ignora en Git)</td>
+			<td><b>Memoria Local Privada:</b> Rutas o notas específicas de tu máquina para este proyecto que no quieres subir al repositorio compartido.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>.claude/rules/*.md</kbd></th>
+			<td>Sí (opcional y modular)</td>
+			<td><b>Reglas Modulares:</b> Permite dividir las normas de un proyecto grande en varios archivos pequeños dentro de <kbd>.claude/rules/</kbd>.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Los cuatro niveles de memoria persistente que reconoce Claude Code automáticamente.</span>
+
+<h2>2. Cómo crear tus propios Comandos con <kbd>/</kbd> (<kbd>.claude/commands/</kbd>)</h2>
+
+<p>¿Sabías que puedes añadir tus propios comandos al menú <kbd>/</kbd> de Claude en menos de un minuto? Cualquier archivo Markdown (<kbd>.md</kbd>) que guardes dentro de la carpeta <kbd>.claude/commands/</kbd> de tu proyecto se convierte automáticamente en un comando que puedes invocar escribiendo <kbd>/nombre-del-archivo</kbd>.</p>
+
+<p>Además, si dentro de tu archivo Markdown escribes la variable especial <b>$ARGUMENTS</b>, Claude la sustituirá por el texto que escribas detrás del comando. Veamos un ejemplo real para este mismo proyecto web:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-markdown">
+# Archivo: .claude/commands/nuevo-componente.md
+---
+description: Crea un nuevo componente WebComponent y lo registra en el sidebar e imports
+---
+
+Sigue las reglas de @README.md para crear un nuevo componente con estos datos: $ARGUMENTS
+
+1. Crea la carpeta, el archivo .html y el archivo .js usando createComponent().
+2. Asegúrate de que el título principal lleve class="title" y las tablas lleven
+   class="table table-striped table-hover".
+3. Registra el import en @js/components-imports.js y enlázalo en el sidebar.json correspondiente.
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo de comando personalizado guardado en .claude/commands/nuevo-componente.md.</span>
+
+<p>Una vez guardado ese archivo, en el chat de Claude solo tendrás que escribir:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-plaintext">
+# Cómo invocarías tu nuevo comando personalizado desde el chat:
+/nuevo-componente dentro de la vista gemini llamado "casos-practicos" sobre ejemplos de uso
+</code></pre>
+</div>
+<span class="center-horizontal caption">Invocación del comando personalizado pasando argumentos dinámicos a $ARGUMENTS.</span>
+
+<h2>3. Skills (Habilidades) en Claude (<kbd>.claude/skills/</kbd>)</h2>
+
+<p>Además de los comandos que tú invocas manualmente con <kbd>/</kbd>, Claude soporta exactamente el mismo concepto de <b>Skills (Habilidades bajo demanda)</b> que vimos en Antigravity, guardadas en la ruta <kbd>.claude/skills/&lt;nombre-skill&gt;/SKILL.md</kbd> (o globalmente en <kbd>~/.claude/skills/</kbd>).</p>
+
+<ul>
+	<li><b>¿Cuál es la diferencia entre un Comando (<kbd>.claude/commands/</kbd>) y una Skill (<kbd>.claude/skills/</kbd>)?</b>
+		<ul>
+			<li>Un <b>Comando</b> lo disparas tú explícitamente escribiendo <kbd>/mi-comando</kbd>.</li>
+			<li>Una <b>Skill</b> tiene su propio directorio (donde puedes incluir scripts, plantillas y referencias) y <b>Claude puede activarla por sí solo automáticamente</b> cuando detecta que lo que le pides coincide con la descripción (<kbd>description</kbd>) del archivo <b>SKILL.md</b>, además de poder invocarla con <kbd>/</kbd>.</li>
+		</ul>
+	</li>
+</ul>

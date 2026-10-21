@@ -1,0 +1,88 @@
+<h1 class="title">Menciones con @, Modo Bash !, Memoria # y Atajos en Claude</h1>
+
+<h2>1. Los cuatro símbolos mágicos al escribir en Claude Code</h2>
+
+<p>En <b>Claude Code</b>, el primer carácter o símbolo que escribes en el cuadro de entrada puede activar funciones especiales que te ahorran muchísimo tiempo. Dominar estos cuatro símbolos (<kbd>@</kbd>, <kbd>!</kbd>, <kbd>#</kbd> y <kbd>/</kbd>) marca la diferencia entre un usuario principiante y un usuario avanzado:</p>
+
+<img class="center-horizontal" src="components/claude/menciones-atajos/assets/img/atajos-interaccion-claude.svg"/>
+<span class="center-horizontal caption">Figura 1. Los cuatro prefijos interactivos (@, !, # y /) y los atajos de teclado esenciales en Claude Code.</span>
+
+<h2>2. Cómo mencionar archivos y carpetas concretas con <kbd>@</kbd></h2>
+
+<p>Igual que en Antigravity, en Claude no necesitas copiar y pegar el contenido de un archivo dentro del chat ni explicar toda la ruta letra por letra. Cuando estás escribiendo tu prompt y pulsas la tecla <kbd>@</kbd>:</p>
+
+<ol>
+	<li>Se abre instantáneamente un buscador con todos los archivos y carpetas de tu proyecto.</li>
+	<li>Empiezas a escribir cualquier parte del nombre del archivo (por ejemplo, <kbd>@const</kbd> para encontrar <kbd>components/common/assets/constants.json</kbd>) y pulsas <kbd>Tab</kbd> o <kbd>Enter</kbd> para autocompletarlo.</li>
+	<li>Al enviar el mensaje, Claude <b>incluye automáticamente ese archivo completo en su contexto</b> antes de responderte.</li>
+</ol>
+
+<ul>
+	<li><b>Mencionar un archivo suelto:</b> <kbd>Explica qué hace la función changeContent en @js/sidebar.js</kbd></li>
+	<li><b>Mencionar una carpeta entera:</b> <kbd>Revisa todos los componentes dentro de @components/main-view/ y dime cuántos hay</kbd></li>
+	<li><b>Mencionar recursos de servidores MCP:</b> Si tienes servidores MCP conectados, también aparecerán en la lista desplegable al pulsar <kbd>@</kbd> para que puedas adjuntar issues de GitHub, documentos o esquemas de bases de datos.</li>
+</ul>
+
+<h2>3. El Modo Bash directo (<kbd>!</kbd>) y la Memoria rápida (<kbd>#</kbd>)</h2>
+
+<p>Además de <kbd>@</kbd>, Claude Code incorpora dos prefijos rapidísimos cuando los escribes al comienzo de una línea vacía:</p>
+
+<ul>
+	<li><b>Prefijo <kbd>!</kbd> (Modo Bash Instantáneo):</b> Si escribes un signo de exclamación <kbd>!</kbd> al principio de la línea (por ejemplo, <kbd>! git status</kbd> o <kbd>! npm test</kbd>), el comando se ejecuta directamente en tu terminal en milisegundos (sin esperar a que el modelo de IA piense) y tanto el comando como su resultado quedan guardados dentro de la conversación actual para que Claude los vea en tu siguiente pregunta.</li>
+	<li><b>Prefijo <kbd>#</kbd> (Añadir a la Memoria <kbd>CLAUDE.md</kbd>):</b> Si empiezas tu mensaje con una almohadilla <kbd>#</kbd> (por ejemplo, <kbd># Recuerda siempre importar los nuevos componentes en js/components-imports.js</kbd>), Claude te preguntará en qué archivo de memoria <b>CLAUDE.md</b> quieres guardar esa regla para recordarla en todas las futuras sesiones.</li>
+</ul>
+
+<div class="center-horizontal">
+<pre><code class="language-plaintext">
+# 1. Ejecutar un comando en consola al instante y meter su salida al chat con !
+! ls -la components/
+
+# 2. Mencionar archivos concretos con @ usando el resultado anterior
+Basándote en la lista anterior, compara @components/bootstrap/common/assets/sidebar.json
+con @components/main-view/common/assets/sidebar.json.
+
+# 3. Guardar una regla permanente para el futuro con #
+# Todas las tablas del proyecto deben llevar las clases table table-striped table-hover
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo práctico combinando ! (modo bash), @ (mención de archivos) y # (memoria rápida) en una misma sesión.</span>
+
+<h2>4. Atajos de teclado imprescindibles en Claude Code</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Atajo de Teclado</th>
+			<th scope="col">Qué hace</th>
+			<th scope="col">Por qué es tan útil</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>Shift + Tab</kbd></th>
+			<td>Alterna entre Modo Normal, Auto-Accept Edits y Plan Mode.</td>
+			<td>Te permite pasar de planificar sin riesgo a ejecutar a toda velocidad con una sola pulsación.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>Esc</kbd> (Una vez)</th>
+			<td>Detiene en seco lo que Claude está haciendo en ese instante (sin borrar la conversación).</td>
+			<td>Si ves que Claude está editando el archivo equivocado o yendo por otro camino, lo paras al instante y lo rediriges.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>Esc + Esc</kbd> (Dos veces)</th>
+			<td>Abre el historial de mensajes para <b>rebobinar (Rewind)</b> la conversación y el código a un punto anterior.</td>
+			<td>Si una idea no ha salido bien, puedes "viajar atrás en el tiempo" varios pasos en el chat como si nunca hubieran ocurrido.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>Ctrl + V</kbd> (o arrastrar imagen)</th>
+			<td>Pega una imagen o captura de pantalla del portapapeles directamente en el chat.</td>
+			<td>Ideal para enseñarle a Claude cómo se ve un error visual en el navegador o pasarle un diagrama de diseño.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>\ + Enter</kbd> (o <kbd>Option + Enter</kbd>)</th>
+			<td>Inserta un salto de línea sin enviar todavía el mensaje.</td>
+			<td>Permite escribir prompts largos de varios párrafos o listas ordenadas cómodamente en la terminal.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Resumen de los atajos de teclado más importantes al trabajar con Claude Code.</span>

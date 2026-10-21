@@ -1,0 +1,108 @@
+<h1 class="title">Skills (Habilidades) y Subagentes en Antigravity</h1>
+
+<h2>1. ¿Qué es una Skill (Habilidad) explicada desde cero?</h2>
+
+<p>Si nunca has escuchado la palabra <b>Skill</b> en inteligencia artificial, piensa en la película <i>Matrix</i>: cuando el protagonista necesita pilotar un helicóptero, le cargan un "paquete de conocimiento" específico justo en ese momento y aprende el procedimiento exacto en segundos. Antes de necesitarlo, ese manual no estaba ocupando espacio en su cabeza.</p>
+
+<p>En <b>Google Antigravity</b> (y también en Claude), una <b>Skill</b> es una carpeta que contiene un manual paso a paso (llamado <b>SKILL.md</b>) junto con scripts de ayuda, plantillas o ejemplos para realizar una tarea especializada. ¿Por qué no meter todo en el archivo de reglas <b>GEMINI.md</b>? Porque si tienes 30 procedimientos largos (cómo desplegar en AWS, cómo crear migraciones de base de datos, cómo auditar accesibilidad, cómo generar informes PDF...) y los cargas todos siempre al iniciar el chat, gastarías toda la memoria (tokens) de la conversación antes de empezar.</p>
+
+<p>Las <b>Skills</b> solucionan esto mediante un sistema llamado <b>Progressive Disclosure (Revelación Progresiva)</b>:</p>
+
+<ol>
+	<li>Al arrancar la conversación, el agente solo ve una lista muy cortita con el <b>nombre</b> y la <b>descripción de 2 líneas</b> de cada Skill disponible.</li>
+	<li>Cuando tú le pides algo relacionado con una de esas habilidades, el agente piensa: <i>"¡Ajá! Para esta tarea existe la Skill X"</i>, y solo entonces abre y lee el archivo <b>SKILL.md</b> completo.</li>
+</ol>
+
+<img class="center-horizontal" src="components/gemini/skills-subagentes/assets/img/arquitectura-skills-subagentes.svg"/>
+<span class="center-horizontal caption">Figura 1. Funcionamiento de las Skills por carga progresiva (izquierda) y delegación de tareas en Subagentes (derecha).</span>
+
+<h2>2. ¿Cómo se crea una Skill paso a paso? Estructura de carpetas</h2>
+
+<p>Puedes crear tus propias Skills para tu proyecto dentro de la carpeta <kbd>.agents/skills/</kbd> (para compartirlas con tu equipo en Git) o en <kbd>~/.gemini/config/skills/</kbd> (para tenerlas en todos los proyectos de tu ordenador). Cada Skill es una carpeta con esta estructura:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-plaintext">
+.agents/
+└── skills/
+    └── crear-vista-web/           # Nombre de la carpeta de tu Skill
+        ├── SKILL.md               # OBLIGATORIO: Instrucciones principales con cabecera YAML
+        ├── scripts/               # Opcional: Scripts ejecutables (.sh, .py, .js) de ayuda
+        │   └── validar-json.sh
+        ├── examples/              # Opcional: Archivos de ejemplo de referencia
+        │   └── ejemplo-componente.html
+        ├── resources/             # Opcional: Plantillas o logos base
+        └── references/            # Opcional: Documentación extensa que solo se lee si hace falta
+</code></pre>
+</div>
+<span class="center-horizontal caption">Estructura oficial de directorios de una Skill en Google Antigravity.</span>
+
+<h3>2.1. Ejemplo real de un archivo <kbd>SKILL.md</kbd></h3>
+
+<p>Todo archivo <b>SKILL.md</b> debe empezar obligatoriamente con un bloque de cabecera entre tres guiones (<kbd>---</kbd>) llamado <i>YAML Frontmatter</i> que incluye únicamente dos campos: <b>name</b> (nombre en minúsculas con guiones) y <b>description</b> (explicación clara de qué hace la Skill y <b>cuándo</b> debe activarla el agente):</p>
+
+<div class="center-horizontal">
+<pre><code class="language-markdown">
+---
+name: crear-vista-web
+description: >-
+  Guía paso a paso para crear una nueva vista en la barra de navegación superior
+  con su logo SVG, su sidebar.json y sus componentes WebComponent. Activa esta
+  skill siempre que el usuario pida añadir una nueva vista o tema al navbar.
+---
+
+# Procedimiento para Crear una Nueva Vista
+
+Sigue estos pasos en orden estricto cuando el usuario solicite una nueva vista:
+
+## Paso 1: Crear estructura de carpetas
+1. Crea la carpeta `components/&lt;nombre-vista&gt;/common/assets/img/`.
+2. Genera un icono vectorial en `components/&lt;nombre-vista&gt;/common/assets/img/logo.svg`.
+3. Crea el archivo `components/&lt;nombre-vista&gt;/common/assets/sidebar.json` con las claves
+   `pageContent` y `links`.
+
+## Paso 2: Crear los componentes y registrarlos
+1. Por cada apartado del sidebar, crea su subcarpeta con su `.html` y su `.js`.
+2. Importa todos los archivos `.js` nuevos en `js/components-imports.js`.
+3. Registra la nueva vista en `components/common/assets/constants.json`.
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo real de un archivo SKILL.md que enseña al agente un flujo de trabajo repetible.</span>
+
+<h2>3. ¿Qué son los Subagentes y cómo se usan?</h2>
+
+<p>Cuando tú hablas con Antigravity, estás hablando con el <b>Agente Principal</b>. Pero ¿qué ocurre si la tarea requiere leer 80 archivos para investigar un problema, o crear 4 módulos independientes a la vez? Si el agente principal leyera los 80 archivos directamente en tu chat, llenaría toda tu ventana de contexto con miles de líneas de código irrelevante.</p>
+
+<p>Para evitarlo, el agente principal puede invocar <b>Subagentes (Subagents)</b>. Un subagente es un <b>agente ayudante que se ejecuta en segundo plano con su propia ventana de contexto separada</b>, realiza el trabajo específico que se le ha encargado y, al terminar, le envía un mensaje al agente principal con el resumen o resultado listo.</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Tipo de Subagente</th>
+			<th scope="col">Permisos y Capacidades</th>
+			<th scope="col">Para qué se utiliza</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>research</b> (Investigador)</th>
+			<td>Solo lectura (lee archivos, busca en el código y en la web, pero no modifica nada).</td>
+			<td>Explorar repositorios grandes, buscar dónde está definida una función o investigar documentación sin ensuciar tu chat principal.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>self</b> (Clon autónomo)</th>
+			<td>Hereda todas las herramientas del agente principal (lectura, escritura y terminal).</td>
+			<td>Realizar subtareas completas de programación en paralelo (por ejemplo, cuando usas el comando <b>/teamwork</b>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>image-generator</b></th>
+			<td>Especializado en generación y edición visual.</td>
+			<td>Generar o editar imágenes e ilustraciones a partir de una descripción y devolver la ruta del archivo guardado.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Subagentes definidos a medida</b></th>
+			<td>Configurables por el agente (con o sin permisos de escritura, MCP, etc.).</td>
+			<td>Durante una sesión compleja, el agente puede definir un nuevo rol especializado (ej. <i>Auditor de Seguridad</i> o <i>Tester de UI</i>) e invocarlo repetidamente.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Subagentes integrados y personalizados disponibles en Google Antigravity.</span>
