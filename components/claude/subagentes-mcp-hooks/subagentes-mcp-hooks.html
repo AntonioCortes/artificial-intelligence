@@ -73,7 +73,39 @@ claude mcp list
 
 <h2>4. Hooks y Configuración en Claude (<kbd>.claude/settings.json</kbd>)</h2>
 
-<p>Al igual que <kbd>hooks.json</kbd> en Antigravity, en Claude puedes configurar <b>Hooks</b> y permisos dentro del archivo <kbd>.claude/settings.json</kbd> para que se ejecuten comandos automáticos en eventos como <b>PreToolUse</b>, <b>PostToolUse</b>, <b>Notification</b> o <b>Stop</b>.</p>
+<p>Al igual que <kbd>hooks.json</kbd> en Antigravity, en Claude puedes configurar tanto tu <b>lista blanca/negra de permisos</b> (<kbd>permissions</kbd>) como <b>Hooks de ciclo de vida</b> (<kbd>hooks</kbd>) dentro del archivo <kbd>.claude/settings.json</kbd> (para compartir con tu equipo) o en <kbd>.claude/settings.local.json</kbd> (solo para tu máquina). Observa un ejemplo real completo:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-json">
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(git status)",
+      "Bash(git diff *)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Read(./.env)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx prettier --write ."
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo real de archivo .claude/settings.json configurando permisos automáticos y un Hook que formatea el código tras cada edición.</span>
 
 <h2>5. Gran Tabla Comparativa: Equivalencias entre Gemini (Antigravity) y Claude</h2>
 

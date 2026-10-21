@@ -106,3 +106,14 @@ Sigue estos pasos en orden estricto cuando el usuario solicite una nueva vista:
 	</tbody>
 </table>
 <span class="center-horizontal caption">Tabla 1. Subagentes integrados y personalizados disponibles en Google Antigravity.</span>
+
+<h3>3.1. Modos de Espacio de Trabajo (Workspace) y Comunicación entre Subagentes</h3>
+
+<p>Cuando el agente principal de Antigravity lanza un subagente, puede elegir tanto el <b>modelo</b> que usará ese subagente (<kbd>inherit</kbd> para usar el mismo modelo del padre, <kbd>flash_lite</kbd> o <kbd>flash</kbd> para subtareas rápidas, o <kbd>pro</kbd> para tareas complejas) como el <b>modo de espacio de trabajo (Workspace Mode)</b> en el que operará:</p>
+
+<ul>
+	<li><b>Modo <kbd>inherit</kbd> (Por defecto):</b> El subagente trabaja directamente sobre la misma carpeta de tu proyecto que el agente principal. Ideal cuando varios subagentes crean archivos en carpetas distintas o investigan el código.</li>
+	<li><b>Modo <kbd>branch</kbd> (Rama aislada clonada):</b> Crea una copia aislada del proyecto para ese subagente, de modo que pueda hacer experimentos o cambios sin tocar tu carpeta principal hasta que termine.</li>
+	<li><b>Modo <kbd>share</kbd> (Repositorio compartido estilo Git Worktree):</b> Crea un espacio de trabajo independiente compartiendo el almacenamiento interno del repositorio Git, permitiendo trabajar en ramas distintas simultáneamente sin duplicar el peso del disco.</li>
+	<li><b>Comunicación entre Agentes (<kbd>send_message</kbd>):</b> Cada subagente lanzado recibe un identificador único de conversación (<kbd>conversationId</kbd>). Si necesitas que un subagente continúe o amplíe el trabajo que acaba de hacer, el agente principal no lanza uno nuevo desde cero: le envía un mensaje directo a ese mismo subagente conservando toda su memoria previa.</li>
+</ul>

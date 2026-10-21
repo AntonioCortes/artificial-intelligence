@@ -23,6 +23,10 @@
                 {
                     "text" : "2.1. Modelos y Superficies (IDE, App, CLI)",
                     "content" : "component-gemini-modelos-superficies"
+                },
+                {
+                    "text" : "2.2. Artefactos, Sandbox y Permisos",
+                    "content" : "component-gemini-artefactos-permisos"
                 }
             ]
         },
@@ -53,6 +57,10 @@
                 {
                     "text" : "4.3. Servidores MCP, Hooks y Plugins",
                     "content" : "component-gemini-mcp-hooks-plugins"
+                },
+                {
+                    "text" : "4.4. Config JSON y Python SDK",
+                    "content" : "component-gemini-config-sdk"
                 }
             ]
         }

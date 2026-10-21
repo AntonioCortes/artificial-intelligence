@@ -1,39 +1,121 @@
-<h1 class="title">El Agente de Claude y sus Modos de Ejecución</h1>
+<h1 class="title">El Agente de Claude, Herramientas Nativas y todos sus Modos de Ejecución</h1>
 
-<h2>1. ¿Cómo trabaja el Agente en Claude Code?</h2>
+<h2>1. ¿Cómo trabaja el Agente en Claude Code y qué Herramientas Nativas tiene?</h2>
 
-<p>Cuando abres <b>Claude Code</b> en tu proyecto (ya sea desde la terminal escribiendo <kbd>claude</kbd> o usando la extensión oficial en VS Code / Cursor / JetBrains), no estás ante un simple chat de texto: estás frente a un <b>agente autónomo con herramientas integradas</b>.</p>
+<p>Cuando abres <b>Claude Code</b> en tu proyecto (ya sea desde la terminal escribiendo <kbd>claude</kbd> o usando la extensión oficial en VS Code / Cursor / JetBrains), no estás ante un simple chat de texto: estás frente a un <b>agente autónomo con herramientas integradas</b> que puede inspeccionar, modificar y verificar tu proyecto por sí mismo.</p>
 
-<p>Por sí mismo, y sin que tengas que instalar nada adicional, el agente de Claude dispone de herramientas nativas para:</p>
+<p>Sin que tengas que instalar nada adicional, el agente de Claude dispone de este catálogo completo de <b>herramientas internas (Built-in Tools)</b>:</p>
 
-<ul>
-	<li><b>Explorar y buscar en tu proyecto (Read / Glob / Grep):</b> Busca archivos por nombre y encuentra en milisegundos en qué línea exacta de qué archivo aparece una función o una clase CSS.</li>
-	<li><b>Crear y editar archivos (Edit / Write):</b> Modifica líneas específicas de tus archivos existentes o crea carpetas y archivos nuevos desde cero.</li>
-	<li><b>Ejecutar comandos de consola (Bash):</b> Puede lanzar el servidor de pruebas, ejecutar <kbd>git status</kbd>, instalar paquetes con <kbd>npm</kbd> o validar que un archivo JSON sea válido.</li>
-	<li><b>Buscar en la web y consultar documentación (WebFetch / WebSearch):</b> Si necesita consultar la documentación actualizada de una librería, puede leerla directamente.</li>
-	<li><b>Lanzar Subagentes (Task / Agent):</b> Puede abrir agentes secundarios en paralelo para investigar el código o dividir una tarea grande.</li>
-</ul>
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Herramienta Nativa</th>
+			<th scope="col">Qué hace exactamente</th>
+			<th scope="col">¿Requiere confirmación en modo Normal?</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>Read</b></th>
+			<td>Lee el contenido de cualquier archivo de código, texto, imagen, PDF o cuaderno Jupyter (<kbd>.ipynb</kbd>) de tu proyecto.</td>
+			<td>No (lectura segura automática).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Glob</b> y <b>Grep</b></th>
+			<td>Busca archivos por patrón de nombre (<kbd>Glob</kbd>) o encuentra en milisegundos en qué línea exacta aparece una función o texto (<kbd>Grep</kbd> con expresiones regulares).</td>
+			<td>No (lectura segura automática).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Edit</b> y <b>Write</b></th>
+			<td>Modifica bloques exactos de líneas en archivos existentes (<kbd>Edit</kbd>) o crea archivos y carpetas nuevos desde cero (<kbd>Write</kbd>).</td>
+			<td>Sí (muestra las diferencias en verde y rojo antes de guardar, salvo en modo <i>acceptEdits</i> o <i>auto</i>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>NotebookEdit</b></th>
+			<td>Reemplaza, inserta o elimina celdas específicas dentro de cuadernos Jupyter (<kbd>.ipynb</kbd>).</td>
+			<td>Sí (pide confirmación de edición).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Bash</b></th>
+			<td>Ejecuta comandos en tu terminal: lanzar tests, <kbd>git status</kbd>, compilar proyectos, validar JSON o iniciar servidores en segundo plano.</td>
+			<td>Sí (pide permiso para el comando o te permite autorizar ese prefijo para siempre).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>WebSearch</b> y <b>WebFetch</b></th>
+			<td>Busca información actualizada en Internet (<kbd>WebSearch</kbd>) o descarga y lee páginas de documentación técnica (<kbd>WebFetch</kbd>).</td>
+			<td>Sí (al consultar dominios externos nuevos).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Agent</b> (Subagentes / Task)</th>
+			<td>Lanza subagentes especializados en paralelo (como el subagente rápido <i>Explore</i> para investigar el repositorio o el subagente <i>Plan</i> para diseñar arquitecturas) con su propia ventana de contexto aislada.</td>
+			<td>Depende de las herramientas que utilice el subagente.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>TodoWrite</b> / <b>AskUserQuestion</b></th>
+			<td>Gestiona una lista de tareas visible en pantalla paso a paso (<kbd>TodoWrite</kbd>) o te plantea preguntas interactivas con opciones (<kbd>AskUserQuestion</kbd>) cuando hay varias decisiones de diseño posibles.</td>
+			<td>No.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Catálogo de herramientas internas integradas de serie en el agente de Claude Code.</span>
 
-<h2>2. Los 3 Modos de Ejecución en Claude Code (<kbd>Shift + Tab</kbd>)</h2>
+<h2>2. Los Modos Interactivos con <kbd>Shift + Tab</kbd> y todos los Modos de Permisos</h2>
 
-<p>Uno de los secretos mejor guardados para usar Claude como un profesional es saber cambiar entre sus <b>tres modos de ejecución</b> pulsando la combinación de teclas <kbd>Shift + Tab</kbd> en cualquier momento:</p>
+<p>Durante cualquier conversación en Claude Code, puedes pulsar la combinación de teclas <kbd>Shift + Tab</kbd> para rotar al instante entre los modos de trabajo interactivos, o bien configurar cualquiera de los <b>6 modos de permisos oficiales</b> mediante el comando <kbd>/permissions</kbd>, el archivo <kbd>settings.json</kbd> o la bandera de arranque <kbd>--permission-mode &lt;modo&gt;</kbd>:</p>
 
 <img class="center-horizontal" src="components/claude/agente-modos/assets/img/modos-ejecucion-claude.svg"/>
-<span class="center-horizontal caption">Figura 1. Los tres modos de ejecución de Claude Code y el flujo recomendado pasando de Plan Mode a Auto-Accept Edits.</span>
+<span class="center-horizontal caption">Figura 1. Los modos principales de ejecución de Claude Code y el flujo recomendado pasando de Plan Mode a Auto-Accept Edits.</span>
 
-<ol>
-	<li><b>Plan Mode (Modo Planificación - Solo Lectura):</b> Al pulsar <kbd>Shift + Tab</kbd> hasta ver el indicador <i>Plan Mode on</i>, Claude entra en un estado 100% seguro donde <b>solo puede leer e investigar tu proyecto, pero tiene prohibido modificar archivos</b>. Analiza tu código, te explica qué archivos hay que tocar y te presenta un plan detallado paso a paso.</li>
-	<li><b>Normal Mode (Modo por defecto con confirmación):</b> Cada vez que Claude quiere editar un archivo o ejecutar un comando en la terminal, se detiene, te muestra en pantalla el cambio exacto (en verde lo que añade y en rojo lo que quita) y te pregunta si lo apruebas para esta vez o para toda la sesión.</li>
-	<li><b>Auto-Accept Edits Mode (Aceptar ediciones automáticamente):</b> Cuando ya has revisado el plan de Claude y confías en lo que va a hacer, pulsas <kbd>Shift + Tab</kbd> para activar <i>Auto-Accept Edits</i>. En este modo, Claude crea y modifica todos los archivos del plan de principio a fin sin interrumpirte en cada archivo.</li>
-</ol>
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Modo (<kbd>permissionMode</kbd>)</th>
+			<th scope="col">Cómo activarlo</th>
+			<th scope="col">Comportamiento detallado y cuándo usarlo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>default</kbd> (Modo Normal)</th>
+			<td>Por defecto al abrir <kbd>claude</kbd> o rotando con <kbd>Shift + Tab</kbd>.</td>
+			<td><b>Con confirmación paso a paso:</b> Lee archivos libremente, pero cada vez que quiere editar un archivo o ejecutar un comando en consola se detiene, te muestra el cambio en pantalla y te pregunta si lo apruebas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>plan</kbd> (Modo Planificación)</th>
+			<td>Pulsando <kbd>Shift + Tab</kbd>, escribiendo <kbd>/plan</kbd> o con <kbd>--permission-mode plan</kbd>.</td>
+			<td><b>100% Solo Lectura:</b> Claude investiga tu proyecto en profundidad, pero <b>tiene prohibido modificar archivos o ejecutar comandos destructivos</b> hasta que te presente un plan detallado y tú lo apruebes.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>acceptEdits</kbd> (Auto-Accept Edits)</th>
+			<td>Pulsando <kbd>Shift + Tab</kbd> o con <kbd>--permission-mode acceptEdits</kbd>.</td>
+			<td><b>Edición automática de archivos:</b> Acepta y aplica automáticamente todas las creaciones y ediciones de archivos del proyecto sin interrumpirte, pero sigue pidiendo confirmación antes de ejecutar comandos delicados en la terminal.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>auto</kbd> (Modo Automático con Clasificador)</th>
+			<td>Con <kbd>--permission-mode auto</kbd> o en <kbd>/permissions</kbd>.</td>
+			<td><b>Clasificador inteligente de seguridad:</b> Evalúa automáticamente en segundo plano cada acción o comando según reglas de seguridad (<i>allow</i>, <i>soft_deny</i>, <i>hard_deny</i>), ejecutando sin preguntar las operaciones seguras de desarrollo y bloqueando o consultando solo las arriesgadas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>dontAsk</kbd></th>
+			<td>Con <kbd>--permission-mode dontAsk</kbd>.</td>
+			<td><b>No interrumpir con diálogos:</b> Ejecuta automáticamente todas las herramientas que ya estén pre-autorizadas en tus reglas de permisos (<kbd>allow</kbd>) y deniega silenciosamente cualquier herramienta no autorizada en lugar de detenerse a preguntar. Ideal para tareas desatendidas seguras.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>bypassPermissions</kbd></th>
+			<td>Con <kbd>--permission-mode bypassPermissions</kbd> o <kbd>--dangerously-skip-permissions</kbd>.</td>
+			<td><b>Sin restricciones (Solo para contenedores / máquinas virtuales aisladas):</b> Salta absolutamente todas las comprobaciones de permisos tanto de archivos como de terminal. <b>Advertencia:</b> úsalo únicamente en entornos <i>sandbox</i> o Docker sin acceso a datos sensibles.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Los 6 modos de permisos oficiales de Claude Code.</span>
 
 <h2>3. Ejemplo práctico del flujo "Primero Planificar, Luego Ejecutar"</h2>
 
-<p>Así es como se ve una sesión real aplicando este método de dos pasos en Claude Code:</p>
+<p>Así es como se ve una sesión real aplicando el método profesional de dos pasos en Claude Code:</p>
 
 <div class="center-horizontal">
 <pre><code class="language-plaintext">
-# PASO 1: Pulsas Shift+Tab para activar [Plan Mode] y escribes tu petición:
+# PASO 1: Pulsas Shift+Tab para activar [Plan Mode] (o escribes /plan) y pides tu tarea:
 &gt; Lee @README.md y traza un plan para añadir una vista de Gemini y otra de Claude
   en la barra de navegación superior, con sus respectivos apartados en el sidebar.
 

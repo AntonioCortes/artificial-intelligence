@@ -1,0 +1,390 @@
+<h1 class="title">Referencia Completa de Terminal (CLI Subcommands y Flags), Tuberías Unix y Git</h1>
+
+<h2>1. Todos los Subcomandos Directos de <kbd>claude</kbd> en la Terminal</h2>
+
+<p>Además de abrir el chat interactivo escribiendo simplemente <kbd>claude</kbd>, el ejecutable de <b>Claude Code</b> incluye un conjunto completo de subcomandos de administración que puedes lanzar directamente desde tu terminal (Bash, Zsh o PowerShell) sin entrar en una conversación:</p>
+
+<img class="center-horizontal" src="components/claude/cli-git-headless/assets/img/modos-cli-git-claude.svg"/>
+<span class="center-horizontal caption">Figura 1. Las modalidades de arranque de Claude Code en consola, sus subcomandos y su integración con tuberías Unix y Git.</span>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Subcomando de Terminal</th>
+			<th scope="col">Operaciones disponibles</th>
+			<th scope="col">Para qué sirve</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>claude</kbd> / <kbd>claude "prompt"</kbd></th>
+			<td>Ejecución principal</td>
+			<td>Abre el chat interactivo en tu carpeta actual (o envía directamente la primera instrucción entre comillas).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>claude auth ...</kbd></th>
+			<td><kbd>login</kbd>, <kbd>logout</kbd>, <kbd>status</kbd> (con <kbd>--claudeai</kbd>, <kbd>--console</kbd>, <kbd>--sso</kbd>)</td>
+			<td>Inicia sesión en tu cuenta de Anthropic, cierra sesión o comprueba el estado actual de tu autenticación.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>claude setup-token</kbd></th>
+			<td>Asistente de token de larga duración</td>
+			<td>Genera un token de autenticación de larga duración para usar tu suscripción de Claude en servidores o automatizaciones.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>claude mcp ...</kbd></th>
+			<td><kbd>add</kbd>, <kbd>add-json</kbd>, <kbd>add-from-claude-desktop</kbd>, <kbd>list</kbd>, <kbd>get</kbd>, <kbd>remove</kbd>, <kbd>login</kbd>, <kbd>logout</kbd>, <kbd>reset-project-choices</kbd>, <kbd>serve</kbd>, <kbd>xaa</kbd></td>
+			<td>Gestiona todos tus servidores MCP desde la terminal (añadir por HTTP/SSE/stdio, importar desde Claude Desktop, listar su estado de salud o iniciar Claude Code como un servidor MCP con <kbd>serve</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>claude plugin ...</kbd></th>
+			<td><kbd>install</kbd>, <kbd>uninstall</kbd>, <kbd>enable</kbd>, <kbd>disable</kbd>, <kbd>update</kbd>, <kbd>list</kbd>, <kbd>validate</kbd></td>
+			<td>Instala, activa, desactiva, actualiza o valida paquetes de plugins de Claude Code en el ámbito de usuario (<kbd>-s user</kbd>), proyecto (<kbd>-s project</kbd>) o local (<kbd>-s local</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>claude marketplace ...</kbd></th>
+			<td><kbd>add</kbd>, <kbd>list</kbd>, <kbd>remove</kbd>, <kbd>update</kbd></td>
+			<td>Añade, consulta o actualiza catálogos de plugins (<i>marketplaces</i>) desde repositorios Git, URLs o carpetas locales.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>claude agents</kbd></th>
+			<td>Gestión de sesiones en segundo plano (con <kbd>--all</kbd>, <kbd>--cwd</kbd>, <kbd>--json</kbd>)</td>
+			<td>Lista y administra los agentes y sesiones que están ejecutándose en segundo plano (<kbd>--bg</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>claude auto-mode ...</kbd></th>
+			<td><kbd>config</kbd>, <kbd>defaults</kbd>, <kbd>critique</kbd>, <kbd>reset</kbd></td>
+			<td>Inspecciona las reglas del clasificador de seguridad del modo automático (<kbd>allow</kbd>, <kbd>soft_deny</kbd>, <kbd>hard_deny</kbd>), pide feedback con IA sobre tus reglas o las restaura de fábrica.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>claude ultrareview [objetivo]</kbd></th>
+			<td>Rama actual, número de PR o rama base (con <kbd>--post</kbd>, <kbd>--json</kbd>, <kbd>--timeout</kbd>)</td>
+			<td>Lanza una revisión exhaustiva de código multi-agente en la nube sobre tu rama o Pull Request e imprime los hallazgos en consola (o los publica en el PR con <kbd>--post</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>claude doctor</kbd></th>
+			<td>Diagnóstico de instalación</td>
+			<td>Comprueba la salud de tu instalación de Claude Code y la validez de tus archivos <kbd>settings.json</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>claude install [versión]</kbd> / <kbd>claude update</kbd></th>
+			<td><kbd>stable</kbd>, <kbd>latest</kbd> o versión exacta (con <kbd>--force</kbd>)</td>
+			<td>Instala o actualiza la compilación nativa de Claude Code a la última versión disponible.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Todos los subcomandos del ejecutable claude disponibles desde la terminal.</span>
+
+<h2>2. Todas las Banderas (CLI Flags) de Sesión, Entorno de Trabajo y Git Worktrees</h2>
+
+<p>Al iniciar <kbd>claude</kbd>, puedes añadir cualquiera de estas banderas para controlar qué conversación abrir, en qué carpetas trabajar o si deseas aislar la sesión en un <i>worktree</i> de Git o en la nube:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Bandera (Flag)</th>
+			<th scope="col">Qué hace</th>
+			<th scope="col">Ejemplo o caso de uso</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>-c</kbd>, <kbd>--continue</kbd></th>
+			<td>Reabre automáticamente <b>la última conversación</b> que tuviste en la carpeta actual.</td>
+			<td>Ideal si cerraste la terminal sin querer y quieres retomar donde lo dejaste.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>-r [id/texto]</kbd>, <kbd>--resume [id/texto]</kbd></th>
+			<td>Abre un selector interactivo con tus conversaciones pasadas o reanuda directamente una por su ID o nombre.</td>
+			<td><kbd>claude -r "refactor-navbar"</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--fork-session</kbd></th>
+			<td>Al usar <kbd>--resume</kbd> o <kbd>--continue</kbd>, crea una bifurcación con un nuevo ID de sesión sin sobrescribir la original.</td>
+			<td>Para probar otro enfoque a partir de una conversación previa conservando la original intacta.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>-n &lt;nombre&gt;</kbd>, <kbd>--name &lt;nombre&gt;</kbd></th>
+			<td>Asigna un título visible a la sesión desde el arranque.</td>
+			<td><kbd>claude -n "migracion-css"</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--session-id &lt;uuid&gt;</kbd></th>
+			<td>Fuerza un identificador UUID específico para la conversación.</td>
+			<td>Útil en integraciones automatizadas que llevan registro de sesiones.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--from-pr [número/URL]</kbd></th>
+			<td>Reanuda una sesión vinculada a un Pull Request de GitHub o abre el selector de PRs.</td>
+			<td><kbd>claude --from-pr 42</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>-w [nombre]</kbd>, <kbd>--worktree [nombre]</kbd></th>
+			<td>Crea automáticamente un nuevo <b>Git Worktree</b> aislado para esta sesión para no tocar tu copia de trabajo principal.</td>
+			<td><kbd>claude -w experimento-sidebar</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--tmux</kbd> / <kbd>--tmux=classic</kbd></th>
+			<td>Crea una sesión o panel de <kbd>tmux</kbd> (o panel nativo en iTerm2) para el worktree creado con <kbd>-w</kbd>.</td>
+			<td><kbd>claude -w feature-login --tmux</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--add-dir &lt;rutas...&gt;</kbd></th>
+			<td>Concede acceso a carpetas adicionales fuera del directorio actual.</td>
+			<td><kbd>claude --add-dir ../backend ../shared</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--bg</kbd>, <kbd>--background</kbd></th>
+			<td>Inicia la sesión en segundo plano y devuelve su ID inmediatamente para gestionarla con <kbd>claude agents</kbd>.</td>
+			<td>Para lanzar tareas largas sin bloquear tu consola actual.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--cloud [desc|id|url]</kbd></th>
+			<td>Crea una sesión en la nube o se conecta a una existente en <kbd>claude.ai/code</kbd> (con <kbd>--ref</kbd> o <kbd>--on-branch</kbd>).</td>
+			<td>Para delegar tareas a un entorno remoto de Claude en la nube.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--remote-control [nombre]</kbd> (o <kbd>--rc</kbd>)</th>
+			<td>Inicia la sesión local con <i>Remote Control</i> activado para supervisarla desde web o móvil.</td>
+			<td><kbd>claude --rc</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--teleport [sesión]</kbd></th>
+			<td>Trae (teletransporta) una sesión de la nube a tu terminal local.</td>
+			<td><kbd>claude --teleport</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--desktop</kbd></th>
+			<td>Transfiere y abre la sesión directamente en la aplicación <b>Claude Desktop</b> en lugar de la consola.</td>
+			<td><kbd>claude -c --desktop</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--ide</kbd></th>
+			<td>Conecta automáticamente Claude Code al IDE abierto (VS Code / Cursor / JetBrains) al arrancar.</td>
+			<td><kbd>claude --ide</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--chrome</kbd> / <kbd>--no-chrome</kbd></th>
+			<td>Activa o desactiva la integración con el navegador Google Chrome en esa sesión.</td>
+			<td><kbd>claude --chrome</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--prefill &lt;texto&gt;</kbd></th>
+			<td>Rellena la caja de texto inicial con tu mensaje pero sin enviarlo hasta que pulses <kbd>Enter</kbd>.</td>
+			<td>Útil en lanzadores o atajos personalizados de escritorio.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--rewind-files &lt;id-mensaje&gt;</kbd></th>
+			<td>Restaura los archivos al punto de control exacto de un mensaje anterior y sale (requiere <kbd>--resume</kbd>).</td>
+			<td>Para revertir cambios desde línea de comandos.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Banderas de gestión de sesiones, worktrees, entornos remotos e integración con IDEs.</span>
+
+<h2>3. Banderas de Modelo, Esfuerzo, Prompts de Sistema, Permisos y Seguridad</h2>
+
+<p>Estas opciones te permiten personalizar qué cerebro usa Claude, cómo razona, qué instrucciones de sistema recibe y qué permisos o servidores MCP carga al iniciar:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Bandera (Flag)</th>
+			<th scope="col">Qué configura</th>
+			<th scope="col">Detalles y valores admitidos</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>--model &lt;modelo&gt;</kbd></th>
+			<td>Modelo principal de la sesión</td>
+			<td>Acepta alias cortos (<kbd>sonnet</kbd>, <kbd>opus</kbd>, <kbd>haiku</kbd>) o el identificador completo del modelo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--fallback-model &lt;modelos&gt;</kbd></th>
+			<td>Modelo de respaldo automático</td>
+			<td>Si el modelo principal está saturado, cambia automáticamente al modelo de respaldo indicado (solo con <kbd>-p</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--effort &lt;nivel&gt;</kbd></th>
+			<td>Nivel de esfuerzo de razonamiento</td>
+			<td>Ajusta la profundidad de pensamiento (<kbd>low</kbd>, <kbd>medium</kbd>, <kbd>high</kbd>, <kbd>xhigh</kbd>, <kbd>max</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--thinking &lt;enabled|disabled&gt;</kbd></th>
+			<td>Modo de pensamiento extendido</td>
+			<td>Activa (modo adaptativo) o desactiva los bloques de pensamiento interno del modelo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--thinking-display &lt;modo&gt;</kbd></th>
+			<td>Visualización del pensamiento</td>
+			<td>Controla cómo se muestra el razonamiento en la respuesta (<kbd>summarized</kbd>, <kbd>raw</kbd>, <kbd>none</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--advisor &lt;modelo&gt;</kbd></th>
+			<td>Modelo consejero (Advisor)</td>
+			<td>Habilita la herramienta de servidor <i>advisor</i> con el modelo indicado (ej. usar Sonnet apoyado por Opus como consejero).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--agent &lt;nombre&gt;</kbd> / <kbd>--agents &lt;json&gt;</kbd></th>
+			<td>Agente activo o agentes a medida</td>
+			<td>Inicia la sesión con un subagente específico (<kbd>--agent</kbd>) o define subagentes personalizados al vuelo mediante un JSON (<kbd>--agents</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--system-prompt &lt;texto&gt;</kbd> / <kbd>--system-prompt-file &lt;ruta&gt;</kbd></th>
+			<td>Reemplazar System Prompt</td>
+			<td>Sustituye el prompt de sistema base por tu propio texto o archivo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--append-system-prompt &lt;texto&gt;</kbd> / <kbd>--append-system-prompt-file &lt;ruta&gt;</kbd></th>
+			<td>Añadir al System Prompt</td>
+			<td>Conserva todas las capacidades nativas de Claude Code y añade al final tus instrucciones o reglas extra.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--autocompact &lt;auto|tokens&gt;</kbd></th>
+			<td>Umbral de auto-compactación</td>
+			<td>Configura a cuántos tokens (entre 100k y 1M, o <kbd>auto</kbd>) se compacta automáticamente el contexto.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--permission-mode &lt;modo&gt;</kbd></th>
+			<td>Modo de permisos inicial</td>
+			<td>Valores: <kbd>default</kbd>, <kbd>plan</kbd>, <kbd>acceptEdits</kbd>, <kbd>auto</kbd>, <kbd>dontAsk</kbd> o <kbd>bypassPermissions</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--plan-mode-required</kbd></th>
+			<td>Exigir planificación previa</td>
+			<td>Obliga a pasar por el modo de planificación (<kbd>plan</kbd>) antes de permitir cualquier implementación en el código.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--allow-tools &lt;lista&gt;</kbd> / <kbd>--disallow-tools &lt;lista&gt;</kbd></th>
+			<td>Permitir o prohibir herramientas</td>
+			<td>Pre-autoriza herramientas sin preguntar (ej. <kbd>"Bash(git diff:*)" "Edit"</kbd>) o las bloquea por completo en la sesión.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--tools &lt;lista&gt;</kbd></th>
+			<td>Restringir conjunto de herramientas</td>
+			<td>Especifica exactamente qué herramientas internas de Claude están cargadas (<kbd>""</kbd> para desactivar todas o <kbd>"default"</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--restricted</kbd></th>
+			<td>Modo Restringido de alta seguridad</td>
+			<td>Desactiva las herramientas de ejecución de código (<kbd>Bash</kbd>) y <kbd>WebFetch</kbd>, ignora configuraciones locales y confina los archivos estrictamente al directorio de trabajo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--safe-mode</kbd> / <kbd>--bare</kbd></th>
+			<td>Modo Seguro / Modo Mínimo</td>
+			<td><kbd>--safe-mode</kbd> arranca desactivando todas las personalizaciones (<kbd>CLAUDE.md</kbd>, skills, plugins, hooks, MCPs). <kbd>--bare</kbd> inicia un entorno mínimo ultrarrápido ideal para llamadas desde scripts/SDK.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--mcp-config &lt;json/archivo&gt;</kbd> / <kbd>--strict-mcp-config</kbd></th>
+			<td>Configuración de servidores MCP</td>
+			<td>Carga servidores MCP desde un archivo JSON específico. Si añades <kbd>--strict-mcp-config</kbd>, ignora cualquier otro MCP global o del proyecto.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--plugin-dir &lt;ruta&gt;</kbd> / <kbd>--plugin-url &lt;url&gt;</kbd></th>
+			<td>Cargar plugins por sesión</td>
+			<td>Carga un plugin desde una carpeta o archivo <kbd>.zip</kbd> local o remoto únicamente durante esta sesión.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--settings &lt;archivo/json&gt;</kbd> / <kbd>--setting-sources &lt;fuentes&gt;</kbd></th>
+			<td>Ajustes personalizados</td>
+			<td>Carga un <kbd>settings.json</kbd> adicional o elige qué niveles cargar (<kbd>user,project,local</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--disable-slash-commands</kbd></th>
+			<td>Desactivar skills y comandos</td>
+			<td>Deshabilita la carga de todos los skills y comandos personalizados <kbd>/</kbd> durante la sesión.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 3. Banderas de configuración de modelos, razonamiento, prompts de sistema, permisos, seguridad y extensibilidad.</span>
+
+<h2>4. Banderas de Modo No Interactivo (<kbd>-p</kbd> / Headless), Automatización y Depuración</h2>
+
+<p>Cuando utilizas <kbd>claude -p</kbd> (o <kbd>--print</kbd>) en scripts, pipelines CI/CD o tuberías de consola, dispones de banderas específicas para controlar el formato de salida, esquemas JSON, límites de gasto y depuración:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Bandera (Flag)</th>
+			<th scope="col">Qué hace</th>
+			<th scope="col">Valores o ejemplo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>-p</kbd>, <kbd>--print</kbd></th>
+			<td>Ejecuta la instrucción en modo no interactivo, imprime la respuesta en la salida estándar y termina.</td>
+			<td><kbd>claude -p "Explica main.js"</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--output-format &lt;formato&gt;</kbd></th>
+			<td>Define el formato de salida en modo <kbd>-p</kbd>.</td>
+			<td><kbd>text</kbd> (por defecto), <kbd>json</kbd> (objeto con respuesta y metadatos) o <kbd>stream-json</kbd> (eventos en tiempo real).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--input-format &lt;formato&gt;</kbd></th>
+			<td>Define el formato de los datos que entran por tubería (<kbd>stdin</kbd>).</td>
+			<td><kbd>text</kbd> (por defecto) o <kbd>stream-json</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--json-schema &lt;esquema&gt;</kbd></th>
+			<td>Obliga a que la salida final de Claude cumpla estrictamente un esquema JSON Schema validado.</td>
+			<td><kbd>claude -p "Extrae rutas" --output-format json --json-schema '{"type":"object",...}'</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--max-turns &lt;n&gt;</kbd></th>
+			<td>Limita el número máximo de pasos/turnos autónomos que puede dar el agente en modo <kbd>-p</kbd>.</td>
+			<td><kbd>claude -p "Arregla los tests" --max-turns 5</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--max-budget-usd &lt;importe&gt;</kbd> / <kbd>--task-budget &lt;tokens&gt;</kbd></th>
+			<td>Fija un tope máximo de gasto en dólares o un presupuesto de tokens para la ejecución en modo <kbd>-p</kbd>.</td>
+			<td><kbd>claude -p "Analiza logs" --max-budget-usd 0.50</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--no-session-persistence</kbd></th>
+			<td>Evita guardar la sesión en disco cuando se ejecuta con <kbd>-p</kbd>.</td>
+			<td>Ideal para llamadas efímeras desde scripts.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--include-partial-messages</kbd> / <kbd>--include-hook-events</kbd></th>
+			<td>Incluye fragmentos de texto en streaming y eventos de hooks al usar <kbd>--output-format=stream-json</kbd>.</td>
+			<td>Para construir interfaces personalizadas sobre Claude CLI.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>-d [filtro]</kbd>, <kbd>--debug [filtro]</kbd> / <kbd>--debug-file &lt;ruta&gt;</kbd></th>
+			<td>Activa el modo de depuración (pudiendo filtrar por categorías como <kbd>--debug=hooks,mcp</kbd>) o vuelca el registro en un archivo.</td>
+			<td><kbd>claude --debug=mcp</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>--verbose</kbd> / <kbd>-v</kbd>, <kbd>--version</kbd> / <kbd>-h</kbd>, <kbd>--help</kbd></th>
+			<td>Activa trazas detalladas (<kbd>--verbose</kbd>), muestra la versión instalada (<kbd>-v</kbd>) o la ayuda (<kbd>-h</kbd>).</td>
+			<td><kbd>claude --version</kbd></td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 4. Banderas para modo headless (-p), validación JSON Schema, control de presupuesto y depuración.</span>
+
+<h2>5. Usar Claude con Tuberías de Terminal (Unix Pipes <kbd>|</kbd>) y Git</h2>
+
+<p>Combinando la opción <kbd>-p</kbd> con el símbolo de tubería <kbd>|</kbd> de Linux/macOS/WSL, puedes conectar la salida de cualquier comando directamente al cerebro de Claude:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-bash">
+# Ejemplo 1: Enviar un archivo de registro de errores (log) para que te explique por qué falla
+cat errores-servidor.log | claude -p "Explica cuál es la causa raíz de este error y cómo arreglarlo"
+
+# Ejemplo 2: Revisar los cambios pendientes de Git antes de subirlos
+git diff | claude -p "Revisa si hay algún error de sintaxis o archivo olvidado en estos cambios"
+
+# Ejemplo 3: Pedir salida JSON validada contra un esquema JSON Schema
+claude -p "Lista los nombres de las vistas de constants.json" --output-format json
+
+# Ejemplo 4: Trabajar en una funcionalidad nueva dentro de un Git Worktree aislado
+claude -w nueva-seccion-claude
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplos de uso del modo headless (-p) con tuberías Unix y aislamiento con Git Worktrees (-w).</span>
+
+<p>Además, dentro del chat interactivo, Claude Code puede encargarse de todo el flujo de <b>Git</b> por ti en lenguaje natural (o mediante el comando rápido <kbd>/commit-push-pr</kbd>): analizar qué archivos han cambiado con <kbd>git status</kbd> y <kbd>git diff</kbd>, redactar mensajes de commit claros, resolver conflictos de <i>merge</i> línea por línea o abrir Pull Requests usando <kbd>gh</kbd>.</p>

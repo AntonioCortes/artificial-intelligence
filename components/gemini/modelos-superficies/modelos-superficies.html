@@ -72,21 +72,89 @@
 	<li><b>Panel Auxiliar (Auxiliary Pane):</b> Donde puedes inspeccionar en tiempo real los <b>Artefactos</b> (planes de ejecución, informes con diagramas, tablas y carruseles generados por el agente), los <b>Subagentes</b> activos, las <b>Tareas en segundo plano (Background Tasks)</b>, los <b>Archivos modificados</b> y las <b>Terminales</b>.</li>
 </ul>
 
-<h3>3.3. Antigravity CLI (<kbd>agy</kbd>) (El agente en tu terminal)</h3>
+<h3>3.3. Antigravity CLI (<kbd>agy</kbd>): Todos sus Flags y Subcomandos de Terminal</h3>
 
-<p>Si prefieres trabajar directamente desde la consola de comandos de Linux, macOS o Windows, la interfaz de línea de comandos <b>agy</b> te ofrece toda la potencia del agente de forma instantánea:</p>
+<p>Si prefieres trabajar directamente desde la consola de comandos de Linux, macOS o Windows, la interfaz de línea de comandos <b>agy</b> te ofrece toda la potencia del agente de forma instantánea. Puedes lanzarla tanto en modo interactivo como usando banderas (<i>flags</i>) y subcomandos directos desde tu terminal:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Flag / Opción de <kbd>agy</kbd></th>
+			<th scope="col">Qué hace al arrancar desde la terminal</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>agy</kbd></th>
+			<td>Inicia la interfaz interactiva (TUI) del agente en la carpeta actual.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>agy -c</kbd> (o <kbd>--continue</kbd>)</th>
+			<td>Continúa automáticamente la conversación más reciente donde la dejaste.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>agy --conversation &lt;ID&gt;</kbd></th>
+			<td>Reanuda una conversación anterior específica indicando su identificador.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>agy -i "tu prompt"</kbd> (<kbd>--prompt-interactive</kbd>)</th>
+			<td>Arranca la sesión interactiva enviando ya el primer mensaje automáticamente.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>agy -p "tu prompt"</kbd> (o <kbd>--print</kbd>)</th>
+			<td><b>Modo No Interactivo (Print Mode):</b> Ejecuta un único prompt, imprime la respuesta en la consola y termina (ideal para scripts y tuberías Unix).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>agy --mode &lt;modo&gt;</kbd></th>
+			<td>Define el modo de ejecución del agente para la sesión: <kbd>plan</kbd> (solo planificar), <kbd>accept-edits</kbd> (aceptar ediciones) o <kbd>auto</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>agy --model &lt;modelo&gt;</kbd></th>
+			<td>Inicia la sesión utilizando directamente el modelo especificado.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>agy --effort &lt;nivel&gt;</kbd></th>
+			<td>Establece el nivel de esfuerzo de razonamiento inicial: <kbd>low</kbd>, <kbd>medium</kbd>, <kbd>high</kbd>, <kbd>xhigh</kbd> o <kbd>max</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>agy --add-dir &lt;ruta&gt;</kbd></th>
+			<td>Añade una o varias carpetas adicionales al espacio de trabajo (se puede repetir).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>agy --sandbox</kbd></th>
+			<td>Fuerza la ejecución dentro del entorno Sandbox con restricciones de terminal activadas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>agy --output-format &lt;formato&gt;</kbd> y <kbd>--json-schema</kbd></th>
+			<td>En modo <kbd>-p</kbd>, permite pedir la salida en formato <kbd>text</kbd>, <kbd>json</kbd> o <kbd>stream-json</kbd>, e incluso exigir que cumpla un esquema JSON concreto.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Todas las banderas (flags) de línea de comandos soportadas por el binario agy.</span>
+
+<h4>Subcomandos de gestión directa (<kbd>agy &lt;subcomando&gt;</kbd>)</h4>
+
+<p>Además, sin necesidad de entrar al chat interactivo, puedes ejecutar estos subcomandos directos en tu consola:</p>
 
 <div class="center-horizontal">
 <pre><code class="language-bash">
-# 1. Iniciar el agente interactivo en la carpeta actual de tu proyecto
-agy
+# 1. Listar todos los modelos o agentes disponibles
+agy models
+agy agents
 
-# 2. Ver todas las opciones y subcomandos disponibles desde la terminal
-agy --help
+# 2. Gestionar servidores MCP desde la consola (add, remove, list, enable, disable)
+agy mcp list
+agy mcp enable mi-servidor
 
-# 3. Dentro de la interfaz interactiva de agy:
-#    - Escribe /help para ver todos los slash commands
-#    - Pulsa Ctrl+D dos veces (o escribe /exit o /quit) para salir
+# 3. Gestionar plugins (list, import, install, uninstall, enable, disable, validate)
+agy plugin list
+agy plugin import claude
+
+# 4. Otros subcomandos útiles del sistema
+agy changelog        # Ver novedades de la versión
+agy install          # Configurar variables PATH del sistema
+agy remote-control   # Gestionar el daemon de control remoto (start, status, stop)
+agy update           # Actualizar Antigravity CLI a la última versión
 </code></pre>
 </div>
-<span class="center-horizontal caption">Comandos básicos para arrancar y utilizar Antigravity CLI (agy) en la terminal.</span>
+<span class="center-horizontal caption">Subcomandos administrativos disponibles directamente desde la terminal con agy.</span>

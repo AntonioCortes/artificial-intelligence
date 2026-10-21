@@ -1,105 +1,350 @@
 <h1 class="title">Todos los Comandos con / (Slash Commands) en Claude</h1>
 
-<h2>1. ¿Qué aparece cuando pulsas <kbd>/</kbd> en Claude?</h2>
+<h2>1. ¿Qué aparece cuando pulsas <kbd>/</kbd> en Claude? (Catálogo Completo)</h2>
 
-<p>Al escribir una barra <kbd>/</kbd> en <b>Claude Code</b> (tanto en la terminal como en la extensión de tu editor), se despliega una lista con todos los <b>comandos integrados de control, memoria, agentes, modelos y diagnóstico</b>, además de los comandos personalizados que hayas creado tú o tu equipo.</p>
+<p>Al escribir una barra <kbd>/</kbd> en <b>Claude Code</b> (tanto en la terminal como en la extensión de VS Code / Cursor / JetBrains), se despliega el menú interactivo con <b>todas las acciones integradas en el binario de Claude</b>, además de todas las <b>Skills y Comandos personalizados</b> de tu proyecto.</p>
 
-<p>Para alguien que está aprendiendo desde cero, conocer estos comandos es fundamental porque te permiten <b>inicializar un proyecto nuevo en segundos, limpiar o resumir la memoria para no gastar tokens de más, cambiar de modelo o crear subagentes</b> mediante menús guiados.</p>
+<p>A continuación tienes el <b>listado exhaustivo de absolutamente todos los comandos con <kbd>/</kbd> de Claude Code</b> (incluyendo sus alias entre paréntesis), organizados en <b>cinco tablas por categoría</b> para que sepas exactamente qué hace cada uno:</p>
 
-<h2>2. Guía completa de los Comandos <kbd>/</kbd> esenciales en Claude</h2>
+<h2>2. Grupo 1: Conversación, Contexto, Ramas e Historial</h2>
 
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
-			<th scope="col">Comando</th>
-			<th scope="col">Función Principal</th>
-			<th scope="col">Explicación detallada y cuándo usarlo</th>
+			<th scope="col">Comando y Alias</th>
+			<th scope="col">Qué hace exactamente</th>
+			<th scope="col">Cuándo debes usarlo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>/clear</kbd> (<kbd>/reset</kbd>, <kbd>/new</kbd>)</th>
+			<td>Inicia una sesión nueva con la ventana de contexto vacía (la conversación anterior se conserva en disco y puedes retomarla con <kbd>/resume</kbd>).</td>
+			<td>Cada vez que termines una tarea y vayas a empezar otra distinta para no gastar tokens con historial antiguo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/compact [instrucciones]</kbd></th>
+			<td>Libera espacio en la ventana de contexto resumiendo toda la conversación mantenida hasta ahora.</td>
+			<td>Cuando la sesión es muy larga pero quieres seguir en la misma tarea conservando un resumen de lo importante.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/autocompact [auto|&lt;tokens&gt;]</kbd></th>
+			<td>Configura a qué tamaño o nivel de llenado debe llegar la ventana de contexto antes de resumirse automáticamente.</td>
+			<td>Para ajustar cuándo quieres que Claude comprima la memoria por sí solo en sesiones largas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/context</kbd></th>
+			<td>Visualiza el uso actual de la ventana de contexto como una cuadrícula de colores interactiva.</td>
+			<td>Para comprobar exactamente cuántos tokens consumen tus archivos, el CLAUDE.md, las skills, los MCPs y el chat.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/resume</kbd> (<kbd>/continue</kbd>)</th>
+			<td>Abre el selector de sesiones guardadas en disco para retomar una conversación anterior.</td>
+			<td>Cuando quieres continuar un trabajo de ayer en el punto exacto donde lo dejaste.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/rewind</kbd> (<kbd>/checkpoint</kbd>, <kbd>/undo</kbd>)</th>
+			<td>Rebobina la conversación y/o restaura el estado de tus archivos a un paso anterior (igual que pulsar <kbd>Esc + Esc</kbd>).</td>
+			<td>Si un cambio no ha salido como esperabas y quieres deshacer tanto los mensajes como las ediciones de código.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/branch</kbd></th>
+			<td>Crea una rama (bifurcación) de la conversación actual en este punto exacto.</td>
+			<td>Cuando quieres explorar una alternativa distinta sin alterar el hilo de conversación original.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/fork</kbd></th>
+			<td>Copia la conversación actual en una nueva sesión en segundo plano (o lanza un agente en background que hereda todo el contexto) mientras tú sigues trabajando aquí.</td>
+			<td>Ideal para encargar una tarea paralela que necesita saber todo lo que habéis hablado hasta ahora sin bloquear tu chat.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/recap</kbd></th>
+			<td>Genera al instante un resumen ejecutivo de una sola línea sobre el estado actual de la sesión.</td>
+			<td>Cuando vuelves a una ventana abierta hace horas y quieres recordar de un vistazo en qué punto estabas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/btw &lt;pregunta&gt;</kbd></th>
+			<td>Hace una pregunta rápida lateral (<i>"by the way"</i>) sin interrumpir ni ensuciar la conversación principal.</td>
+			<td>Cuando tienes una duda rápida mientras Claude trabaja y no quieres desviar el foco del hilo principal.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/copy [N]</kbd></th>
+			<td>Copia al portapapeles la última respuesta de Claude (o la N-ésima respuesta más reciente si indicas un número, ej. <kbd>/copy 2</kbd>).</td>
+			<td>Para llevar rápidamente una respuesta o fragmento de código al portapapeles sin usar el ratón.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/export [archivo]</kbd></th>
+			<td>Exporta toda la conversación actual a un archivo en disco o al portapapeles.</td>
+			<td>Para guardar un registro completo en Markdown de una investigación o sesión de depuración.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/rename</kbd> (<kbd>/name</kbd>)</th>
+			<td>Cambia el título de la conversación actual.</td>
+			<td>Para ponerle un nombre claro a la sesión y encontrarla fácilmente después con <kbd>/resume</kbd>.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Comandos de barra (/) para gestionar el contexto, ramas, rebobinado e historial en Claude.</span>
+
+<h2>3. Grupo 2: Modelos, Modos, Esfuerzo, Planificación y Objetivos</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Comando y Alias</th>
+			<th scope="col">Qué hace exactamente</th>
+			<th scope="col">Cuándo debes usarlo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>/model</kbd></th>
+			<td>Abre el selector para cambiar el modelo de IA activo (<b>Sonnet</b>, <b>Opus</b>, <b>Haiku</b>).</td>
+			<td>Para pasar a Opus en decisiones complejas o volver a Sonnet/Haiku en tareas cotidianas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/effort</kbd></th>
+			<td>Establece el nivel de esfuerzo de razonamiento del modelo (<kbd>low</kbd>, <kbd>medium</kbd>, <kbd>high</kbd>, <kbd>max</kbd>).</td>
+			<td>Para controlar cuánto tiempo y profundidad dedica el modelo a pensar antes de actuar.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/advisor</kbd></th>
+			<td>Permite que Claude consulte automáticamente a un modelo más potente (como Opus) en momentos clave de decisión mientras trabajas con un modelo rápido.</td>
+			<td>Excelente para combinar la velocidad y ahorro de un modelo ágil con la supervisión puntual del modelo más potente.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/fast</kbd></th>
+			<td>Activa o desactiva el modo de salida rápida (<i>Fast Mode</i>).</td>
+			<td>Cuando quieres priorizar la velocidad de generación de respuesta.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/plan</kbd> y <kbd>/ultraplan</kbd></th>
+			<td><kbd>/plan</kbd> activa el Modo Planificación (Plan Mode) o muestra el plan actual de la sesión; <kbd>/ultraplan</kbd> lanza una sesión de planificación arquitectónica profunda.</td>
+			<td>Siempre que quieras diseñar y revisar la estrategia antes de que el agente modifique archivos.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/goal</kbd></th>
+			<td>Establece un objetivo (<i>Goal</i>) que Claude comprueba antes de detenerse, siguiendo trabajando hasta que la condición se cumpla.</td>
+			<td>Cuando quieres que el agente no pare hasta que todos los tests pasen o todos los puntos de una lista estén verificados.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/output-style</kbd></th>
+			<td>Lista los estilos de respuesta disponibles o cambia a uno de ellos (Normal, Conciso, Explicativo, Personalizado...).</td>
+			<td>Para adaptar el nivel de detalle con el que te explica las cosas Claude.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/brief</kbd> y <kbd>/focus</kbd></th>
+			<td><kbd>/brief</kbd> activa el modo de respuestas breves; <kbd>/focus</kbd> cambia a la vista enfocada (mostrando únicamente tu prompt, un resumen y la respuesta final sin el ruido de herramientas).</td>
+			<td>Ideales cuando prefieres una interfaz minimalista y respuestas directas al grano.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Comandos de barra (/) para controlar el modelo, el esfuerzo mental, el modo planificación, objetivos y estilo visual.</span>
+
+<h2>4. Grupo 3: Memoria, Skills, Subagentes, MCP, Hooks, Plugins y Permisos</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Comando y Alias</th>
+			<th scope="col">Qué hace exactamente</th>
+			<th scope="col">Cómo se usa</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<th scope="row"><kbd>/init</kbd></th>
-			<td>Inicializar el proyecto (<kbd>CLAUDE.md</kbd>)</td>
-			<td><b>El primer comando que debes ejecutar en cualquier proyecto nuevo.</b> Claude analiza tus carpetas, tu README y tus scripts y genera automáticamente un archivo <b>CLAUDE.md</b> con toda la guía del proyecto.</td>
+			<td>Analiza tu proyecto y genera automáticamente el archivo de memoria <b>CLAUDE.md</b>.</td>
+			<td>Ejecútalo la primera vez que abras Claude en cualquier proyecto nuevo.</td>
 		</tr>
 		<tr>
-			<th scope="row"><kbd>/clear</kbd></th>
-			<td>Vaciar la conversación actual</td>
-			<td>Borra por completo el historial del chat actual para empezar una tarea nueva desde cero con la ventana de contexto 100% limpia. Úsalo siempre que cambies de tarea.</td>
+			<th scope="row"><kbd>/memory</kbd> y <kbd>/pause-memory</kbd> (<kbd>/toggle-memory</kbd>)</th>
+			<td><kbd>/memory</kbd> abre y edita los archivos <b>CLAUDE.md</b> y ajustes de memoria; <kbd>/pause-memory</kbd> pausa o reactiva la memoria automática.</td>
+			<td>Para revisar o modificar las reglas permanentes de tu repositorio o de tu usuario.</td>
 		</tr>
 		<tr>
-			<th scope="row"><kbd>/compact [foco]</kbd></th>
-			<td>Comprimir y resumir el contexto</td>
-			<td>Cuando la conversación es muy larga pero quieres seguir en la misma tarea, resume todo lo hablado hasta ahora ahorrando hasta un 80% de tokens. Puedes indicarle en qué centrarse (ej. <kbd>/compact conserva las reglas de estilos CSS</kbd>).</td>
+			<th scope="row"><kbd>/skills</kbd>, <kbd>/reload-skills</kbd> y <kbd>/skill-doctor</kbd></th>
+			<td>
+				• <kbd>/skills</kbd>: Lista todas las Skills disponibles (además cada Skill aparece como <kbd>/&lt;nombre-skill&gt;</kbd>).<br/>
+				• <kbd>/reload-skills</kbd>: Recarga las Skills añadidas o editadas en disco durante la sesión sin reiniciar.<br/>
+				• <kbd>/skill-doctor</kbd>: Muestra qué Skills cargadas no se están usando y están gastando contexto.
+			</td>
+			<td>Te da control total sobre tus habilidades en <kbd>.claude/skills/</kbd> y su impacto en la memoria.</td>
 		</tr>
 		<tr>
-			<th scope="row"><kbd>/model</kbd></th>
-			<td>Cambiar de modelo de IA</td>
-			<td>Abre un selector para elegir entre <b>Claude Sonnet</b> (uso diario), <b>Claude Opus</b> (máximo razonamiento) o <b>Claude Haiku</b> (máxima rapidez), y configurar el pensamiento extendido.</td>
-		</tr>
-		<tr>
-			<th scope="row"><kbd>/memory</kbd></th>
-			<td>Editar la memoria del proyecto</td>
-			<td>Permite abrir y editar directamente desde tu editor tu archivo <b>CLAUDE.md</b> del proyecto o tu memoria global de usuario (<kbd>~/.claude/CLAUDE.md</kbd>).</td>
-		</tr>
-		<tr>
-			<th scope="row"><kbd>/agents</kbd></th>
-			<td>Gestionar Subagentes</td>
-			<td>Abre un menú interactivo para ver, crear, editar o eliminar <b>Subagentes especializados</b> (tanto a nivel de proyecto como personales) sin tener que escribir el archivo a mano.</td>
+			<th scope="row"><kbd>/subtask</kbd>, <kbd>/list-agents</kbd> (<kbd>/peers</kbd>) y <kbd>/agents</kbd></th>
+			<td>
+				• <kbd>/subtask</kbd>: Lanza un subagente con todo tu contexto actual y devuelve aquí su resultado.<br/>
+				• <kbd>/list-agents</kbd> (<kbd>/peers</kbd>): Lista los subagentes, compañeros de equipo y otras sesiones de Claude activas.<br/>
+				• <kbd>/agents</kbd>: Gestiona los subagentes en <kbd>.claude/agents/</kbd>.
+			</td>
+			<td>Para delegar subtareas pesadas en subagentes sin ensuciar ni bloquear tu sesión principal.</td>
 		</tr>
 		<tr>
 			<th scope="row"><kbd>/mcp</kbd></th>
-			<td>Estado de Servidores MCP</td>
-			<td>Muestra qué servidores MCP están conectados, qué herramientas exponen, si alguno ha dado error de conexión y permite iniciar sesión (OAuth) en servidores remotos.</td>
+			<td>Abre el gestor de <b>Servidores MCP</b> para ver estado, herramientas o autenticar cuentas OAuth.</td>
+			<td>Úsalo siempre que conectes bases de datos o APIs externas mediante MCP.</td>
 		</tr>
 		<tr>
-			<th scope="row"><kbd>/permissions</kbd></th>
-			<td>Configurar permisos de herramientas</td>
-			<td>Permite ver y modificar la lista blanca de comandos de terminal, lecturas o ediciones que Claude tiene permiso para ejecutar sin preguntarte cada vez.</td>
+			<th scope="row"><kbd>/hooks</kbd></th>
+			<td>Visualiza y gestiona las configuraciones de <b>Hooks</b> para eventos de herramientas (<kbd>PreToolUse</kbd>, <kbd>PostToolUse</kbd>, etc.).</td>
+			<td>Para comprobar qué automatizaciones se ejecutan antes o después de cada acción de Claude.</td>
 		</tr>
 		<tr>
-			<th scope="row"><kbd>/review</kbd></th>
-			<td>Revisión de código / Pull Request</td>
-			<td>Pide a Claude que analice los últimos cambios realizados en el código o en un Pull Request buscando posibles errores, fallos de seguridad o mejoras.</td>
+			<th scope="row"><kbd>/plugin</kbd> (<kbd>/plugins</kbd>, <kbd>/marketplace</kbd>), <kbd>/reload-plugins</kbd> y <kbd>/cloud-plugins</kbd></th>
+			<td>
+				• <kbd>/plugin</kbd>: Instala, activa, desactiva o explora el marketplace de plugins de Claude Code.<br/>
+				• <kbd>/reload-plugins</kbd>: Activa cambios pendientes de plugins en la sesión actual.<br/>
+				• <kbd>/cloud-plugins</kbd>: Elige si las sesiones en la nube usan los plugins activados en tu máquina.
+			</td>
+			<td>Permite instalar y actualizar paquetes completos de extensiones sin reiniciar.</td>
 		</tr>
 		<tr>
-			<th scope="row"><kbd>/resume</kbd></th>
-			<td>Retomar una conversación pasada</td>
-			<td>Abre una lista con tus sesiones anteriores en ese proyecto para que puedas continuar exactamente donde lo dejaste ayer.</td>
+			<th scope="row"><kbd>/permissions</kbd> (<kbd>/allowed-tools</kbd>), <kbd>/auto-mode-setup</kbd> y <kbd>/sandbox</kbd></th>
+			<td>
+				• <kbd>/permissions</kbd>: Gestiona las reglas <kbd>allow</kbd> y <kbd>deny</kbd> de herramientas.<br/>
+				• <kbd>/auto-mode-setup</kbd>: Enseña al modo automático cómo es tu entorno y ajusta sus reglas.<br/>
+				• <kbd>/sandbox</kbd>: Configura el aislamiento seguro de terminal.
+			</td>
+			<td>Para definir con precisión qué puede hacer Claude por su cuenta y qué requiere tu permiso.</td>
 		</tr>
 		<tr>
-			<th scope="row"><kbd>/cost</kbd> y <kbd>/status</kbd></th>
-			<td>Ver consumo de tokens y estado</td>
-			<td>Muestra cuántos tokens llevas consumidos en la sesión actual, qué modelo está activo y el estado de tu cuenta y configuración.</td>
-		</tr>
-		<tr>
-			<th scope="row"><kbd>/doctor</kbd> y <kbd>/help</kbd></th>
-			<td>Diagnóstico y ayuda</td>
-			<td><kbd>/doctor</kbd> comprueba si tu instalación de Claude Code tiene algún problema, y <kbd>/help</kbd> lista todos los comandos nativos y personalizados.</td>
+			<th scope="row"><kbd>/import</kbd></th>
+			<td>Importa reglas y configuraciones desde otro agente de codificación de IA.</td>
+			<td>Muy útil si ya tenías reglas creadas en otra herramienta y quieres traerlas a Claude Code.</td>
 		</tr>
 	</tbody>
 </table>
-<span class="center-horizontal caption">Tabla 1. Referencia completa de los comandos de barra (/) disponibles en Claude Code.</span>
+<span class="center-horizontal caption">Tabla 3. Comandos de barra (/) para gestionar Memoria, Skills, Subagentes, MCP, Hooks, Plugins y Permisos.</span>
 
-<h2>3. Ejemplo práctico: Cómo usar los comandos <kbd>/</kbd> durante un día de trabajo</h2>
+<h2>5. Grupo 4: Desarrollo, Git, PRs, Tareas en Background, Workflows y Nube</h2>
 
-<div class="center-horizontal">
-<pre><code class="language-plaintext">
-# 1. Entras por primera vez a este proyecto web y generas su memoria automática:
-/init
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Comando y Alias</th>
+			<th scope="col">Qué hace exactamente</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>/diff</kbd></th>
+			<td>Abre el visor interactivo de diferencias (Git diff) para revisar todos los cambios realizados en el código.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/review</kbd>, <kbd>/ultrareview</kbd> y <kbd>/security-review</kbd></th>
+			<td>
+				• <kbd>/review</kbd>: Revisa los cambios actuales buscando errores o mejoras.<br/>
+				• <kbd>/ultrareview</kbd>: Lanza en la nube una revisión profunda multi-agente que busca y verifica bugs en tu rama.<br/>
+				• <kbd>/security-review</kbd>: Audita los cambios pendientes de tu rama en busca de vulnerabilidades de seguridad.
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/pr-comments</kbd> y <kbd>/autofix-pr</kbd></th>
+			<td>
+				• <kbd>/pr-comments</kbd>: Descarga los comentarios de revisión de un Pull Request para resolverlos.<br/>
+				• <kbd>/autofix-pr</kbd>: Monitoriza y corrige automáticamente cualquier problema o fallo de CI en el Pull Request actual.
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/tasks</kbd> (<kbd>/bashes</kbd>), <kbd>/background</kbd> (<kbd>/bg</kbd>), <kbd>/stop</kbd> y <kbd>/daemon</kbd></th>
+			<td>
+				• <kbd>/tasks</kbd>: Muestra y gestiona todos los procesos y comandos Bash que corren en segundo plano.<br/>
+				• <kbd>/background</kbd> (<kbd>/bg</kbd>): Envía toda la sesión actual a segundo plano liberando tu terminal.<br/>
+				• <kbd>/stop</kbd>: Detiene una sesión en segundo plano conservando su transcripción y worktree.<br/>
+				• <kbd>/daemon</kbd>: Gestiona servicios y rutinas en segundo plano.
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/loops</kbd>, <kbd>/schedule</kbd> (<kbd>/routines</kbd>) y <kbd>/workflows</kbd></th>
+			<td>
+				• <kbd>/loops</kbd>: Lista, crea y elimina bucles de ejecución repetitivos.<br/>
+				• <kbd>/schedule</kbd> (<kbd>/routines</kbd>): Crea y gestiona agentes de Claude Code programados de forma recurrente.<br/>
+				• <kbd>/workflows</kbd>: Explora los flujos de trabajo (workflows) en ejecución o completados.
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/cd</kbd> y <kbd>/add-dir</kbd></th>
+			<td><kbd>/cd</kbd> mueve la sesión actual a una nueva carpeta de trabajo; <kbd>/add-dir</kbd> añade un directorio adicional al espacio de trabajo actual.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/ide</kbd>, <kbd>/desktop</kbd> (<kbd>/app</kbd>) y <kbd>/chrome</kbd></th>
+			<td>
+				• <kbd>/ide</kbd>: Gestiona la conexión en vivo con tu editor (VS Code, Cursor, JetBrains).<br/>
+				• <kbd>/desktop</kbd> (<kbd>/app</kbd>): Transfiere y continúa la sesión actual directamente en la aplicación Claude Desktop.<br/>
+				• <kbd>/chrome</kbd>: Abre la configuración de la integración de Claude en Google Chrome.
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/teleport</kbd> (<kbd>/tp</kbd>), <kbd>/remote-control</kbd> (<kbd>/rc</kbd>), <kbd>/session</kbd> (<kbd>/remote</kbd>), <kbd>/remote-env</kbd> y <kbd>/web-setup</kbd></th>
+			<td>
+				• <kbd>/teleport</kbd> (<kbd>/tp</kbd>): Envía esta sesión a la nube o retoma una sesión desde <kbd>claude.ai</kbd>.<br/>
+				• <kbd>/remote-control</kbd> (<kbd>/rc</kbd>) y <kbd>/session</kbd> (<kbd>/remote</kbd>): Muestra la URL y código QR para controlar esta sesión desde tu móvil o <kbd>claude.ai/code</kbd>.<br/>
+				• <kbd>/remote-env</kbd> y <kbd>/web-setup</kbd>: Configuran el entorno en la nube y la conexión con tu cuenta de GitHub.
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/artifacts</kbd>, <kbd>/design-login</kbd>, <kbd>/design-consent</kbd> y <kbd>/design-revoke</kbd></th>
+			<td><kbd>/artifacts</kbd> explora tus artefactos publicados y compartidos; los comandos <kbd>/design-*</kbd> autorizan o revocan el acceso del agente a tus proyectos de diseño.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/install-github-app</kbd> y <kbd>/install-slack-app</kbd></th>
+			<td>Configuran automáticamente la aplicación de Claude para GitHub Actions en tu repositorio o instalan la integración con Slack.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 4. Comandos de desarrollo, Git, Pull Requests, tareas en background, control remoto y nube en Claude Code.</span>
 
-# 2. Le pides a Claude que cree toda la vista de Gemini:
-&gt; Crea la vista de Gemini en components/gemini con sus 9 componentes y diagramas SVG.
+<h2>6. Grupo 5: Configuración, Interfaz, Voz, Aprendizaje y Diagnóstico</h2>
 
-# 3. La conversación ya tiene muchos mensajes, pero ahora quieres crear la vista de Claude
-#    conservando en memoria cómo funciona el proyecto:
-/compact conserva el resumen de las reglas del README y los archivos ya creados
-
-# 4. Quieres cambiar temporalmente a Claude Opus para diseñar una arquitectura compleja:
-/model
-
-# 5. Has terminado por completo y vas a empezar otro tema que no tiene nada que ver:
-/clear
-</code></pre>
-</div>
-<span class="center-horizontal caption">Flujo de uso real combinando /init, /compact, /model y /clear para mantener la máxima eficacia.</span>
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Comando y Alias</th>
+			<th scope="col">Qué hace exactamente</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>/config</kbd> (<kbd>/settings</kbd>), <kbd>/theme</kbd>, <kbd>/color</kbd>, <kbd>/tui</kbd> y <kbd>/scroll-speed</kbd></th>
+			<td>Abren los ajustes generales (<kbd>/config</kbd>), cambian el tema visual (<kbd>/theme</kbd>), el color de la barra de prompt de esta sesión (<kbd>/color</kbd>), el modo de renderizado de terminal <kbd>default | fullscreen</kbd> (<kbd>/tui</kbd>) o la velocidad del scroll (<kbd>/scroll-speed</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/keybindings</kbd>, <kbd>/terminal-setup</kbd>, <kbd>/vim</kbd> y <kbd>/alias</kbd></th>
+			<td>Abren el archivo de atajos de teclado (<kbd>/keybindings</kbd>), configuran <kbd>Shift + Enter</kbd> en la terminal (<kbd>/terminal-setup</kbd>), activan el modo Vim (<kbd>/vim</kbd>) o crean alias personalizados para comandos (<kbd>/alias</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/voice</kbd> y <kbd>/statusline</kbd></th>
+			<td><kbd>/voice</kbd> activa/desactiva el dictado por voz; <kbd>/statusline</kbd> configura la línea de estado inferior de Claude Code.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/powerup</kbd>, <kbd>/insights</kbd> y <kbd>/team-onboarding</kbd></th>
+			<td>
+				• <kbd>/powerup</kbd>: Lecciones interactivas rápidas para descubrir todas las funciones de Claude Code.<br/>
+				• <kbd>/insights</kbd>: Genera un informe analizando cómo trabajas en tus sesiones de Claude Code.<br/>
+				• <kbd>/team-onboarding</kbd>: Crea una guía práctica a partir de tu uso para enseñar a tus compañeros de equipo.
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/usage</kbd> (<kbd>/cost</kbd>, <kbd>/stats</kbd>), <kbd>/usage-credits</kbd>, <kbd>/rate-limit-options</kbd> y <kbd>/upgrade</kbd></th>
+			<td>Muestran el coste de la sesión, estadísticas de actividad y uso del plan (<kbd>/usage</kbd>), configuran créditos adicionales (<kbd>/usage-credits</kbd>) o gestionan los límites de uso (<kbd>/rate-limit-options</kbd>, <kbd>/upgrade</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/status</kbd>, <kbd>/doctor</kbd>, <kbd>/version</kbd> y <kbd>/release-notes</kbd></th>
+			<td>Muestran el estado completo de versión, modelo, cuenta y conectividad (<kbd>/status</kbd>), diagnostican y reparan la instalación (<kbd>/doctor</kbd>), muestran la versión exacta (<kbd>/version</kbd>) y las novedades (<kbd>/release-notes</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/setup-bedrock</kbd>, <kbd>/setup-vertex</kbd> y <kbd>/privacy-settings</kbd></th>
+			<td>Configuran el uso de Claude a través de Amazon Bedrock o Google Vertex AI, o abren las opciones de privacidad.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/mobile</kbd> (<kbd>/ios</kbd>, <kbd>/android</kbd>), <kbd>/wellbeing</kbd> (<kbd>/breaks</kbd>), <kbd>/radio</kbd> y <kbd>/stickers</kbd></th>
+			<td>Muestran el QR de la app móvil (<kbd>/mobile</kbd>), configuran recordatorios opcionales de descanso (<kbd>/wellbeing</kbd>) o curiosidades oficiales como la radio lo-fi (<kbd>/radio</kbd>) y pegatinas (<kbd>/stickers</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/bug</kbd> (<kbd>/share</kbd>), <kbd>/feedback</kbd>, <kbd>/login</kbd>, <kbd>/logout</kbd>, <kbd>/install</kbd>, <kbd>/restart</kbd> (<kbd>/update</kbd>), <kbd>/help</kbd> y <kbd>/exit</kbd> (<kbd>/quit</kbd>)</th>
+			<td>Reportan errores o comparten la conversación (<kbd>/bug</kbd>, <kbd>/feedback</kbd>), inician/cierran sesión (<kbd>/login</kbd>, <kbd>/logout</kbd>), instalan/reinician/actualizan el binario nativo (<kbd>/install</kbd>, <kbd>/restart</kbd>), muestran la ayuda (<kbd>/help</kbd>) o cierran Claude (<kbd>/exit</kbd>).</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 5. Comandos de configuración, interfaz, aprendizaje interactivo (/powerup), consumo y diagnóstico en Claude Code.</span>

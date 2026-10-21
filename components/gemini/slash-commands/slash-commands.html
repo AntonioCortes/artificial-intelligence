@@ -1,107 +1,289 @@
-<h1 class="title">Comandos con / (Slash Commands) en Antigravity</h1>
+<h1 class="title">Todos los Comandos con / (Slash Commands) en Antigravity</h1>
 
-<h2>1. ¿Qué ocurre cuando escribes <kbd>/</kbd> en el chat?</h2>
+<h2>1. ¿Qué aparece cuando escribes <kbd>/</kbd> en Antigravity (<kbd>agy</kbd> y App)?</h2>
 
-<p>Cuando escribes una barra inclinada <kbd>/</kbd> al principio de tu mensaje en el chat de <b>Google Antigravity</b> (tanto en la aplicación de escritorio Antigravity 2.0, como en el IDE o en el CLI <kbd>agy</kbd>), se despliega el menú de <b>Slash Commands (Comandos de Barra)</b>.</p>
+<p>Cuando escribes una barra inclinada <kbd>/</kbd> en el cuadro de texto de <b>Google Antigravity</b> (tanto en la terminal con <kbd>agy</kbd> como en la aplicación de escritorio Antigravity 2.0 o el IDE), se abre un menú interactivo con <b>todas las acciones, selectores y flujos de trabajo del sistema</b>. Además, a medida que escribes detrás de la barra (por ejemplo, <kbd>/sk</kbd>), la lista se filtra automáticamente y te sugiere argumentos (<i>Ghost Autocomplete</i>).</p>
 
-<p>¿Qué es un Slash Command? Es un <b>atajo directo que activa un modo especial de trabajo o un flujo automatizado</b> en el agente. En lugar de tener que explicarle con un párrafo largo cómo quieres que se comporte (por ejemplo: <i>"quiero que pienses muy a fondo, que primero me hagas preguntas o que lances varios agentes en equipo"</i>), basta con elegir el comando con <kbd>/</kbd> correspondiente.</p>
+<p>Para que no te pierdas entre tantas opciones, todo lo que aparece al pulsar <kbd>/</kbd> se divide en <b>cinco grandes grupos</b> que explicamos al completo a continuación:</p>
 
-<h2>2. Catálogo completo de Comandos <kbd>/</kbd> para Flujos Agénticos</h2>
+<ol>
+	<li><b>Comandos de Flujo de Trabajo Agéntico:</b> Modos especiales de razonamiento y trabajo autónomo (<kbd>/plan</kbd>, <kbd>/goal</kbd>, <kbd>/boost</kbd>, <kbd>/grill-me</kbd>, <kbd>/teamwork</kbd>...).</li>
+	<li><b>Comandos de Personalización y Herramientas:</b> Gestión directa de tus habilidades, subagentes, servidores MCP, hooks, plugins y permisos (<kbd>/skills</kbd>, <kbd>/agents</kbd>, <kbd>/mcp</kbd>, <kbd>/hooks</kbd>, <kbd>/plugin</kbd>, <kbd>/permissions</kbd>).</li>
+	<li><b>Comandos de Modelo, Contexto, Tareas y Código:</b> Control del cerebro de la IA, consumo de memoria, tareas en segundo plano y cambios en archivos (<kbd>/model</kbd>, <kbd>/effort</kbd>, <kbd>/context</kbd>, <kbd>/tasks</kbd>, <kbd>/artifact</kbd>, <kbd>/diff</kbd>, <kbd>/open</kbd>, <kbd>/add-dir</kbd>).</li>
+	<li><b>Comandos de Gestión de la Conversación:</b> Control del historial, rebobinado, bifurcación y preguntas rápidas (<kbd>/clear</kbd>, <kbd>/resume</kbd>, <kbd>/rewind</kbd>, <kbd>/fork</kbd>, <kbd>/btw</kbd>, <kbd>/search</kbd>, <kbd>/copy</kbd>, <kbd>/voice</kbd>...).</li>
+	<li><b>Comandos de Configuración, Interfaz y Sistema:</b> Ajustes visuales, atajos de teclado, consumo de créditos y control remoto (<kbd>/config</kbd>, <kbd>/keybindings</kbd>, <kbd>/statusline</kbd>, <kbd>/usage</kbd>, <kbd>/credits</kbd>, <kbd>/remote-control</kbd>...).</li>
+</ol>
 
-<p>Estos son los comandos principales que verás al pulsar <kbd>/</kbd> en Antigravity, explicados al detalle con cuándo y por qué deberías usar cada uno:</p>
+<h2>2. Grupo 1: Comandos <kbd>/</kbd> de Flujos de Trabajo y Razonamiento del Agente</h2>
+
+<p>Estos comandos cambian la forma en que el agente aborda tu tarea (haciéndole planificar antes de tocar nada, investigar en equipo o trabajar sin descanso hasta cumplir un objetivo):</p>
 
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
 			<th scope="col">Comando</th>
 			<th scope="col">Qué hace exactamente</th>
-			<th scope="col">Cuándo debes usarlo (Caso ideal)</th>
+			<th scope="col">Cuándo debes usarlo</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<th scope="row"><kbd>/plan</kbd></th>
-			<td>Activa el modo de planificación estructurada paso a paso antes de realizar cambios en el código.</td>
-			<td>Cuando la tarea es grande o toca muchos archivos y quieres revisar primero la estrategia del agente antes de que empiece a editar.</td>
+			<td>Activa la planificación paso a paso antes de ejecutar cambios en el código.</td>
+			<td>Cuando la tarea es compleja o toca varios archivos y quieres revisar primero la estrategia del agente antes de que edite nada.</td>
 		</tr>
 		<tr>
 			<th scope="row"><kbd>/goal</kbd></th>
-			<td>Modo de objetivo autónomo persistente: el agente es ultra exhaustivo y no se detiene hasta verificar que la meta se ha cumplido al 100%.</td>
-			<td>Cuando quieres dejar al agente trabajando en una tarea larga (incluso durante horas) asegurándote de que no pare a mitad de camino.</td>
+			<td>Modo de objetivo persistente: el agente es ultra exhaustivo y no se detiene hasta verificar que la meta se ha cumplido al 100%.</td>
+			<td>Para tareas largas (incluso dejarlo trabajando horas) asegurándote de que compruebe y termine absolutamente todo.</td>
 		</tr>
 		<tr>
 			<th scope="row"><kbd>/boost</kbd></th>
 			<td>Activa pensamiento profundo estratégico, análisis desde múltiples perspectivas y verificación rigurosa.</td>
-			<td>Cuando te enfrentas a un bug muy difícil de encontrar, un problema de arquitectura complejo o una investigación técnica profunda.</td>
+			<td>Cuando te enfrentas a un problema de arquitectura difícil, un bug complejo o una investigación técnica avanzada.</td>
 		</tr>
 		<tr>
 			<th scope="row"><kbd>/grill-me</kbd></th>
-			<td>Inicia una entrevista interactiva donde la IA te hace preguntas clave para resolver dudas de diseño antes de programar.</td>
-			<td>Cuando tienes una idea general de lo que quieres hacer pero aún no has decidido todos los detalles técnicos y quieres que la IA te ayude a aterrizarlos.</td>
+			<td>Inicia una entrevista interactiva donde la IA te hace preguntas clave para aclarar decisiones de diseño antes de programar.</td>
+			<td>Cuando tienes una idea general pero quieres que el agente te haga preguntas para definir todos los requisitos juntos.</td>
 		</tr>
 		<tr>
 			<th scope="row"><kbd>/teamwork</kbd></th>
-			<td>Orquesta un equipo de subagentes autónomos que se reparten el trabajo y colaboran en paralelo.</td>
-			<td>Cuando tienes un proyecto grande con partes independientes (por ejemplo: crear 4 vistas distintas o migrar 20 módulos a la vez).</td>
+			<td>Lanza un equipo de subagentes autónomos que se reparten el trabajo y colaboran en paralelo.</td>
+			<td>Para proyectos grandes que se pueden dividir en partes independientes (ej. crear varias vistas o auditar varios módulos a la vez).</td>
 		</tr>
 		<tr>
 			<th scope="row"><kbd>/browser</kbd></th>
-			<td>Activa las capacidades de navegación web y automatización del navegador integrado.</td>
-			<td>Cuando quieres que el agente abra tu página web en un navegador real para probar cómo se ve, hacer clic en botones o buscar información en la web.</td>
+			<td>Activa las herramientas de navegación web y automatización del navegador.</td>
+			<td>Cuando la tarea requiere abrir una página web, interactuar con botones/formularios o buscar información en internet.</td>
 		</tr>
 		<tr>
-			<th scope="row"><kbd>/schedule</kbd></th>
-			<td>Permite programar una instrucción en un temporizador único o en un horario recurrente (formato cron).</td>
-			<td>Cuando quieres que el agente ejecute una revisión periódica (por ejemplo: comprobar cada mañana si los tests o el servidor siguen funcionando).</td>
+			<th scope="row"><kbd>/schedule</kbd> y <kbd>/automation</kbd></th>
+			<td>Permite programar una instrucción en un temporizador o crear una automatización recurrente (horario cron).</td>
+			<td>Cuando quieres que el agente ejecute una tarea periódicamente (ej. revisar cada mañana el estado del proyecto o resumir novedades).</td>
 		</tr>
 		<tr>
 			<th scope="row"><kbd>/compact</kbd></th>
 			<td>Resume y compacta el historial de la conversación actual para liberar espacio en la ventana de contexto.</td>
-			<td>Cuando llevas mucho rato trabajando en el mismo chat y quieres liberar memoria sin perder el resumen de lo que ya habéis hecho.</td>
+			<td>Cuando la conversación lleva muchos turnos y quieres liberar memoria sin perder el resumen de lo que ya habéis hecho.</td>
 		</tr>
 		<tr>
 			<th scope="row"><kbd>/learn</kbd></th>
-			<td>Guarda una enseñanza, corrección o configuración compleja que hayáis resuelto para que el agente la recuerde en futuras sesiones.</td>
-			<td>Cuando acabas de corregir al agente o de enseñarle cómo funciona tu proyecto y quieres que aprenda esa regla para siempre.</td>
+			<td>Persiste una corrección o enseñanza que le hayas dado al agente para que la recuerde en futuras tareas.</td>
+			<td>Cuando acabas de corregir al agente o de resolver una configuración especial y quieres que aprenda esa norma para siempre.</td>
 		</tr>
 	</tbody>
 </table>
-<span class="center-horizontal caption">Tabla 1. Todos los comandos de flujo de trabajo disponibles al escribir / en Antigravity.</span>
+<span class="center-horizontal caption">Tabla 1. Comandos de barra (/) orientados a modos de pensamiento y flujos de trabajo del agente.</span>
 
-<h2>3. Ejemplos reales de cómo usar los comandos <kbd>/</kbd> paso a paso</h2>
+<h2>3. Grupo 2: Comandos <kbd>/</kbd> de Personalización (<kbd>/skills</kbd>, <kbd>/agents</kbd>, <kbd>/mcp</kbd>, <kbd>/hooks</kbd>, <kbd>/plugin</kbd>, <kbd>/permissions</kbd>)</h2>
 
-<p>Veamos cómo se escriben estos comandos en situaciones reales del día a día:</p>
+<p>Estos comandos te permiten inspeccionar, activar y gestionar todas las piezas de personalización del agente sin salir del chat:</p>
 
-<div class="center-horizontal">
-<pre><code class="language-plaintext">
-# Caso 1: Quieres diseñar una funcionalidad nueva pero tienes dudas -> Usa /grill-me
-/grill-me Quiero añadir un sistema de buscador avanzado que filtre también dentro del
-contenido HTML de cada componente y no solo en los títulos del sidebar.
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Comando</th>
+			<th scope="col">Qué hace exactamente</th>
+			<th scope="col">Cómo se usa en la práctica</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>/skills</kbd></th>
+			<td>Abre el menú interactivo de <b>Skills (Habilidades)</b> descubiertas en tu proyecto (<kbd>.agents/skills/</kbd>), globales e integradas, permitiendo consultarlas o ejecutar una habilidad concreta.</td>
+			<td>Puedes escribir <kbd>/skills</kbd> para ver todas las habilidades cargadas, o escribir directamente <kbd>/skills &lt;nombre-skill&gt;</kbd> (e incluso <kbd>/&lt;nombre-skill&gt;</kbd>) para ordenar al agente que aplique esa habilidad ahora mismo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/agents</kbd></th>
+			<td>Abre el listado de <b>Agentes y Subagentes</b> disponibles (<kbd>self</kbd>, <kbd>research</kbd>, <kbd>image-generator</kbd> y los definidos en tu proyecto).</td>
+			<td>Úsalo para ver qué subagentes tienes configurados o cambiar el perfil de agente activo en la sesión.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/mcp</kbd></th>
+			<td>Abre el gestor de <b>Servidores MCP</b> conectados a la sesión actual.</td>
+			<td>Te permite ver qué servidores MCP están activos, qué herramientas exponen, reconectarlos o diagnosticar si alguno ha fallado.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/hooks</kbd></th>
+			<td>Abre el gestor de configuraciones de <b>Lifecycle Hooks</b> (<kbd>hooks.json</kbd>) para eventos de herramientas.</td>
+			<td>Permite revisar qué scripts están configurados en eventos como <kbd>PreToolUse</kbd>, <kbd>PostToolUse</kbd> o <kbd>Stop</kbd> y comprobar su estado.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/plugin</kbd></th>
+			<td>Gestiona tus <b>Plugins</b> directamente desde el chat mediante subcomandos (<kbd>list</kbd>, <kbd>install</kbd>, <kbd>uninstall</kbd>, <kbd>enable</kbd>, <kbd>disable</kbd>).</td>
+			<td>Por ejemplo, escribe <kbd>/plugin list</kbd> para ver los plugins instalados o <kbd>/plugin enable mi-plugin</kbd> para activarlo al vuelo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/permissions</kbd></th>
+			<td>Abre el panel interactivo de <b>Permisos y Seguridad</b> de la sesión.</td>
+			<td>Permite revisar y modificar las políticas de ejecución de comandos, acceso a red, archivos fuera del workspace y permisos concedidos.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/&lt;nombre-de-skill&gt;</kbd></th>
+			<td><b>Skills como comandos directos:</b> Toda Skill instalada aparece también en el desplegable de <kbd>/</kbd> con su propio nombre.</td>
+			<td>Por ejemplo, verás <kbd>/antigravity-guide</kbd>, <kbd>/agy-customizations</kbd>, <kbd>/migrate-workflows</kbd>, <kbd>/run-workflow</kbd> o <kbd>/generative_ui</kbd>, además de las que tú crees en <kbd>.agents/skills/</kbd>.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Comandos de barra (/) para gestionar Skills, Agentes, MCP, Hooks, Plugins y Permisos.</span>
 
-# Caso 2: Quieres un plan detallado antes de tocar código -> Usa /plan
-/plan Necesito migrar todos los componentes antiguos de @components/another-view/
-al nuevo formato de WebComponents explicado en @README.md.
+<h2>4. Grupo 3: Comandos <kbd>/</kbd> de Modelo, Contexto, Tareas y Espacio de Trabajo</h2>
 
-# Caso 3: Tienes un proyecto grande y quieres que varios agentes trabajen en equipo -> Usa /teamwork
-/teamwork Crea tres vistas nuevas en paralelo: una para Docker, otra para Kubernetes
-y otra para GitHub Actions, cada una con 5 componentes y sus diagramas SVG.
+<p>Con estos comandos controlas qué cerebro usa la IA, cuánta energía dedica a pensar, cuánta memoria te queda libre y qué archivos o tareas se están moviendo en tu proyecto:</p>
 
-# Caso 4: Quieres que el agente no pare hasta dejar todo probado y terminado -> Usa /goal
-/goal Revisa todos los componentes de la web, comprueba que todas las imágenes SVG existen,
-que todos los componentes están en @js/components-imports.js y que no hay errores.
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Comando</th>
+			<th scope="col">Qué hace exactamente</th>
+			<th scope="col">Por qué es tan útil</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>/model</kbd></th>
+			<td>Abre el selector para cambiar de <b>Modelo de IA</b> (ej. Gemini Flash, Gemini Pro, etc.) o lanza una consulta puntual a otro modelo.</td>
+			<td>Puedes cambiar a un modelo más rápido para tareas mecánicas o a uno más potente para diseñar arquitectura sin cerrar el chat.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/effort</kbd></th>
+			<td>Ajusta el <b>nivel de esfuerzo de razonamiento (Reasoning Effort)</b> del modelo: <kbd>low</kbd>, <kbd>medium</kbd>, <kbd>high</kbd>, <kbd>xhigh</kbd> o <kbd>max</kbd>.</td>
+			<td>Si una pregunta es sencilla, ponlo en <kbd>low</kbd>/<kbd>medium</kbd> para que responda más rápido; si es un reto difícil, súbelo a <kbd>high</kbd> o <kbd>max</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/context</kbd></th>
+			<td>Abre el <b>desglose interactivo de la ventana de contexto</b> (<i>Interactive Context Breakdown</i>).</td>
+			<td>Te muestra visualmente cuántos tokens están ocupando las instrucciones del sistema, las reglas, las herramientas MCP y el historial del chat.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/tasks</kbd></th>
+			<td>Abre el panel de <b>Tareas en Segundo Plano (Background Tasks)</b> y procesos en ejecución.</td>
+			<td>Permite ver qué comandos o servidores siguen corriendo en segundo plano, leer sus logs en vivo o detenerlos.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/artifact</kbd></th>
+			<td>Lista y abre los <b>Artefactos</b> (planes de ejecución, informes Markdown, diagramas) creados en la sesión.</td>
+			<td>Ideal en la terminal (<kbd>agy</kbd>) para inspeccionar rápidamente el plan o documento técnico que acaba de generar el agente.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/diff</kbd></th>
+			<td>Muestra todas las <b>diferencias de código (Diffs)</b> realizadas en los archivos de tu proyecto.</td>
+			<td>Te permite revisar de un vistazo todas las líneas añadidas (verde) y eliminadas (rojo) antes de guardar o hacer commit.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/open</kbd></th>
+			<td>Abre un archivo de tu proyecto o un artefacto directamente en tu editor o visor del sistema.</td>
+			<td>Escribes <kbd>/open README.md</kbd> y se abre al instante sin tener que buscarlo por las carpetas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/add-dir</kbd></th>
+			<td>Añade otra carpeta de tu ordenador al espacio de trabajo (Workspace) de la conversación actual.</td>
+			<td>Útil cuando necesitas que el agente lea o copie cosas de otro proyecto que está en una carpeta distinta.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 3. Comandos de barra (/) para controlar el modelo, el esfuerzo mental, la ventana de contexto, las tareas y los archivos.</span>
 
-# Caso 5: Acabas de explicarle una norma importante y quieres que la memorice -> Usa /learn
-/learn Recuerda siempre que en este repositorio nunca debemos usar etiquetas code de una
-sola línea dentro de párrafos porque addCodeLineNumbers() espera bloques multilínea.
-</code></pre>
-</div>
-<span class="center-horizontal caption">Ejemplos prácticos de invocación de Slash Commands en el chat de Antigravity.</span>
+<h2>5. Grupo 4: Comandos <kbd>/</kbd> de Gestión de la Conversación e Interacción</h2>
 
-<h2>4. Comandos de control adicionales en Antigravity CLI (<kbd>agy</kbd>)</h2>
+<p>Estos comandos te dan superpoderes para viajar atrás en la conversación, hacer preguntas paralelas sin ensuciar el hilo principal o hablarle por voz al agente:</p>
 
-<p>Cuando estás dentro de la terminal usando <kbd>agy</kbd>, además de los comandos anteriores dispones de comandos utilitarios para gestionar la sesión:</p>
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Comando</th>
+			<th scope="col">Qué hace exactamente</th>
+			<th scope="col">Caso práctico de uso</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>/clear</kbd> (alias <kbd>/new</kbd>)</th>
+			<td>Limpia la pantalla e inicia una conversación nueva totalmente limpia desde cero.</td>
+			<td>Úsalo cada vez que termines una tarea y vayas a empezar otra que no tenga nada que ver.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/resume</kbd></th>
+			<td>Abre el buscador de conversaciones anteriores para retomar una sesión pasada.</td>
+			<td>Para continuar un trabajo de ayer exactamente en el punto donde lo dejaste.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/rewind</kbd> (alias <kbd>/undo</kbd>)</th>
+			<td>Rebobina la conversación hasta un paso anterior del historial.</td>
+			<td>Si el último enfoque no te convence, retrocedes dos o tres turnos como si no hubieran pasado.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/fork</kbd></th>
+			<td>Clona (bifurca) la conversación actual en una nueva sesión a partir de este punto.</td>
+			<td>Cuando quieres probar dos soluciones distintas a partir del mismo punto sin perder la conversación original.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/btw</kbd> (<i>By The Way</i>)</th>
+			<td>Abre una consulta rápida lateral sin interrumpir ni meter ruido en la conversación principal.</td>
+			<td>El agente está programando algo y a ti te surge una duda rápida (ej. <kbd>/btw ¿qué hacía el flag -p?</kbd>): te responde aparte sin desviar su tarea.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/copy</kbd></th>
+			<td>Copia al portapapeles la última respuesta del agente o un bloque concreto.</td>
+			<td>Para pegar rápidamente un comando o fragmento de código generado por la IA en otro programa.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/voice</kbd></th>
+			<td>Activa el dictado por voz a través de tu micrófono.</td>
+			<td>Ideal para explicarle tareas largas hablando con naturalidad en lugar de teclear varios párrafos.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/rename</kbd>, <kbd>/title</kbd> y <kbd>/search</kbd></th>
+			<td>Cambian el título de la conversación actual (<kbd>/rename</kbd>, <kbd>/title</kbd>) o buscan palabras dentro del chat (<kbd>/search</kbd>).</td>
+			<td>Te ayudan a mantener ordenado tu historial de sesiones y localizar un mensaje concreto.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 4. Comandos de barra (/) para controlar el historial del chat, hacer preguntas paralelas (/btw) y usar voz.</span>
 
-<ul>
-	<li><b><kbd>/help</kbd>:</b> Muestra en pantalla la lista completa y actualizada de todos los comandos de barra disponibles en tu versión del CLI.</li>
-	<li><b><kbd>/exit</kbd> o <kbd>/quit</kbd> (o pulsar <kbd>Ctrl + D</kbd> dos veces):</b> Cierra limpiamente la sesión interactiva del agente en la terminal.</li>
-</ul>
+<h2>6. Grupo 5: Comandos <kbd>/</kbd> de Configuración, Interfaz, Uso y Sistema</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Comando</th>
+			<th scope="col">Qué hace exactamente</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>/config</kbd> (alias <kbd>/settings</kbd>)</th>
+			<td>Abre el panel interactivo de ajustes generales (<kbd>settings.json</kbd>, tema visual, preferencias del editor, modo de envío, etc.).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/keybindings</kbd></th>
+			<td>Abre el editor interactivo de atajos de teclado para ver y personalizar las combinaciones de teclas de Antigravity CLI.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/statusline</kbd></th>
+			<td>Permite activar, desactivar o personalizar la barra de estado inferior de la terminal.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/usage</kbd> y <kbd>/credits</kbd></th>
+			<td>Muestran las estadísticas de consumo de la sesión, límites de cuota y saldo de créditos disponibles en tu cuenta.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/remote-control</kbd></th>
+			<td>Genera un enlace seguro para controlar y seguir en vivo la sesión actual de tu terminal desde otro dispositivo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/changelog</kbd></th>
+			<td>Muestra las notas de versión y las últimas novedades añadidas a Antigravity.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/feedback</kbd> (alias <kbd>/bug</kbd>)</th>
+			<td>Permite enviar comentarios o un informe de error al equipo de Google Antigravity.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>/help</kbd>, <kbd>/logout</kbd> y <kbd>/exit</kbd> (<kbd>/quit</kbd>)</th>
+			<td><kbd>/help</kbd> muestra la ayuda completa de comandos; <kbd>/logout</kbd> cierra la sesión de tu cuenta; <kbd>/exit</kbd> o <kbd>/quit</kbd> sale de la aplicación.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 5. Comandos de configuración, atajos de teclado, consumo y sistema en Antigravity.</span>

@@ -6,6 +6,10 @@
                 {
                     "text" : "1.1. ¿Qué es Claude y qué Modelos tiene?",
                     "content" : "component-claude-introduccion-modelos"
+                },
+                {
+                    "text" : "1.2. Claude Web: Artifacts y Projects",
+                    "content" : "component-claude-web-projects-artifacts"
                 }
             ]
         },
@@ -15,6 +19,10 @@
                 {
                     "text" : "2.1. El Agente y Modos de Ejecución",
                     "content" : "component-claude-agente-modos"
+                },
+                {
+                    "text" : "2.2. Opciones de Terminal, Pipes y Git",
+                    "content" : "component-claude-cli-git-headless"
                 }
             ]
         },

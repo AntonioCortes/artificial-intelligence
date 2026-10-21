@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 420" width="920" height="420">
+  <defs>
+    <marker id="arrSa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect width="920" height="420" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="460" y="34" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1e293b">Artefactos, Tareas en Segundo Plano y Terminal Sandbox en Antigravity</text>
+
+  <!-- Column 1: Artefactos -->
+  <rect x="25" y="60" width="275" height="335" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="2.5"/>
+  <rect x="25" y="60" width="275" height="38" rx="12" fill="#7c3aed"/>
+  <text x="162" y="84" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">1. Artefactos (Artifacts)</text>
+  <text x="162" y="114" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#5b21b6">Documentos Ricos del Agente</text>
+  <text x="42" y="140" font-family="sans-serif" font-size="11" fill="#334155">• Planes de ejecución con botón</text>
+  <text x="42" y="156" font-family="sans-serif" font-size="11" font-weight="bold" fill="#5b21b6">  "Proceed" para aprobarlos</text>
+  <text x="42" y="178" font-family="sans-serif" font-size="11" fill="#334155">• Informes técnicos y resúmenes</text>
+  <text x="42" y="200" font-family="sans-serif" font-size="11" fill="#334155">• Diagramas Mermaid (Flowchart,</text>
+  <text x="42" y="216" font-family="sans-serif" font-size="11" fill="#334155">  Sequence, State, Class, ER)</text>
+  <text x="42" y="238" font-family="sans-serif" font-size="11" fill="#334155">• Alertas [!NOTE], [!IMPORTANT]</text>
+  <text x="42" y="260" font-family="sans-serif" font-size="11" fill="#334155">• Carruseles interactivos de código</text>
+  <rect x="42" y="280" width="240" height="98" rx="8" fill="#f5f3ff" stroke="#c4b5fd"/>
+  <text x="162" y="300" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4c1d95">Carpeta de Artefactos y Scratch:</text>
+  <text x="162" y="320" text-anchor="middle" font-family="monospace" font-size="10" fill="#312e81">brain/&lt;id-conversacion&gt;/</text>
+  <text x="162" y="340" text-anchor="middle" font-family="monospace" font-size="10" fill="#312e81">brain/&lt;id&gt;/scratch/ (scripts temp)</text>
+  <text x="162" y="362" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6d28d9">No ensucian las carpetas de tu proyecto</text>
+
+  <!-- Column 2: Terminal Sandbox & Permisos -->
+  <rect x="322" y="60" width="275" height="335" rx="12" fill="#ffffff" stroke="#059669" stroke-width="2.5"/>
+  <rect x="322" y="60" width="275" height="38" rx="12" fill="#059669"/>
+  <text x="460" y="84" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">2. Terminal Sandbox</text>
+  <text x="460" y="114" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#065f46">Ejecución Segura en 2 Niveles</text>
+
+  <rect x="338" y="128" width="242" height="110" rx="8" fill="#ecfdf5" stroke="#6ee7b7"/>
+  <text x="460" y="148" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#065f46">A) Sandbox Estándar (Por defecto)</text>
+  <text x="348" y="168" font-family="sans-serif" font-size="11" fill="#334155">✓ Lee/escribe en tu proyecto y /tmp</text>
+  <text x="348" y="186" font-family="sans-serif" font-size="11" fill="#334155">✓ Se auto-ejecuta sin interrumpirte</text>
+  <text x="348" y="204" font-family="sans-serif" font-size="11" fill="#334155">✓ Aislado de red y archivos ajenos</text>
+  <text x="348" y="222" font-family="sans-serif" font-size="11" font-weight="bold" fill="#047857">Máxima fluidez + Cero riesgo</text>
+
+  <rect x="338" y="250" width="242" height="128" rx="8" fill="#fffbeb" stroke="#fcd34d"/>
+  <text x="460" y="270" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#92400e">B) Fuera del Sandbox (Con Permiso)</text>
+  <text x="348" y="290" font-family="sans-serif" font-size="11" fill="#334155">• Solo cuando un comando necesita</text>
+  <text x="348" y="306" font-family="sans-serif" font-size="11" fill="#334155">  internet o abrir puertos de red</text>
+  <text x="348" y="326" font-family="sans-serif" font-size="11" fill="#334155">• Te pide aprobación en pantalla</text>
+  <text x="348" y="344" font-family="sans-serif" font-size="11" fill="#334155">• Soporta "Always Allow" por prefijo</text>
+  <text x="348" y="362" font-family="sans-serif" font-size="10" fill="#92400e">  (ej. aprobar npm test aprueba futuros)</text>
+
+  <!-- Column 3: Tareas en Background & Schedule -->
+  <rect x="620" y="60" width="275" height="335" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="2.5"/>
+  <rect x="620" y="60" width="275" height="38" rx="12" fill="#2563eb"/>
+  <text x="757" y="84" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">3. Background &amp; Timers</text>
+  <text x="757" y="114" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e40af">Multitarea y Despertar Reactivo</text>
+  <text x="636" y="140" font-family="sans-serif" font-size="11" fill="#334155">• Comandos largos pasan a</text>
+  <text x="636" y="156" font-family="sans-serif" font-size="11" font-weight="bold" fill="#1e40af">  segundo plano automáticamente</text>
+  <text x="636" y="178" font-family="sans-serif" font-size="11" fill="#334155">• Procesos Daemon (IsDaemon):</text>
+  <text x="636" y="194" font-family="sans-serif" font-size="11" fill="#334155">  servidores web, watchers y túneles</text>
+  <text x="636" y="216" font-family="sans-serif" font-size="11" fill="#334155">• Temporizadores y Cron (/schedule):</text>
+  <text x="636" y="232" font-family="sans-serif" font-size="11" fill="#334155">  tareas programadas recurrentes</text>
+  <rect x="636" y="252" width="242" height="126" rx="8" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="757" y="274" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#1e3a8a">¿Qué es el Reactive Wakeup?</text>
+  <text x="757" y="294" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">El agente no se queda bloqueado</text>
+  <text x="757" y="312" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">preguntando "¿ya acabó?". El</text>
+  <text x="757" y="330" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">sistema le avisa automáticamente</text>
+  <text x="757" y="348" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">en cuanto termina la tarea o el</text>
+  <text x="757" y="364" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">subagente devuelve su respuesta.</text>
+</svg>

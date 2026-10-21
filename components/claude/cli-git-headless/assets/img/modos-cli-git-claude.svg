@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 390" width="920" height="390">
+  <rect width="920" height="390" rx="16" fill="#fafaf9" stroke="#d6d3d1" stroke-width="2"/>
+  <text x="460" y="34" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#1e293b">Opciones de Línea de Comandos (CLI Flags) y Flujo con Git en Claude Code</text>
+
+  <!-- 4 CLI Modes -->
+  <rect x="25" y="60" width="210" height="190" rx="10" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
+  <rect x="25" y="60" width="210" height="34" rx="10" fill="#d97757"/>
+  <text x="130" y="82" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">1. Sesión Interactiva</text>
+  <text x="130" y="114" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#9a3412">$ claude</text>
+  <text x="130" y="138" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">$ claude "tu tarea"</text>
+  <text x="130" y="172" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Abre el agente interactivo</text>
+  <text x="130" y="190" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">en tu carpeta actual para</text>
+  <text x="130" y="208" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">conversar paso a paso.</text>
+
+  <rect x="248" y="60" width="210" height="190" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <rect x="248" y="60" width="210" height="34" rx="10" fill="#2563eb"/>
+  <text x="353" y="82" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">2. Continuar / Reanudar</text>
+  <text x="353" y="114" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#1e40af">$ claude -c</text>
+  <text x="353" y="138" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">$ claude -r</text>
+  <text x="353" y="172" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">-c retoma el último chat.</text>
+  <text x="353" y="190" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">-r abre un selector con</text>
+  <text x="353" y="208" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">todas tus sesiones previas.</text>
+
+  <rect x="471" y="60" width="210" height="190" rx="10" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <rect x="471" y="60" width="210" height="34" rx="10" fill="#059669"/>
+  <text x="576" y="82" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">3. Modo Script (-p)</text>
+  <text x="576" y="114" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#065f46">$ claude -p "prompt"</text>
+  <text x="576" y="138" text-anchor="middle" font-family="monospace" font-size="10" fill="#334155">cat log | claude -p "..."</text>
+  <text x="576" y="172" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Ejecuta la consulta, imprime</text>
+  <text x="576" y="190" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">el resultado y termina.</text>
+  <text x="576" y="208" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#475569">Ideal para scripts y pipes.</text>
+
+  <rect x="694" y="60" width="201" height="190" rx="10" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+  <rect x="694" y="60" width="201" height="34" rx="10" fill="#7c3aed"/>
+  <text x="794" y="82" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ffffff">4. Flujo Git Automático</text>
+  <text x="794" y="114" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#5b21b6">Commits, Ramas y PRs</text>
+  <text x="794" y="142" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">• Analiza git diff</text>
+  <text x="794" y="162" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">• Redacta el commit</text>
+  <text x="794" y="182" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">• Resuelve conflictos</text>
+  <text x="794" y="202" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#334155">• Crea PRs con gh cli</text>
+
+  <!-- Bottom Box: Unix Philosophy -->
+  <rect x="25" y="270" width="870" height="98" rx="10" fill="#1e293b"/>
+  <text x="460" y="298" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f8fafc">Filosofía Unix en Claude Code: Combina la salida de cualquier comando con Claude</text>
+  <text x="460" y="324" text-anchor="middle" font-family="monospace" font-size="13" fill="#6ee7b7">$ git diff | claude -p "Revisa si he olvidado importar algún componente nuevo"</text>
+  <text x="460" y="348" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#cbd5e1">Con la tubería (|) envías cualquier archivo, log de errores o diff directamente a Claude sin abrir siquiera el chat interactivo.</text>
+</svg>
