@@ -1,0 +1,72 @@
+<h1 class="title">Artefactos en Antigravity (Planes, Diagramas, Carruseles y Scratch)</h1>
+
+<h2>1. ¿Qué son los Artefactos (Artifacts) y por qué separan tu código de los documentos del agente?</h2>
+
+<p>Cuando trabajas con el agente de <b>Google Antigravity</b> en una tarea grande, no sería cómodo que te soltara un informe de 500 líneas mezclado entre los mensajes cortos del chat, ni tampoco que te llenara la carpeta de tu repositorio Git de archivos temporales de borradores. Por eso existen los <b>Artefactos (Artifacts)</b>.</p>
+
+<p>Los <b>Artefactos</b> son documentos Markdown estructurados (<kbd>.md</kbd>) que el agente crea y mantiene actualizados en un directorio interno separado de tu proyecto (<kbd>~/.gemini/antigravity-cli/brain/&lt;id-conversacion&gt;/</kbd>) y que puedes visualizar cómodamente en el panel auxiliar de Antigravity.</p>
+
+<h2>2. ¿Para qué se utilizan los Artefactos?</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Tipo de Artefacto</th>
+			<th scope="col">Qué contiene</th>
+			<th scope="col">Cómo interactúas con él</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>Planes de Ejecución (<kbd>RequestFeedback: true</kbd>)</b></th>
+			<td>Arquitectura propuesta, lista de archivos a crear/modificar y pasos detallados antes de tocar el código.</td>
+			<td>Aparece un botón interactivo <b>"Proceed" (Proceder)</b> para que puedas aprobar el plan con un clic o pedir cambios antes de ejecutarlo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Informes Técnicos y Auditorías</b></th>
+			<td>Análisis de seguridad, comparativas de rendimiento, explicación de arquitecturas complejas o resúmenes de investigación.</td>
+			<td>Se muestran limpios en el panel lateral con diagramas, tablas y enlaces clicables a las líneas exactas de tu código.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Listas de Tareas y Logs de Experimentos</b></th>
+			<td>Documentos vivos que el agente va actualizando a medida que completa fases de un proyecto largo.</td>
+			<td>Te permiten ver en todo momento el progreso real sin perderte en el historial del chat.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Usos principales de los Artefactos en Google Antigravity.</span>
+
+<h2>3. Elementos Visuales Enriquecidos dentro de un Artefacto</h2>
+
+<p>Los artefactos de Antigravity soportan extensiones avanzadas de Markdown para presentar la información técnica de forma mucho más clara:</p>
+
+<ul>
+	<li><b>Alertas estilo GitHub:</b> Bloques destacados de colores para resaltar información crítica: <kbd>[!NOTE]</kbd> (contexto), <kbd>[!TIP]</kbd> (mejores prácticas), <kbd>[!IMPORTANT]</kbd> (requisitos clave), <kbd>[!WARNING]</kbd> (posibles problemas) y <kbd>[!CAUTION]</kbd> (acciones de alto riesgo).</li>
+	<li><b>Diagramas Mermaid interactivos:</b> Diagramas de flujo (<kbd>flowchart TD / LR</kbd>), diagramas de secuencia (<kbd>sequenceDiagram</kbd>), diagramas de estados (<kbd>stateDiagram-v2</kbd>), diagramas de clases (<kbd>classDiagram</kbd>), entidad-relación (<kbd>erDiagram</kbd>) y gráficas (<kbd>xychart-beta</kbd>).</li>
+	<li><b>Carruseles de Diapositivas (<kbd>carousel</kbd>):</b> Permiten mostrar comparativas del "antes y después", pasos secuenciales o alternativas de diseño separadas por comentarios <kbd>&lt;!-- slide --&gt;</kbd>.</li>
+	<li><b>Enlaces directos a líneas de código:</b> Enlaces con formato <kbd>file:///ruta/absoluta/archivo.js#L10-L25</kbd> que, al pulsarlos, te abren directamente el archivo en esas líneas exactas.</li>
+</ul>
+
+<div class="center-horizontal">
+<pre><code class="language-markdown">
+&gt; [!IMPORTANT]
+&gt; Todos los componentes nuevos deben registrarse en js/components-imports.js.
+
+````carousel
+```javascript
+// Diapositiva 1: Antes de la refactorización
+const width = "240px";
+```
+&lt;!-- slide --&gt;
+```javascript
+// Diapositiva 2: Después de la refactorización
+const minWidth = "240px";
+```
+````
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo de sintaxis de alertas y carruseles de diapositivas dentro de un Artefacto de Antigravity.</span>
+
+<h2>4. La Carpeta <kbd>scratch/</kbd> para Scripts y Pruebas Temporales</h2>
+
+<p>Dentro del directorio de artefactos de cada conversación existe además una subcarpeta especial llamada <kbd>scratch/</kbd> (<kbd>brain/&lt;id-conversacion&gt;/scratch/</kbd>). Cuando el agente necesita escribir un script rápido en Python o Bash para verificar unos datos, comprobar una expresión regular o hacer un cálculo temporal, lo guarda en <kbd>scratch/</kbd> para <b>no ensuciar jamás el árbol de carpetas de tu proyecto</b>.</p>

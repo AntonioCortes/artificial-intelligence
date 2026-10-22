@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 340" width="100%" height="auto">
+  <defs>
+    <linearGradient id="bgGradC1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffbf7"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+    <filter id="shadowC1" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1e293b" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+  <rect width="920" height="340" rx="14" fill="url(#bgGradC1)" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="460" y="34" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#78350f">Ecosistema de Repositorios de Skills en Claude Code</text>
+
+  <!-- Left: Repositorios de Skills -->
+  <rect x="25" y="58" width="275" height="255" rx="10" fill="#ffffff" stroke="#d97706" stroke-width="2" filter="url(#shadowC1)"/>
+  <rect x="25" y="58" width="275" height="38" rx="10" fill="#d97706"/>
+  <text x="162" y="82" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="bold" fill="#ffffff">1. Repositorios de Referencia</text>
+  <text x="40" y="120" font-family="sans-serif" font-size="12" font-weight="bold" fill="#92400e">• anthropics/skills (Oficial)</text>
+  <text x="50" y="138" font-family="sans-serif" font-size="11" fill="#475569">frontend-design, webapp-testing, mcp-builder</text>
+  <text x="40" y="164" font-family="sans-serif" font-size="12" font-weight="bold" fill="#92400e">• obra/superpowers</text>
+  <text x="50" y="182" font-family="sans-serif" font-size="11" fill="#475569">TDD, systematic-debugging, git-worktrees</text>
+  <text x="40" y="208" font-family="sans-serif" font-size="12" font-weight="bold" fill="#92400e">• vercel-labs y supabase</text>
+  <text x="50" y="226" font-family="sans-serif" font-size="11" fill="#475569">React/Next.js, PostgreSQL, RLS, SQL</text>
+  <text x="40" y="252" font-family="sans-serif" font-size="12" font-weight="bold" fill="#92400e">• trailofbits/skills</text>
+  <text x="50" y="270" font-family="sans-serif" font-size="11" fill="#475569">Auditoría DevSecOps, Semgrep, Docker</text>
+  <text x="162" y="298" text-anchor="middle" font-family="sans-serif" font-size="11" font-style="italic" fill="#b45309">+ awesome-claude-skills / awesome-claude-code</text>
+
+  <!-- Arrow 1 -->
+  <path d="M 305 185 L 345 185" stroke="#d97706" stroke-width="2.5"/>
+  <polygon points="343,179 355,185 343,191" fill="#d97706"/>
+
+  <!-- Center: Cómo instalarlas en Claude -->
+  <rect x="360" y="58" width="265" height="255" rx="10" fill="#ffffff" stroke="#ea580c" stroke-width="2" filter="url(#shadowC1)"/>
+  <rect x="360" y="58" width="265" height="38" rx="10" fill="#ea580c"/>
+  <text x="492" y="82" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="bold" fill="#ffffff">2. Instalación en Claude Code</text>
+
+  <rect x="375" y="110" width="235" height="58" rx="6" fill="#fff7ed" stroke="#fdba74"/>
+  <text x="387" y="130" font-family="monospace" font-size="11.5" font-weight="bold" fill="#9a3412">/plugin marketplace add</text>
+  <text x="387" y="148" font-family="sans-serif" font-size="11" fill="#475569">Instala packs desde anthropics/skills</text>
+
+  <rect x="375" y="178" width="235" height="58" rx="6" fill="#fff7ed" stroke="#fdba74"/>
+  <text x="387" y="198" font-family="monospace" font-size="11.5" font-weight="bold" fill="#9a3412">.claude/skills/&lt;skill&gt;/SKILL.md</text>
+  <text x="387" y="216" font-family="sans-serif" font-size="11" fill="#475569">En el proyecto (o ~/.claude/skills/)</text>
+
+  <rect x="375" y="246" width="235" height="54" rx="6" fill="#fff7ed" stroke="#fdba74"/>
+  <text x="387" y="266" font-family="monospace" font-size="11.5" font-weight="bold" fill="#9a3412">/skill-creator &lt;nombre&gt;</text>
+  <text x="387" y="284" font-family="sans-serif" font-size="11" fill="#475569">Crea y evalúa tus propias skills</text>
+
+  <!-- Arrow 2 -->
+  <path d="M 630 185 L 668 185" stroke="#ea580c" stroke-width="2.5"/>
+  <polygon points="666,179 678,185 666,191" fill="#ea580c"/>
+
+  <!-- Right: Uso en el Chat -->
+  <rect x="682" y="58" width="213" height="255" rx="10" fill="#ffffff" stroke="#0d9488" stroke-width="2" filter="url(#shadowC1)"/>
+  <rect x="682" y="58" width="213" height="38" rx="10" fill="#0d9488"/>
+  <text x="788" y="82" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="bold" fill="#ffffff">3. Invocación</text>
+  <text x="697" y="122" font-family="sans-serif" font-size="12" font-weight="bold" fill="#115e59">• Automática por IA:</text>
+  <text x="697" y="140" font-family="sans-serif" font-size="11" fill="#475569">Claude detecta cuándo</text>
+  <text x="697" y="156" font-family="sans-serif" font-size="11" fill="#475569">aplicar la skill según tu</text>
+  <text x="697" y="172" font-family="sans-serif" font-size="11" fill="#475569">petición natural.</text>
+  <text x="697" y="205" font-family="sans-serif" font-size="12" font-weight="bold" fill="#115e59">• Manual con /:</text>
+  <text x="697" y="223" font-family="sans-serif" font-size="11" fill="#475569">Invócala escribiendo</text>
+  <text x="697" y="239" font-family="monospace" font-size="11" fill="#0f766e">/nombre-de-la-skill</text>
+  <text x="697" y="272" font-family="sans-serif" font-size="12" font-weight="bold" fill="#115e59">• Consultar listado:</text>
+  <text x="697" y="290" font-family="monospace" font-size="11" fill="#0f766e">/skills</text>
+</svg>

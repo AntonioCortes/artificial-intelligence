@@ -1,0 +1,60 @@
+<h1 class="title">Servidores MCP en Claude Code (.mcp.json y claude mcp)</h1>
+
+<h2>1. ¿Cómo funciona el protocolo MCP en Claude?</h2>
+
+<p><b>MCP (Model Context Protocol)</b> fue creado originalmente como un estándar abierto por Anthropic y adoptado por toda la industria (incluyendo Google Antigravity). Gracias a ello, <b>exactamente los mismos servidores MCP funcionan tanto en Claude como en Antigravity</b>.</p>
+
+<p>Al conectar un Servidor MCP en Claude Code, el agente adquiere acceso directo a bases de datos (PostgreSQL, Supabase, SQLite, Redis), navegadores reales (Playwright, Chrome DevTools), plataformas DevOps (GitHub, Cloudflare, Sentry, Grafana, Docker, Kubernetes) o gestores de tareas (Jira, Linear, Notion).</p>
+
+<img class="center-horizontal" src="components/claude/subagentes-mcp-hooks/assets/img/arquitectura-claude-ecosistema.svg"/>
+<span class="center-horizontal caption">Figura 1. Integración de Servidores MCP (.mcp.json) dentro de la arquitectura de Claude Code.</span>
+
+<h2>2. Cómo Añadir y Gestionar Servidores MCP desde la Terminal (<kbd>claude mcp</kbd>)</h2>
+
+<p>Claude Code incluye el subcomando <kbd>claude mcp</kbd> para que puedas añadir servidores remotos (HTTP/SSE) o locales (Stdio) eligiendo el ámbito (<kbd>--scope local</kbd> solo para ti en este proyecto, <kbd>--scope project</kbd> compartido con el equipo en <kbd>.mcp.json</kbd>, o <kbd>--scope user</kbd> global para todos tus proyectos):</p>
+
+<div class="center-horizontal">
+<pre><code class="language-bash">
+# 1. Añadir un servidor MCP remoto por HTTP (ej. GitHub, Sentry o Context7)
+claude mcp add --transport http github https://api.githubcopilot.com/mcp/
+
+# 2. Añadir un servidor MCP local (Stdio) compartido con tu equipo (--scope project)
+claude mcp add --scope project postgres -- npx -y @modelcontextprotocol/server-postgres postgresql://localhost/midb
+claude mcp add --scope user playwright -- npx -y @playwright/mcp@latest
+
+# 3. Importar automáticamente los servidores MCP que ya tengas en Claude Desktop
+claude mcp add-from-claude-desktop
+
+# 4. Listar, inspeccionar o eliminar servidores MCP
+claude mcp list
+claude mcp get playwright
+claude mcp remove postgres
+</code></pre>
+</div>
+<span class="center-horizontal caption">Comandos oficiales de terminal para registrar, importar y administrar servidores MCP en Claude Code.</span>
+
+<h2>3. El Archivo <kbd>.mcp.json</kbd> para Compartir Servidores MCP con tu Equipo</h2>
+
+<p>Cuando ejecutas <kbd>claude mcp add --scope project ...</kbd> (o cuando creas el archivo manualmente), Claude guarda la configuración en el archivo <kbd>.mcp.json</kbd> en la raíz de tu repositorio Git. Incluso soporta expansión de variables de entorno (<kbd>${VAR}</kbd> o <kbd>${VAR:-valor_por_defecto}</kbd>) para no subir contraseñas al repositorio:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-json">
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "postgres-db": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "${DATABASE_URL:-postgresql://localhost:5432/dev}"]
+    }
+  }
+}
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo de archivo .mcp.json compartido en Git utilizando variables de entorno seguras.</span>
+
+<h2>4. Gestión Interactiva con <kbd>/mcp</kbd> dentro del Chat</h2>
+
+<p>En cualquier momento durante una conversación puedes escribir <kbd>/mcp</kbd> para abrir el panel de estado en vivo: allí verás qué servidores MCP están conectados, cuántas herramientas aporta cada uno, podrás autenticarte con OAuth en servidores remotos (como GitHub, Linear o Sentry) o reconectar un servidor si se ha reiniciado tu base de datos local.</p>

@@ -1,0 +1,104 @@
+<h1 class="title">Subagentes en Claude Code (.claude/agents/ y /agents)</h1>
+
+<h2>1. ¿Qué son los Subagentes en Claude y cómo funcionan?</h2>
+
+<p>En <b>Claude Code</b>, los <b>Subagentes</b> son asistentes especializados que el agente principal puede lanzar (incluso varios en paralelo) para investigar el repositorio, planificar una arquitectura, revisar un Pull Request o ejecutar tests sin llenar ni ensuciar la ventana de contexto de tu conversación principal.</p>
+
+<p>Cada subagente opera en su <b>propia ventana de contexto aislada</b>, tiene su propio prompt de sistema, una lista controlada de herramientas permitidas (<kbd>tools</kbd>) y puede usar un modelo distinto al de tu sesión principal (por ejemplo, usar el rapidísimo <kbd>haiku</kbd> para búsquedas masivas o <kbd>opus</kbd> para revisiones de arquitectura).</p>
+
+<h2>2. Subagentes Integrados de Serie en Claude Code</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Subagente Nativo</th>
+			<th scope="col">Modelo y Herramientas</th>
+			<th scope="col">Cuándo lo lanza Claude automáticamente</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>Explore</b> (Explorador rápido)</th>
+			<td>Modelo rápido (<kbd>Haiku</kbd>) — Solo lectura (<kbd>Glob</kbd>, <kbd>Grep</kbd>, <kbd>Read</kbd>).</td>
+			<td>Cuando necesita buscar en decenas de archivos del repositorio para entender cómo está construido un módulo sin gastar tokens de tu sesión principal.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Plan</b> (Arquitecto)</th>
+			<td>Solo lectura e investigación arquitectónica.</td>
+			<td>Durante el <b>Plan Mode</b> para explorar el impacto de un cambio grande y diseñar los pasos de implementación.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>general-purpose</b></th>
+			<td>Acceso completo a las herramientas autorizadas.</td>
+			<td>Cuando le pides tareas complejas de varios pasos o le dices <i>"lanza subagentes en paralelo para revisar cada carpeta"</i> (<i>fan out subagents</i>).</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Subagentes incluidos de fábrica en Claude Code.</span>
+
+<h2>3. Cómo Crear tus Propios Subagentes (<kbd>/agents</kbd> o <kbd>.claude/agents/*.md</kbd>)</h2>
+
+<p>Puedes crear tus propios subagentes mediante el asistente interactivo escribiendo <kbd>/agents</kbd> en el chat, o bien creando un archivo Markdown en <kbd>.claude/agents/</kbd> (para compartirlo con tu equipo en Git) o en <kbd>~/.claude/agents/</kbd> (para todos tus proyectos):</p>
+
+<div class="center-horizontal">
+<pre><code class="language-markdown">
+---
+name: validador-web
+description: >-
+  Experto en verificar que los componentes WebComponent, el archivo sidebar.json
+  y js/components-imports.js cumplen todas las reglas del README.md. Úsalo de forma
+  proactiva después de crear o editar componentes.
+tools: Read, Grep, Glob, Bash
+model: sonnet
+effort: high
+---
+
+Eres un auditor de calidad para esta plantilla web SPA. Cuando te invoquen:
+1. Comprueba que cada componente creado tiene su archivo .html y su .js.
+2. Verifica que todos los archivos .js están importados en js/components-imports.js.
+3. Revisa que todas las tablas tienen las clases "table table-striped table-hover"
+   y que los bloques de código tienen al menos 2 líneas.
+Devuelve un informe claro indicando si todo es válido o qué archivo falta corregir.
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo real de un Subagente personalizado guardado en .claude/agents/validador-web.md.</span>
+
+<h2>4. Opciones Avanzadas en la Cabecera YAML de un Subagente</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Campo YAML</th>
+			<th scope="col">Valores admitidos</th>
+			<th scope="col">Para qué sirve</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>name</kbd> y <kbd>description</kbd></th>
+			<td>Texto obligatorio</td>
+			<td>Identificador del subagente y explicación de cuándo debe invocarlo Claude de forma automática.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>tools</kbd> / <kbd>disallowedTools</kbd></th>
+			<td><kbd>Read, Grep, Glob, Bash, Edit, Write...</kbd></td>
+			<td>Restringe qué herramientas puede usar el subagente (por ejemplo, limitarlo solo a lectura para que sea 100% seguro).</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>model</kbd> y <kbd>effort</kbd></th>
+			<td><kbd>sonnet</kbd>, <kbd>opus</kbd>, <kbd>haiku</kbd>, <kbd>inherit</kbd></td>
+			<td>Elige qué modelo de Claude y qué nivel de esfuerzo de razonamiento utiliza ese subagente.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>isolation: worktree</kbd></th>
+			<td><kbd>worktree</kbd> (opcional)</td>
+			<td>Ejecuta el subagente dentro de un <b>Git Worktree temporal aislado</b> para que pueda editar y probar código en paralelo sin colisionar con otros subagentes.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>background: true</kbd></th>
+			<td><kbd>true</kbd> / <kbd>false</kbd></td>
+			<td>Hace que el subagente se ejecute siempre como tarea en segundo plano sin bloquear tu chat.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Propiedades configurables en los archivos .claude/agents/*.md.</span>

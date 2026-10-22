@@ -1,0 +1,89 @@
+<h1 class="title">Skills y Comandos Personalizados en Claude: Qué son y Cómo Crearlos</h1>
+
+<h2>1. ¿Cuál es la diferencia entre una Skill (<kbd>.claude/skills/</kbd>) y un Comando (<kbd>.claude/commands/</kbd>)?</h2>
+
+<p>En <b>Claude Code</b> dispones de dos mecanismos complementarios para enseñar a Claude procedimientos a medida sin saturar el archivo <kbd>CLAUDE.md</kbd>:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Característica</th>
+			<th scope="col">Comandos Personalizados (<kbd>.claude/commands/</kbd>)</th>
+			<th scope="col">Skills / Habilidades (<kbd>.claude/skills/</kbd>)</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>Formato</b></th>
+			<td>Un único archivo Markdown suelto (<kbd>.claude/commands/mi-comando.md</kbd>).</td>
+			<td>Una carpeta completa (<kbd>.claude/skills/mi-skill/SKILL.md</kbd>) que puede incluir scripts (<kbd>scripts/</kbd>), plantillas y referencias (<kbd>references/</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Cómo se activa</b></th>
+			<td>Lo disparas <b>tú manualmente</b> escribiendo <kbd>/mi-comando</kbd> en el chat.</td>
+			<td><b>Doble vía:</b> Claude puede <b>activarla automáticamente por sí solo</b> cuando detecta que tu tarea coincide con su <kbd>description</kbd>, y también puedes invocarla manualmente con <kbd>/mi-skill</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Cuándo elegirlo</b></th>
+			<td>Para prompts repetitivos rápidos que quieres lanzar bajo demanda (ej. <kbd>/nuevo-componente</kbd>).</td>
+			<td>Para flujos técnicos completos (Full Stack, DevOps, Testing) que incluyen checklists, scripts de validación o documentación auxiliar.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Diferencias clave entre un Comando personalizado (.claude/commands/) y una Skill (.claude/skills/) en Claude Code.</span>
+
+<h2>2. Cómo crear un Comando Personalizado con <kbd>/</kbd> y <kbd>$ARGUMENTS</kbd></h2>
+
+<p>Cualquier archivo Markdown (<kbd>.md</kbd>) que guardes dentro de <kbd>.claude/commands/</kbd> (en tu proyecto) o en <kbd>~/.claude/commands/</kbd> (para todos tus proyectos) aparece inmediatamente en el menú desplegable <kbd>/</kbd>. Si usas la variable especial <b>$ARGUMENTS</b>, Claude la reemplazará por el texto que escribas detrás del comando:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-markdown">
+# Archivo: .claude/commands/nuevo-componente.md
+---
+description: Crea un nuevo componente WebComponent y lo registra en el sidebar e imports
+---
+
+Sigue las reglas de @README.md para crear un nuevo componente con estos datos: $ARGUMENTS
+
+1. Crea la carpeta, el archivo .html y el archivo .js usando createComponent().
+2. Asegúrate de que el título principal lleve class="title" y las tablas lleven
+   class="table table-striped table-hover".
+3. Registra el import en @js/components-imports.js y enlázalo en el sidebar.json correspondiente.
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo de comando personalizado guardado en .claude/commands/nuevo-componente.md.</span>
+
+<div class="center-horizontal">
+<pre><code class="language-plaintext">
+# Cómo invocarías tu nuevo comando personalizado desde el chat de Claude:
+/nuevo-componente dentro de la vista claude llamado "subagentes" sobre agentes en paralelo
+</code></pre>
+</div>
+<span class="center-horizontal caption">Invocación del comando personalizado pasando argumentos dinámicos a $ARGUMENTS.</span>
+
+<h2>3. Cómo crear tu propia Skill en <kbd>.claude/skills/&lt;nombre&gt;/SKILL.md</kbd></h2>
+
+<p>Para crear una <b>Skill</b> en Claude Code (que además será 100% compatible con Google Antigravity), creas una carpeta dentro de <kbd>.claude/skills/</kbd> con un archivo <kbd>SKILL.md</kbd> que empiece con un bloque YAML (<kbd>---</kbd>):</p>
+
+<div class="center-horizontal">
+<pre><code class="language-markdown">
+---
+name: auditar-docker-devops
+description: >-
+  Revisa y optimiza archivos Dockerfile y docker-compose.yml aplicando buenas
+  prácticas de seguridad, multi-stage builds y caché. Úsala automáticamente
+  cuando el usuario pida crear, revisar o depurar contenedores Docker.
+---
+
+# Guía de Auditoría Docker y DevOps
+
+Cuando revises o crees un `Dockerfile` o `docker-compose.yml`:
+1. Utiliza siempre compilación multi-etapa (*multi-stage build*) para reducir el tamaño final.
+2. Asegúrate de que el contenedor se ejecute con un usuario sin privilegios (`USER node` o `USER appuser`).
+3. Define un bloque `HEALTHCHECK` real y fija versiones exactas en las imágenes base (`FROM node:22-alpine`).
+4. Ejecuta el script `./scripts/validar-imagen.sh` para comprobar que construye sin errores.
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo real de archivo .claude/skills/auditar-docker-devops/SKILL.md.</span>
+
+<p>Recuerda que puedes consultar todas las Skills que Claude ha detectado en tu sesión escribiendo el comando <kbd>/skills</kbd> en el chat.</p>

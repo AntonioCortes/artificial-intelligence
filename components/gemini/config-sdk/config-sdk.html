@@ -1,64 +1,20 @@
-<h1 class="title">Configuración Avanzada (skills.json, plugins.json) y Python SDK</h1>
+<h1 class="title">Antigravity Python SDK (google-antigravity) y Sidecars</h1>
 
-<h2>1. Orden de Prioridad: ¿Qué pasa si hay varias Reglas o Skills con el mismo nombre?</h2>
+<h2>1. Antigravity Python SDK: Cómo programar y controlar Agentes desde Python</h2>
 
-<p>A medida que empieces a personalizar <b>Google Antigravity</b>, es posible que tengas habilidades o reglas instaladas en tu ordenador personal (<kbd>~/.gemini/config/</kbd>) y otras distintas dentro de la carpeta de un proyecto del trabajo (<kbd>.agents/</kbd>). Antigravity las carga siguiendo un <b>orden de prioridad estricto de mayor a menor</b> (si dos Skills se llaman igual, gana la de número más alto):</p>
-
-<ol>
-	<li><b>1º Prioridad Máxima — Proyecto Actual (Workspace Discovery):</b> Todo lo que esté dentro de la carpeta <kbd>.agents/</kbd> (o <kbd>.agent/</kbd>, <kbd>_agents/</kbd>, <kbd>_agent/</kbd>) de tu proyecto actual subiendo hasta la raíz del repositorio Git.</li>
-	<li><b>2º Configuraciones Declaradas en el Proyecto:</b> Las rutas explícitamente listadas en los archivos <kbd>.agents/skills.json</kbd> o <kbd>.agents/plugins.json</kbd> del repositorio.</li>
-	<li><b>3º Configuración Global de tu Máquina:</b> Las personalizaciones guardadas en tu carpeta de usuario <kbd>~/.gemini/config/</kbd>.</li>
-	<li><b>4º Personalizaciones Integradas (Built-in):</b> Las habilidades que vienen de fábrica con Antigravity.</li>
-	<li><b>5º Configuraciones Globales Declaradas:</b> Las listadas en archivos JSON globales.</li>
-</ol>
-
-<h2>2. Compartir Skills y Plugins en carpetas a medida (<kbd>skills.json</kbd> y <kbd>plugins.json</kbd>)</h2>
-
-<p>En muchos equipos o empresas, las habilidades compartidas no se guardan en <kbd>.agents/skills/</kbd>, sino en una carpeta corporativa común (por ejemplo, <kbd>tools/ia/skills/</kbd> o una ruta compartida). Para indicarle a Antigravity que busque allí e incluso herede configuraciones filtrando cuáles incluir o excluir, puedes crear el archivo <kbd>.agents/skills.json</kbd> (o <kbd>.agents/plugins.json</kbd>):</p>
-
-<div class="center-horizontal">
-<pre><code class="language-json">
-{
-  "inherits": [
-    {
-      "path": "/ruta/compartida/empresa/skills.json",
-      "include_only": ["auditoria-seguridad", "estilo-corporativo"],
-      "exclude": ["skill-antigua"]
-    }
-  ],
-  "entries": [
-    {
-      "path": "tools/ia/skills",
-      "exclude": ["experimental-.*"]
-    },
-    {
-      "path": "~/mis-skills-personales"
-    }
-  ]
-}
-</code></pre>
-</div>
-<span class="center-horizontal caption">Ejemplo de archivo .agents/skills.json usando herencia (inherits), rutas de proyecto y filtros include_only / exclude.</span>
-
-<h3>2.1. Activar, desactivar e importar Plugins desde el CLI</h3>
-
-<p>Además de crear plugins nativos de Antigravity, la herramienta de terminal <kbd>agy</kbd> permite activar o desactivar plugins (lo cual se guarda en tu <kbd>config.json</kbd> sin modificar los archivos del plugin) e incluso importar extensiones creadas para Gemini CLI o Claude Code:</p>
+<p>¿Sabías que no solo puedes hablar con el agente desde la ventana de chat o la terminal, sino que también puedes <b>invocar y controlar programáticamente al agente de Antigravity desde tus propios scripts en Python</b>? Google ofrece el paquete oficial <b>google-antigravity</b> (disponible en PyPI y en <kbd>github.com/google-antigravity/antigravity-sdk-python</kbd>) para que puedas integrar agentes autónomos dentro de tus herramientas DevOps, pipelines CI/CD o backends:</p>
 
 <div class="center-horizontal">
 <pre><code class="language-bash">
-# Activar o desactivar un plugin concreto desde la terminal
-agy plugin enable mi-plugin-equipo
-agy plugin disable mi-plugin-equipo
-
-# Instalar o importar un plugin (incluyendo extensiones de Gemini CLI o Claude Code)
-agy plugin install /ruta/al/plugin
+# Instalación del SDK oficial de Python de Google Antigravity
+pip install google-antigravity
 </code></pre>
 </div>
-<span class="center-horizontal caption">Gestión de plugins desde la línea de comandos de Antigravity.</span>
+<span class="center-horizontal caption">Instalación del paquete oficial google-antigravity desde PyPI.</span>
 
-<h2>3. Antigravity Python SDK: Cómo programar y controlar Agentes desde Python</h2>
+<h3>1.1. Ejemplo completo: Lanzar un Agente, leer sus pensamientos y exponer herramientas propias</h3>
 
-<p>¿Sabías que no solo puedes hablar con el agente desde la ventana de chat, sino que también puedes <b>invocar y controlar al agente de Antigravity desde tus propios programas en Python</b>? Google ofrece el paquete oficial <b>google-antigravity</b> (disponible en PyPI) para que puedas automatizar agentes dentro de tus scripts, tests o flujos de integración continua:</p>
+<p>Con la API moderna basada en <kbd>async with Agent(config) as agent:</kbd>, puedes incluso pasarle funciones normales de Python decoradas o tipadas dentro de <kbd>tools=[...]</kbd> para que el agente las utilice automáticamente como herramientas MCP en memoria:</p>
 
 <div class="center-horizontal">
 <pre><code class="language-python">
@@ -66,27 +22,33 @@ import asyncio
 import sys
 from google.antigravity import Agent, LocalAgentConfig, CapabilitiesConfig
 
+# Puedes definir cualquier función de Python con type-hints y docstring
+# para que el agente de Antigravity la use como herramienta propia:
+def consultar_estado_contenedor(nombre_servicio: str) -&gt; str:
+    """Consulta el estado de salud de un contenedor Docker del entorno."""
+    return f"El contenedor {nombre_servicio} está saludable (healthy) y usando 120MB de RAM."
+
 async def main():
     # Por defecto el agente arranca en modo solo-lectura por seguridad.
-    # Pasamos CapabilitiesConfig() para habilitar herramientas de escritura y terminal.
+    # Pasamos CapabilitiesConfig() para habilitar herramientas y añadimos nuestra función.
     config = LocalAgentConfig(
-        system_instructions="Eres un asistente experto en revisar proyectos web.",
+        system_instructions="Eres un ingeniero DevOps y Full Stack experto.",
         capabilities=CapabilitiesConfig(),
+        tools=[consultar_estado_contenedor],
     )
 
-    # Arrancamos el agente con el gestor de contexto asíncrono
     async with Agent(config) as agent:
-        response = await agent.chat("Revisa README.md y resume cómo se crea una vista.")
+        response = await agent.chat("Comprueba cómo está el contenedor api-backend y resume README.md")
 
-        # Podemos escuchar los pensamientos internos (Thinking) en tiempo real:
+        # 1. Escuchar los pensamientos internos (Thinking) en tiempo real:
         async for thought in response.thoughts:
             print(f"[Pensando] {thought}")
 
-        # Y podemos escuchar las herramientas que ejecuta:
+        # 2. Escuchar las llamadas a herramientas en tiempo real:
         async for call in response.tool_calls:
             print(f"[Herramienta] {call.name} -&gt; {call.args}")
 
-        # Finalmente mostramos la respuesta token a token:
+        # 3. Imprimir la respuesta final token a token:
         async for token in response:
             sys.stdout.write(token)
             sys.stdout.flush()
@@ -95,4 +57,55 @@ if __name__ == "__main__":
     asyncio.run(main())
 </code></pre>
 </div>
-<span class="center-horizontal caption">Ejemplo completo en Python usando el SDK oficial google-antigravity para lanzar un agente y leer su razonamiento y herramientas.</span>
+<span class="center-horizontal caption">Ejemplo completo en Python usando google-antigravity para controlar el agente y darle funciones Python como herramientas.</span>
+
+<h2>2. ¿Qué son los Custom Sidecars en Antigravity?</h2>
+
+<p>En entornos empresariales o proyectos complejos de infraestructura, a veces necesitas que un proceso auxiliar (llamado <b>Sidecar</b>) arranque junto con el espacio de trabajo del agente y permanezca corriendo a su lado (por ejemplo, un proxy de autenticación corporativa, un túnel seguro hacia una base de datos en la nube o un demonio indexador en vivo).</p>
+
+<p>Los <b>Sidecars</b> en Antigravity se configuran para acompañar el ciclo de vida de la sesión del agente, garantizando que los servicios locales auxiliares estén siempre levantados antes de que el agente o sus servidores MCP intenten conectarse a ellos.</p>
+
+<h2>3. Resumen Comparativo de Personalización en Antigravity</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Si lo que necesitas es...</th>
+			<th scope="col">Debes usar...</th>
+			<th scope="col">Archivo donde se configura</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">Que la IA respete siempre el estilo y normas de tu código</th>
+			<td><b>Rule (Regla)</b></td>
+			<td><kbd>GEMINI.md</kbd> o <kbd>AGENTS.md</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row">Enseñarle una receta paso a paso para una tarea concreta sin gastar memoria siempre</th>
+			<td><b>Skill (Habilidad)</b></td>
+			<td><kbd>.agents/skills/&lt;nombre&gt;/SKILL.md</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row">Delegar investigaciones largas o tareas en paralelo en otra ventana de contexto</th>
+			<td><b>Subagent (Subagente)</b></td>
+			<td><kbd>research</kbd>, <kbd>self</kbd>, <kbd>/teamwork</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row">Conectar la IA con una base de datos, navegador, GitHub, Docker o servicio externo</th>
+			<td><b>MCP Server</b></td>
+			<td><kbd>~/.gemini/config/mcp_config.json</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row">Ejecutar un script validador antes o después de que el agente use una herramienta</th>
+			<td><b>Lifecycle Hook</b></td>
+			<td><kbd>.agents/hooks.json</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row">Empaquetar todo lo anterior para activarlo, desactivarlo o compartirlo</th>
+			<td><b>Plugin</b></td>
+			<td><kbd>.agents/plugins/&lt;nombre&gt;/plugin.json</kbd></td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Guía rápida para elegir el mecanismo de personalización adecuado en Google Antigravity.</span>

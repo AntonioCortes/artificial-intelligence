@@ -1,0 +1,157 @@
+<h1 class="title">Repositorios y Catálogo de Plugins para Antigravity (Full Stack y DevOps)</h1>
+
+<h2>1. ¿Dónde ver el listado de Plugins y Extensiones disponibles para Antigravity?</h2>
+
+<p>Gracias a que <b>Google Antigravity (<kbd>agy</kbd>)</b> soporta tanto plugins nativos (<kbd>plugin.json</kbd>) como extensiones de Gemini CLI (<kbd>gemini-extension.json</kbd>) y plugins de Claude Code (<kbd>.claude-plugin/plugin.json</kbd>), tienes acceso a los <b>cuatro mayores directorios de plugins de IA para desarrolladores</b>:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Catálogo / Repositorio Oficial</th>
+			<th scope="col">URL Directa</th>
+			<th scope="col">Qué encontrarás y cómo instalarlo en Antigravity</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>1. Galería Oficial de Extensiones Gemini</b></th>
+			<td><a href="https://geminicli.com/extensions" target="_blank">geminicli.com/extensions</a> y <a href="https://github.com/google-gemini" target="_blank">github.com/google-gemini</a></td>
+			<td>Catálogo oficial de Google Cloud, Firebase, Cloud Run, Kubernetes (GKE), bases de datos (PostgreSQL, MySQL, AlloyDB, Redis, Spanner, BigQuery), GitHub, Figma, Stripe y Sentry.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>2. Directorio Oficial de Plugins de Anthropic (Compatible)</b></th>
+			<td><a href="https://github.com/anthropics/claude-plugins-official" target="_blank">github.com/anthropics/claude-plugins-official</a></td>
+			<td>Contiene decenas de plugins oficiales (<kbd>frontend-design</kbd>, <kbd>playwright</kbd>, <kbd>commit-commands</kbd>, <kbd>pr-review-toolkit</kbd>, <kbd>feature-dev</kbd>, <kbd>security-guidance</kbd>, <kbd>supabase</kbd>) que puedes clonar e instalar con <kbd>agy plugin install</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>3. Mega-Catálogo de Plugins DevOps y Full Stack</b></th>
+			<td><a href="https://github.com/wshobson/agents" target="_blank">github.com/wshobson/agents</a> y <a href="https://github.com/EveryInc/compound-engineering-plugin" target="_blank">EveryInc/compound-engineering-plugin</a></td>
+			<td>Más de 60 plugins especializados por áreas técnicas: arquitectura backend, Kubernetes, Terraform, CI/CD, seguridad DevSecOps, observabilidad y desarrollo web.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>4. Repositorio Oficial de Servidores MCP</b></th>
+			<td><a href="https://github.com/modelcontextprotocol/servers" target="_blank">github.com/modelcontextprotocol/servers</a></td>
+			<td>Repositorio central de conectores MCP listos para integrar dentro del archivo <kbd>mcp_config.json</kbd> de tus plugins.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Los 4 grandes catálogos y repositorios donde descargar plugins y extensiones para Antigravity.</span>
+
+<div class="center-horizontal">
+<pre><code class="language-bash">
+# Ejemplo: Clonar el repositorio oficial de plugins e instalar los que te interesen en Antigravity
+git clone https://github.com/anthropics/claude-plugins-official.git /tmp/plugins-oficiales
+agy plugin install /tmp/plugins-oficiales/plugins/frontend-design
+agy plugin install /tmp/plugins-oficiales/plugins/commit-commands
+agy plugin install /tmp/plugins-oficiales/plugins/security-guidance
+
+# Comprobar que han quedado instalados y activos:
+agy plugin list
+</code></pre>
+</div>
+<span class="center-horizontal caption">Cómo instalar cualquier plugin del repositorio oficial en tu entorno de Google Antigravity con agy plugin install.</span>
+
+<h2>2. Catálogo Extenso de Plugins Interesantes para Desarrollador Full Stack</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Plugin / Extensión</th>
+			<th scope="col">Origen / Dónde conseguirlo</th>
+			<th scope="col">Qué incluye y por qué es clave para un Full Stack</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>frontend-design</b></th>
+			<td><kbd>anthropics/claude-plugins-official</kbd> (<kbd>plugins/frontend-design</kbd>)</td>
+			<td>Inyecta skills y reglas de diseño UI/UX, arquitectura CSS/Tailwind, componentes accesibles y patrones visuales modernos para HTML, React, Vue o Angular.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>playwright</b></th>
+			<td><kbd>anthropics/claude-plugins-official</kbd> (<kbd>external_plugins/playwright</kbd>)</td>
+			<td>Configura automáticamente el servidor MCP oficial de Playwright para que el agente abra un navegador real, pruebe tu web Full Stack, detecte errores en la consola JS y haga capturas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>feature-dev</b></th>
+			<td><kbd>anthropics/claude-plugins-official</kbd> (<kbd>plugins/feature-dev</kbd>)</td>
+			<td>Flujo estructurado en 7 fases para desarrollar nuevas funcionalidades Full Stack de extremo a extremo (exploración del código, diseño de arquitectura, implementación y revisión).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>postgres / cloud-sql-postgres</b></th>
+			<td>Galería <kbd>geminicli.com/extensions</kbd> (<kbd>google-gemini</kbd>)</td>
+			<td>Conector MCP de PostgreSQL + skills de optimización de consultas SQL, índices y migraciones seguras inspeccionando el esquema real de tus tablas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>supabase</b></th>
+			<td><kbd>anthropics/claude-plugins-official</kbd> (<kbd>external_plugins/supabase</kbd>)</td>
+			<td>Conecta el agente con tus proyectos de Supabase (PostgreSQL, políticas Row Level Security, Auth, Edge Functions y generación automática de tipos TypeScript).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>firebase</b></th>
+			<td>Galería <kbd>geminicli.com/extensions</kbd> (Oficial de Google)</td>
+			<td>Incluye servidor MCP y skills para Firestore, Firebase Auth, Hosting y Cloud Functions, validando reglas de seguridad antes de desplegar.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>context7</b></th>
+			<td><kbd>anthropics/claude-plugins-official</kbd> (<kbd>external_plugins/context7</kbd>)</td>
+			<td>Inyecta documentación oficial actualizada en tiempo real de cualquier librería (Next.js, React, Tailwind, Astro, FastAPI, Prisma, Spring Boot) evitando código obsoleto.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>stripe</b> y <b>figma</b></th>
+			<td><kbd>anthropics/claude-plugins-official</kbd> (<kbd>external_plugins/</kbd>)</td>
+			<td><b>figma</b> traduce diseños de Figma a componentes HTML/CSS/React; <b>stripe</b> automatiza la integración de pasarelas de pago, suscripciones y webhooks.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Catálogo de plugins recomendados para desarrollo Frontend, Backend y Bases de Datos.</span>
+
+<h2>3. Catálogo Extenso de Plugins Interesantes para DevOps, Cloud, CI/CD y Seguridad</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Plugin / Extensión</th>
+			<th scope="col">Origen / Dónde conseguirlo</th>
+			<th scope="col">Qué incluye y por qué te ahorra horas en DevOps</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>commit-commands</b> y <b>pr-review-toolkit</b></th>
+			<td><kbd>anthropics/claude-plugins-official</kbd> (<kbd>plugins/</kbd>)</td>
+			<td>Automatiza commits semánticos, subida de ramas, creación de Pull Requests y revisión profunda del código antes de fusionar en <kbd>main</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>security-guidance</b></th>
+			<td><kbd>anthropics/claude-plugins-official</kbd> (<kbd>plugins/security-guidance</kbd>)</td>
+			<td>Hook preventivo DevSecOps que vigila cada edición de archivos y alerta si detecta inyección de comandos, XSS, uso de <kbd>eval()</kbd> o vulnerabilidades en workflows de GitHub Actions.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>github</b> y <b>gitlab</b></th>
+			<td><kbd>anthropics/claude-plugins-official</kbd> (<kbd>external_plugins/</kbd>)</td>
+			<td>Conecta el agente con tus repositorios, Pull Requests, Merge Requests y logs de pipelines CI/CD fallidos en GitHub Actions o GitLab CI para diagnosticar y reparar fallos.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>cloud-run</b> y <b>gke-kubernetes</b></th>
+			<td>Galería <kbd>geminicli.com/extensions</kbd> (Oficial de Google Cloud)</td>
+			<td>Permite desplegar contenedores serverless en Cloud Run o diagnosticar clústeres de Kubernetes (pods en <i>CrashLoopBackOff</i>, eventos, escalado HPA y manifiestos YAML).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>cloudflare</b> y <b>vercel</b></th>
+			<td>Galería <kbd>geminicli.com/extensions</kbd> y <kbd>claude-plugins-official</kbd></td>
+			<td>Gestión de despliegues en el Edge, Workers, DNS, cachés CDN, análisis de logs de funciones serverless y variables de entorno por proyecto.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>terraform-infrastructure</b></th>
+			<td><kbd>wshobson/agents</kbd> y <kbd>antonbabenko/terraform-skill</kbd></td>
+			<td>Combina skills de Infraestructura como Código (Terraform / OpenTofu) con hooks que ejecutan automáticamente <kbd>terraform fmt</kbd>, <kbd>terraform validate</kbd> y <kbd>tflint</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>sentry</b> y <b>grafana-observability</b></th>
+			<td>Galería <kbd>geminicli.com/extensions</kbd> y <kbd>claude-plugins-official</kbd></td>
+			<td>Conecta el agente con las alertas y trazas de error reales de producción en Sentry, Prometheus y Grafana para localizar el archivo causante del incidente y generar el parche.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 3. Catálogo de plugins recomendados para DevOps, contenedores, CI/CD, infraestructura Cloud y observabilidad.</span>

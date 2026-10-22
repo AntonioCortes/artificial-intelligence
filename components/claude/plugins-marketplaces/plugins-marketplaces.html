@@ -1,0 +1,86 @@
+<h1 class="title">Plugins en Claude Code: Qué son, Cómo Funcionan y Cómo Crearlos</h1>
+
+<h2>1. ¿Qué es exactamente un Plugin en Claude Code y qué hace?</h2>
+
+<p>En <b>Claude Code</b>, un <b>Plugin</b> es un paquete todo-en-uno (identificado por un archivo manifiesto <kbd>.claude-plugin/plugin.json</kbd>) que amplía de golpe las capacidades de Claude sin que tengas que copiar ni configurar archivos sueltos uno por uno.</p>
+
+<p>Mientras que una <b>Skill</b> es únicamente un manual de instrucciones para una tarea concreta, <b>un solo Plugin de Claude puede inyectar hasta 7 componentes distintos automáticamente</b> en cuanto lo instalas:</p>
+
+<ol>
+	<li><b>Skills (<kbd>skills/</kbd>) y Comandos con barra (<kbd>commands/</kbd>):</b> Añade nuevas órdenes al menú <kbd>/</kbd> (por ejemplo <kbd>/commit</kbd>, <kbd>/review-pr</kbd> o <kbd>/feature-dev</kbd>) y habilidades que Claude activa por sí solo cuando las necesita.</li>
+	<li><b>Subagentes especializados (<kbd>agents/</kbd>):</b> Incorpora un equipo de subagentes preconfigurados (como revisores de seguridad, arquitectos de código o analistas de tests).</li>
+	<li><b>Servidores MCP (<kbd>.mcp.json</kbd>):</b> Arranca y conecta automáticamente servidores MCP (como Playwright para controlar el navegador, PostgreSQL, Supabase, GitHub, Sentry o Figma) sin que tengas que configurarlos a mano.</li>
+	<li><b>Hooks del ciclo de vida (<kbd>hooks/hooks.json</kbd>):</b> Activa scripts automáticos antes o después de que Claude edite archivos o ejecute comandos en Bash (por ejemplo, para impedir prácticas inseguras o formatear código).</li>
+	<li><b>Servidores de Lenguaje LSP (<kbd>.lsp.json</kbd>):</b> Conecta motores de análisis de código (TypeScript, Python Pyright, Go, Rust) para que Claude navegue a definiciones y detecte errores de tipos al instante.</li>
+	<li><b>Estilos de salida, temas y flujos (<kbd>output-styles/</kbd>, <kbd>themes/</kbd>, <kbd>workflows/</kbd>):</b> Personaliza el formato de respuesta y el comportamiento visual.</li>
+</ol>
+
+<img class="center-horizontal" src="components/claude/plugins-marketplaces/assets/img/arquitectura-plugins-marketplaces-claude.svg"/>
+<span class="center-horizontal caption">Figura 1. Cómo se instalan los Plugins desde los Marketplaces en Claude Code y todos los componentes que un Plugin empaqueta por dentro.</span>
+
+<h2>2. Cómo Gestionar tus Plugins desde el Chat (<kbd>/plugin</kbd>) y desde la Terminal (<kbd>claude plugin</kbd>)</h2>
+
+<p>Claude Code trae integrado un gestor completo de plugins tanto dentro de la sesión interactiva como desde la consola de comandos:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-bash">
+# 1. DENTRO DEL CHAT INTERACTIVO DE CLAUDE CODE:
+/plugin                                             # Abre el menú interactivo con pestañas (Discover, Installed, Marketplaces)
+/plugin install frontend-design@claude-plugins-official
+/plugin install playwright@claude-plugins-official
+/reload-plugins                                     # Recarga en caliente los plugins recién instalados o editados
+
+# 2. DESDE LA TERMINAL DE COMANDOS (FUERA DEL CHAT):
+claude plugin list                                  # Muestra todos los plugins instalados y cuáles están activos
+claude plugin install commit-commands@claude-plugins-official
+claude plugin install supabase@claude-plugins-official --scope project
+claude plugin enable nombre-plugin                  # Activa un plugin instalado
+claude plugin disable nombre-plugin                 # Desactiva un plugin para ahorrar contexto cuando no lo uses
+claude plugin update nombre-plugin                  # Actualiza el plugin a su última versión
+claude plugin validate ./mi-plugin                  # Verifica que tu plugin cumpla el esquema oficial
+claude plugin uninstall nombre-plugin               # Desinstala el plugin
+</code></pre>
+</div>
+<span class="center-horizontal caption">Todos los comandos interactivos y de consola para instalar, activar, desactivar, actualizar y validar plugins en Claude Code.</span>
+
+<h2>3. Estructura de Carpetas: Cómo Crear tu Propio Plugin en Claude (<kbd>.claude-plugin/plugin.json</kbd>)</h2>
+
+<p>Si quieres empaquetar las Skills, Subagentes, Hooks y Servidores MCP de tu equipo Full Stack o DevOps para que cualquier compañero los instale con un solo comando (o cargarlo en local con <kbd>claude --plugin-dir ./mi-plugin</kbd>), solo necesitas esta estructura de directorios:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-plaintext">
+mi-plugin-equipo/
+├── .claude-plugin/
+│   └── plugin.json          # Manifiesto obligatorio con nombre, versión y descripción
+├── .mcp.json                # Opcional: Servidores MCP que arranca el plugin
+├── .lsp.json                # Opcional: Servidores de lenguaje (TypeScript, Python, Go...)
+├── hooks/
+│   └── hooks.json           # Opcional: Hooks PreToolUse / PostToolUse / Stop
+├── agents/
+│   └── revisor-devops.md    # Opcional: Subagentes incluidos en el plugin
+├── commands/
+│   └── desplegar.md         # Opcional: Comandos / personalizados del plugin
+└── skills/
+    └── auditoria-api/
+        └── SKILL.md         # Opcional: Skills bajo demanda incluidas en el plugin
+</code></pre>
+</div>
+<span class="center-horizontal caption">Estructura oficial de un paquete de Plugin en Claude Code.</span>
+
+<div class="center-horizontal">
+<pre><code class="language-json">
+{
+  "name": "mi-plugin-equipo",
+  "version": "1.0.0",
+  "description": "Kit corporativo Full Stack y DevOps con MCPs, subagentes y skills de validación",
+  "author": {
+    "name": "Equipo de Ingeniería"
+  }
+}
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo de archivo manifiesto .claude-plugin/plugin.json.</span>
+
+<h2>4. Consejo de Rendimiento: Activar Plugins por Proyecto (<kbd>--scope project</kbd>)</h2>
+
+<p>El propio Claude Code incluye un aviso inteligente (<i>plugin-disuse-review</i>): tener 20 plugins activados a la vez cuando no los estás usando consume parte de tu ventana de contexto inicial. La mejor práctica es dejar activos globalmente (<kbd>--scope user</kbd>) tus 3 o 4 plugins de cabecera (como <kbd>commit-commands</kbd> y <kbd>security-guidance</kbd>) y activar por proyecto (<kbd>--scope project</kbd>, que se guarda en <kbd>.claude/settings.json</kbd>) los específicos de ese repositorio (como <kbd>frontend-design</kbd>, <kbd>playwright</kbd> o <kbd>supabase</kbd>).</p>

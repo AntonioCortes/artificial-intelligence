@@ -1,0 +1,92 @@
+<h1 class="title">Modelos de Gemini (Flash Lite, Flash, Pro y Niveles de Thinking)</h1>
+
+<h2>1. ¿Qué diferencia hay entre Google Gemini y Google Antigravity (AGY)?</h2>
+
+<p>Es muy frecuente preguntarse por qué a veces oímos hablar de <b>Gemini</b> y otras veces de <b>Antigravity (o AGY)</b>. La distinción es muy sencilla:</p>
+
+<ul>
+	<li><b>Google Gemini</b> es la familia de <b>modelos de Inteligencia Artificial</b> (el "cerebro" multimodal creado por Google DeepMind que razona, entiende texto, imágenes, audio, vídeo y código).</li>
+	<li><b>Google Antigravity (AGY)</b> es la <b>plataforma de desarrollo agéntica</b> (el "cuerpo y entorno de trabajo") donde ese cerebro de Gemini cobra vida para leer tus carpetas, ejecutar comandos en la terminal, usar herramientas MCP, gestionar subagentes y crear artefactos.</li>
+</ul>
+
+<img class="center-horizontal" src="components/gemini/modelos-superficies/assets/img/ecosistema-gemini-antigravity.svg"/>
+<span class="center-horizontal caption">Figura 1. Relación entre la familia de modelos Gemini (el cerebro) y la plataforma Google Antigravity.</span>
+
+<h2>2. ¿Qué Modelos de Gemini existen y cuál debo elegir en cada momento?</h2>
+
+<p>Tanto al trabajar en tu sesión principal (con el comando <kbd>/model</kbd> o la bandera <kbd>--model</kbd>) como al delegar tareas en subagentes, tienes a tu disposición tres gamas de modelos de Gemini diseñadas para equilibrar velocidad, coste y profundidad de razonamiento:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Modelo de Gemini</th>
+			<th scope="col">Identificador / Alias</th>
+			<th scope="col">Velocidad</th>
+			<th scope="col">Profundidad de Razonamiento</th>
+			<th scope="col">Cuándo debes elegirlo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>Gemini Flash Lite</b></th>
+			<td><kbd>flash_lite</kbd></td>
+			<td>Instantánea</td>
+			<td>Básica / Directa</td>
+			<td>Para tareas mecánicas muy sencillas, resúmenes rápidos, clasificación de texto o subagentes ligeros que hacen búsquedas puntuales de archivos.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Gemini Flash</b></th>
+			<td><kbd>flash</kbd></td>
+			<td>Muy rápida</td>
+			<td>Alta</td>
+			<td>Excelente para el trabajo diario ágil: crear componentes sencillos, maquetar vistas, responder dudas rápidas, ejecutar tests o hacer ediciones directas sin esperar.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Gemini Pro (Thinking)</b></th>
+			<td><kbd>pro</kbd></td>
+			<td>Moderada (reflexiona antes de actuar)</td>
+			<td>Máxima (Razonamiento multicapa)</td>
+			<td>Para diseñar arquitecturas complejas Full Stack o DevOps, depurar errores difíciles, planificar proyectos enteros de decenas de archivos o coordinar equipos de subagentes sin cometer fallos.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Comparativa de las tres gamas de modelos disponibles en Gemini / Antigravity.</span>
+
+<h2>3. Niveles de Esfuerzo de Razonamiento (Thinking / Effort Levels)</h2>
+
+<p>Los modelos modernos de Gemini no responden "a lo loco" con la primera palabra que se les ocurre: disponen de una fase de <b>Pensamiento Interno (Thinking)</b> en la que analizan el problema, barajan alternativas y detectan posibles errores antes de escribir la respuesta o tocar tus archivos.</p>
+
+<p>Puedes controlar cuánto tiempo dedica Gemini a pensar utilizando el comando <kbd>/model</kbd> dentro del chat o arrancando la CLI con <kbd>agy --effort &lt;nivel&gt;</kbd>:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Nivel de Esfuerzo (<kbd>--effort</kbd>)</th>
+			<th scope="col">Comportamiento del Modelo</th>
+			<th scope="col">Caso de uso ideal</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>low</kbd></th>
+			<td>Pensamiento mínimo; prioriza la respuesta casi inmediata.</td>
+			<td>Cambiar un color en CSS, corregir una errata o renombrar una variable.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>medium</kbd></th>
+			<td>Equilibrio estándar entre rapidez y reflexión previa.</td>
+			<td>Crear un nuevo endpoint REST, un componente web o un Dockerfile estándar.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>high</kbd></th>
+			<td>Razonamiento detallado paso a paso antes de ejecutar herramientas.</td>
+			<td>Refactorizar varios módulos conectados o diagnosticar un fallo en producción.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>xhigh</kbd> / <kbd>max</kbd></th>
+			<td>Máxima capacidad de reflexión profunda (ideal junto con el comando <kbd>/boost</kbd>).</td>
+			<td>Diseñar una arquitectura completa desde cero, resolver bugs de concurrencia o auditar la seguridad de toda una infraestructura.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Los 5 niveles de esfuerzo de razonamiento configurables en Gemini / Antigravity.</span>

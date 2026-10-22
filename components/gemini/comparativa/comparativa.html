@@ -1,0 +1,100 @@
+<h1 class="title">Gran Comparativa: Equivalencias entre Gemini (Antigravity) y Claude</h1>
+
+<h2>1. Diccionario Traductor Definitivo: Google Antigravity vs Claude Code</h2>
+
+<p>Si trabajas tanto con <b>Gemini / Google Antigravity (AGY)</b> como con <b>Claude / Claude Code</b>, verás que ambas plataformas comparten la misma filosofía de desarrollo agéntico e incluso son compatibles entre sí en estándares clave como <b>Skills (<kbd>SKILL.md</kbd>)</b>, <b>Plugins</b> y <b>Servidores MCP</b>.</p>
+
+<p>Esta gran tabla comparativa te servirá de referencia rápida para saber cómo se llama, qué comando usa y en qué archivo se guarda cada concepto en una y otra herramienta:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Concepto / Funcionalidad</th>
+			<th scope="col">En Gemini / Google Antigravity (AGY)</th>
+			<th scope="col">En Claude / Claude Code</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>Modelos (Rápido / Diario / Profundo)</b></th>
+			<td>Gemini Flash Lite (<kbd>flash_lite</kbd>) / Gemini Flash (<kbd>flash</kbd>) / Gemini Pro (<kbd>pro</kbd>)</td>
+			<td>Claude Haiku (<kbd>haiku</kbd>) / Claude Sonnet (<kbd>sonnet</kbd>) / Claude Opus (<kbd>opus</kbd>)</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Niveles de Esfuerzo (Thinking)</b></th>
+			<td><kbd>/model</kbd> o <kbd>agy --effort</kbd> (<kbd>low</kbd>, <kbd>medium</kbd>, <kbd>high</kbd>, <kbd>xhigh</kbd>, <kbd>max</kbd>)</td>
+			<td><kbd>/effort</kbd> o <kbd>claude --effort</kbd> (<kbd>low</kbd>, <kbd>medium</kbd>, <kbd>high</kbd>, <kbd>xhigh</kbd>, <kbd>max</kbd>)</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Comando para abrir en Terminal</b></th>
+			<td><kbd>agy</kbd> (Modo headless: <kbd>agy -p "prompt"</kbd>)</td>
+			<td><kbd>claude</kbd> (Modo headless: <kbd>claude -p "prompt"</kbd>)</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Reanudar última conversación</b></th>
+			<td><kbd>agy -c</kbd> (o comando interno <kbd>/resume</kbd>)</td>
+			<td><kbd>claude -c</kbd> / <kbd>claude -r</kbd> (o comando interno <kbd>/resume</kbd>)</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Archivo de Reglas / Memoria del Proyecto</b></th>
+			<td><kbd>GEMINI.md</kbd> o <kbd>AGENTS.md</kbd> (y <kbd>.agents/rules/*.md</kbd>)</td>
+			<td><kbd>CLAUDE.md</kbd> (y <kbd>.claude/rules/*.md</kbd>)</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Memoria Global de Usuario</b></th>
+			<td><kbd>~/.gemini/config/GEMINI.md</kbd></td>
+			<td><kbd>~/.claude/CLAUDE.md</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Mencionar archivos y contexto</b></th>
+			<td>Símbolo <kbd>@</kbd> (<kbd>@archivo</kbd>, <kbd>@carpeta</kbd>, <kbd>@terminal</kbd>, <kbd>@mcp</kbd>)</td>
+			<td>Símbolo <kbd>@</kbd> (<kbd>@archivo</kbd>, <kbd>@carpeta</kbd>, <kbd>@mcp</kbd>) + <kbd>!</kbd> (Bash directo) + <kbd>#</kbd> (Memoria)</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Planificar antes de programar</b></th>
+			<td>Comandos <kbd>/plan</kbd>, <kbd>/grill-me</kbd>, <kbd>agy --mode plan</kbd> o Artefactos de Plan</td>
+			<td>Pulsar <kbd>Shift + Tab</kbd> (Plan Mode), comando <kbd>/plan</kbd> o <kbd>--permission-mode plan</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Comprimir o limpiar conversación</b></th>
+			<td><kbd>/compact</kbd> (resumir) y <kbd>/clear</kbd> / <kbd>/new</kbd> (limpiar)</td>
+			<td><kbd>/compact</kbd> (resumir) y <kbd>/clear</kbd> (limpiar)</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Carpeta de Skills (Habilidades)</b></th>
+			<td><kbd>.agents/skills/&lt;nombre&gt;/SKILL.md</kbd> (y <kbd>.agents/skills.json</kbd>)</td>
+			<td><kbd>.claude/skills/&lt;nombre&gt;/SKILL.md</kbd> y comandos en <kbd>.claude/commands/*.md</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Ver listado de Skills activas</b></th>
+			<td>Comando <kbd>/skills</kbd></td>
+			<td>Comando <kbd>/skills</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Subagentes en paralelo</b></th>
+			<td><kbd>research</kbd>, <kbd>self</kbd>, <kbd>image-generator</kbd>, <kbd>/subagents</kbd> y <kbd>/teamwork</kbd></td>
+			<td><kbd>Explore</kbd>, <kbd>Plan</kbd>, archivos <kbd>.claude/agents/*.md</kbd> y comando <kbd>/agents</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Configuración de Servidores MCP</b></th>
+			<td><kbd>~/.gemini/config/mcp_config.json</kbd>, <kbd>/mcp</kbd> y <kbd>agy mcp ...</kbd></td>
+			<td><kbd>.mcp.json</kbd> en el proyecto, <kbd>/mcp</kbd> y <kbd>claude mcp ...</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Hooks del Ciclo de Vida</b></th>
+			<td><kbd>.agents/hooks.json</kbd> (y <kbd>~/.gemini/config/hooks.json</kbd>)</td>
+			<td><kbd>.claude/settings.json</kbd> (sección <kbd>hooks</kbd>) y comando <kbd>/hooks</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Plugins y Extensiones</b></th>
+			<td><kbd>.agents/plugins/&lt;nombre&gt;/plugin.json</kbd>, <kbd>/plugins</kbd> y <kbd>agy plugin install</kbd> (acepta los 3 formatos)</td>
+			<td><kbd>.claude-plugin/plugin.json</kbd>, <kbd>/plugin</kbd>, <kbd>claude plugin</kbd> y <kbd>claude marketplace</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>SDK Oficial para Programar Agentes</b></th>
+			<td><b>Antigravity Python SDK</b> (<kbd>pip install google-antigravity</kbd>)</td>
+			<td><b>Claude Agent SDK</b> (TypeScript y Python — plugin <kbd>agent-sdk-dev</kbd>)</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Equivalencia directa de cada concepto, archivo, comando y ruta entre Google Antigravity (Gemini) y Claude Code.</span>

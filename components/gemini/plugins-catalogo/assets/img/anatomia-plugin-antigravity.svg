@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 350" width="100%" height="auto">
+  <defs>
+    <linearGradient id="bgGradG2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f0fdf4"/>
+    </linearGradient>
+    <filter id="shadowG2" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1e293b" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+  <rect width="920" height="350" rx="14" fill="url(#bgGradG2)" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="460" y="34" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#0f172a">Anatomía de un Plugin en Antigravity y Triple Compatibilidad de agy plugin install</text>
+
+  <!-- Left: 3 Compatible Formats -->
+  <rect x="25" y="58" width="275" height="265" rx="10" fill="#ffffff" stroke="#0284c7" stroke-width="2" filter="url(#shadowG2)"/>
+  <rect x="25" y="58" width="275" height="38" rx="10" fill="#0284c7"/>
+  <text x="162" y="82" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="bold" fill="#ffffff">3 Formatos Compatibles en AGY</text>
+
+  <rect x="40" y="110" width="245" height="58" rx="6" fill="#f0f9ff" stroke="#7dd3fc"/>
+  <text x="52" y="130" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0369a1">1. Plugin Nativo Antigravity</text>
+  <text x="52" y="148" font-family="monospace" font-size="11" fill="#334155">plugin.json / .antigravity-plugin/</text>
+
+  <rect x="40" y="178" width="245" height="58" rx="6" fill="#f0f9ff" stroke="#7dd3fc"/>
+  <text x="52" y="198" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0369a1">2. Extensión de Gemini CLI</text>
+  <text x="52" y="216" font-family="monospace" font-size="11" fill="#334155">gemini-extension.json</text>
+
+  <rect x="40" y="246" width="245" height="58" rx="6" fill="#f0f9ff" stroke="#7dd3fc"/>
+  <text x="52" y="266" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0369a1">3. Plugin de Claude Code</text>
+  <text x="52" y="284" font-family="monospace" font-size="11" fill="#334155">.claude-plugin/plugin.json</text>
+
+  <!-- Arrow -->
+  <path d="M 305 190 L 350 190" stroke="#0284c7" stroke-width="2.5"/>
+  <polygon points="348,184 360,190 348,196" fill="#0284c7"/>
+  <text x="332" y="176" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#0369a1">agy plugin</text>
+  <text x="332" y="208" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#0369a1">install</text>
+
+  <!-- Right: What a Plugin Bundles -->
+  <rect x="365" y="58" width="530" height="265" rx="10" fill="#ffffff" stroke="#16a34a" stroke-width="2" filter="url(#shadowG2)"/>
+  <rect x="365" y="58" width="530" height="38" rx="10" fill="#16a34a"/>
+  <text x="630" y="82" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="bold" fill="#ffffff">¿Qué empaqueta un Plugin por dentro? (.agents/plugins/&lt;nombre&gt;/)</text>
+
+  <!-- 4 Inner Cards -->
+  <rect x="385" y="112" width="235" height="88" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="400" y="135" font-family="monospace" font-size="13" font-weight="bold" fill="#166534">skills/&lt;skill&gt;/SKILL.md</text>
+  <text x="400" y="156" font-family="sans-serif" font-size="11.5" fill="#334155">Procedimientos paso a paso,</text>
+  <text x="400" y="173" font-family="sans-serif" font-size="11.5" fill="#334155">scripts y plantillas del equipo.</text>
+
+  <rect x="640" y="112" width="235" height="88" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="655" y="135" font-family="monospace" font-size="13" font-weight="bold" fill="#166534">mcp_config.json</text>
+  <text x="655" y="156" font-family="sans-serif" font-size="11.5" fill="#334155">Servidores MCP preconfigurados</text>
+  <text x="655" y="173" font-family="sans-serif" font-size="11.5" fill="#334155">(BD, Cloud, GitHub, Docker, K8s).</text>
+
+  <rect x="385" y="216" width="235" height="88" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="400" y="239" font-family="monospace" font-size="13" font-weight="bold" fill="#166534">rules/AGENTS.md</text>
+  <text x="400" y="260" font-family="sans-serif" font-size="11.5" fill="#334155">Estándares de arquitectura,</text>
+  <text x="400" y="277" font-family="sans-serif" font-size="11.5" fill="#334155">seguridad y convenciones.</text>
+
+  <rect x="640" y="216" width="235" height="88" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="655" y="239" font-family="monospace" font-size="13" font-weight="bold" fill="#166534">hooks.json</text>
+  <text x="655" y="260" font-family="sans-serif" font-size="11.5" fill="#334155">Validadores automáticos en</text>
+  <text x="655" y="277" font-family="sans-serif" font-size="11.5" fill="#334155">PreToolUse, PostToolUse y Stop.</text>
+</svg>

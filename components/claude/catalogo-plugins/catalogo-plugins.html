@@ -1,0 +1,200 @@
+<h1 class="title">Marketplaces y Catálogo de Plugins en Claude (Full Stack y DevOps)</h1>
+
+<h2>1. ¿Dónde ver el listado de todos los Plugins disponibles en Claude Code?</h2>
+
+<p>Para ver todos los plugins que existen e instalarlos con un clic, Claude Code cuenta con un sistema de <b>Tiendas o Catálogos de Plugins (Marketplaces)</b>:</p>
+
+<ol>
+	<li><b>Desde dentro de Claude Code (Buscador Visual):</b> Escribe <kbd>/plugin</kbd> (o <kbd>/plugins</kbd>) en el chat. Se abrirá una interfaz interactiva con pestañas por las que puedes moverte con <kbd>Tab</kbd> y las flechas:
+		<ul>
+			<li><b>Discover:</b> Te muestra todo el listado de plugins disponibles para instalar desde tus Marketplaces activos, con buscador por texto.</li>
+			<li><b>Installed:</b> Muestra los plugins que ya tienes instalados para activarlos, desactivarlos o actualizarlos.</li>
+			<li><b>Marketplaces:</b> Muestra qué catálogos tienes conectados y te permite añadir nuevos repositorios.</li>
+		</ul>
+	</li>
+	<li><b>En la Web (GitHub Oficial de Anthropic):</b> Puedes explorar todas las carpetas y leer el código fuente de cada plugin oficial en <b><a href="https://github.com/anthropics/claude-plugins-official" target="_blank">github.com/anthropics/claude-plugins-official</a></b> y en <b><a href="https://github.com/anthropics/claude-code/tree/main/plugins" target="_blank">github.com/anthropics/claude-code/tree/main/plugins</a></b>.</li>
+</ol>
+
+<h2>2. Los Mejores Marketplaces Oficiales y de la Comunidad (Cómo Añadirlos)</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Marketplace</th>
+			<th scope="col">Comando para añadirlo en Claude</th>
+			<th scope="col">Qué contiene</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>1. claude-plugins-official</b><br/>(<a href="https://github.com/anthropics/claude-plugins-official" target="_blank">Ver en GitHub</a>)</th>
+			<td><i>Ya viene activo de serie en Claude Code</i></td>
+			<td><b>El Directorio Oficial de Anthropic:</b> Contiene todos los plugins creados por Anthropic (<kbd>frontend-design</kbd>, <kbd>commit-commands</kbd>, <kbd>pr-review-toolkit</kbd>, <kbd>feature-dev</kbd>, <kbd>security-guidance</kbd>, <kbd>skill-creator</kbd>, <kbd>hookify</kbd>, <kbd>code-review</kbd>) y los plugins oficiales de socios (<kbd>playwright</kbd>, <kbd>github</kbd>, <kbd>gitlab</kbd>, <kbd>supabase</kbd>, <kbd>sentry</kbd>, <kbd>stripe</kbd>, <kbd>vercel</kbd>, <kbd>cloudflare</kbd>, <kbd>figma</kbd>, <kbd>context7</kbd> y servidores LSP).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>2. anthropic-agent-skills</b><br/>(<a href="https://github.com/anthropics/skills" target="_blank">Ver en GitHub</a>)</th>
+			<td><kbd>/plugin marketplace add anthropics/skills</kbd></td>
+			<td>El repositorio oficial de Skills de Anthropic empaquetado como marketplace instalable (<kbd>document-skills</kbd> y <kbd>example-skills</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>3. superpowers-marketplace</b><br/>(<a href="https://github.com/obra/superpowers-marketplace" target="_blank">Ver en GitHub</a>)</th>
+			<td><kbd>/plugin marketplace add obra/superpowers-marketplace</kbd></td>
+			<td>Marketplace comunitario líder en ingeniería de software: TDD, depuración sistemática, Git Worktrees y desarrollo guiado por subagentes.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>4. wshobson/agents</b><br/>(<a href="https://github.com/wshobson/agents" target="_blank">Ver en GitHub</a>)</th>
+			<td><kbd>/plugin marketplace add wshobson/agents</kbd></td>
+			<td>Más de 60 plugins modulares para Full Stack y DevOps: <kbd>kubernetes-operations</kbd>, <kbd>cloud-infrastructure</kbd> (Terraform/AWS/GCP), <kbd>cicd-automation</kbd>, <kbd>backend-development</kbd>, <kbd>frontend-mobile-development</kbd> y <kbd>security-scanning</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>5. compound-engineering</b><br/>(<a href="https://github.com/EveryInc/compound-engineering-plugin" target="_blank">Ver en GitHub</a>)</th>
+			<td><kbd>/plugin marketplace add EveryInc/compound-engineering-plugin</kbd></td>
+			<td>Flujos completos de planificación, revisión multi-agente y despliegue para equipos Full Stack.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Los 5 mejores Marketplaces de plugins para Claude Code y el comando exacto para registrarlos.</span>
+
+<h2>3. Catálogo Extenso de Plugins para Desarrollador Full Stack y DevOps</h2>
+
+<p>Aquí tienes la selección completa de los plugins más útiles para tu perfil <b>Full Stack + DevOps</b>, divididos en 3 tablas con el <b>comando exacto de instalación</b> listo para copiar y pegar:</p>
+
+<h3>3.1. Plugins Oficiales de Flujo de Trabajo, Git, Pull Requests y Seguridad</h3>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Plugin</th>
+			<th scope="col">Comando Exacto de Instalación</th>
+			<th scope="col">Qué añade y por qué te interesa</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>commit-commands</b></th>
+			<td><kbd>/plugin install commit-commands@claude-plugins-official</kbd></td>
+			<td>Añade <kbd>/commit</kbd>, <kbd>/commit-push-pr</kbd> y <kbd>/clean_gone</kbd>. Analiza tus cambios, redacta el commit, sube la rama, abre el Pull Request y limpia ramas locales ya fusionadas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>feature-dev</b></th>
+			<td><kbd>/plugin install feature-dev@claude-plugins-official</kbd></td>
+			<td>Añade <kbd>/feature-dev</kbd> y 3 subagentes (<kbd>code-explorer</kbd>, <kbd>code-architect</kbd>, <kbd>code-reviewer</kbd>). Guía el desarrollo de funcionalidades Full Stack en 7 fases estructuradas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>pr-review-toolkit</b></th>
+			<td><kbd>/plugin install pr-review-toolkit@claude-plugins-official</kbd></td>
+			<td>Añade <kbd>/pr-review-toolkit:review-pr</kbd> con 6 subagentes que revisan fallos silenciosos, cobertura de tests, diseño de tipos, comentarios y simplicidad del código.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>code-review</b></th>
+			<td><kbd>/plugin install code-review@claude-plugins-official</kbd></td>
+			<td>Añade <kbd>/code-review</kbd>: audita tus cambios con 4 subagentes en paralelo y puntúa la certeza de cada bug de 0 a 100 para mostrar solo problemas reales.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>security-guidance</b></th>
+			<td><kbd>/plugin install security-guidance@claude-plugins-official</kbd></td>
+			<td>Hook preventivo DevSecOps que vigila cada edición y avisa si se intenta introducir inyección de comandos, XSS, uso de <kbd>eval()</kbd> o fallos de seguridad en GitHub Actions.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>hookify</b></th>
+			<td><kbd>/plugin install hookify@claude-plugins-official</kbd></td>
+			<td>Añade <kbd>/hookify</kbd>: crea hooks y guardarraíles de seguridad a medida escribiendo en lenguaje natural (sin tener que programar JSON).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>skill-creator</b></th>
+			<td><kbd>/plugin install skill-creator@claude-plugins-official</kbd></td>
+			<td>Añade <kbd>/skill-creator</kbd>: entrevista interactiva y sistema de evaluación (<i>evals</i>) oficial de Anthropic para crear y optimizar tus propias Skills.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Plugins oficiales de ingeniería de software, Git, revisión de PRs y seguridad.</span>
+
+<h3>3.2. Plugins para Desarrollo Full Stack (Frontend, Navegador, Backend, BD y LSP)</h3>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Plugin</th>
+			<th scope="col">Comando Exacto de Instalación</th>
+			<th scope="col">Qué añade y por qué es clave en Full Stack</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>frontend-design</b></th>
+			<td><kbd>/plugin install frontend-design@claude-plugins-official</kbd></td>
+			<td>Eleva drásticamente el diseño UI/UX, la tipografía, el contraste y la maquetación CSS/Tailwind/React de cualquier interfaz que construya Claude.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>playwright</b></th>
+			<td><kbd>/plugin install playwright@claude-plugins-official</kbd></td>
+			<td>Conecta el servidor MCP oficial de Playwright: Claude abre un navegador real, interactúa con tu web local, hace capturas de pantalla y arregla bugs visuales o de consola JS solo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>supabase</b></th>
+			<td><kbd>/plugin install supabase@claude-plugins-official</kbd></td>
+			<td>Conecta Claude con tus proyectos Supabase / PostgreSQL para inspeccionar tablas, crear migraciones SQL, políticas RLS y tipos TypeScript.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>context7</b></th>
+			<td><kbd>/plugin install context7@claude-plugins-official</kbd></td>
+			<td>Conecta el servidor MCP de Context7 para consultar en tiempo real la documentación actualizada de React, Next.js, Tailwind, Angular, Vue, FastAPI o Prisma.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>typescript-lsp</b> / <b>pyright-lsp</b> / <b>gopls-lsp</b></th>
+			<td><kbd>/plugin install typescript-lsp@claude-plugins-official</kbd></td>
+			<td>Conecta el motor oficial de análisis de tipos de TypeScript/JS, Python o Go para que Claude detecte errores de compilación y navegue a definiciones al instante.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>stripe</b> y <b>figma</b></th>
+			<td><kbd>/plugin install stripe@claude-plugins-official</kbd><br/><kbd>/plugin install figma@claude-plugins-official</kbd></td>
+			<td>Conecta tus diseños de Figma para maquetarlos con precisión milimétrica y automatiza la integración de pagos y webhooks de Stripe.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 3. Plugins recomendados para Frontend, pruebas E2E en navegador, documentación viva, Backend y Bases de Datos.</span>
+
+<h3>3.3. Plugins para DevOps, Contenedores, Kubernetes, Terraform, CI/CD y Observabilidad</h3>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Plugin</th>
+			<th scope="col">Comando Exacto de Instalación</th>
+			<th scope="col">Qué añade para tus tareas de DevOps y SRE</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>github</b> y <b>gitlab</b></th>
+			<td><kbd>/plugin install github@claude-plugins-official</kbd><br/><kbd>/plugin install gitlab@claude-plugins-official</kbd></td>
+			<td>Inspecciona pipelines fallidos de GitHub Actions o GitLab CI, descarga los logs de error del runner, revisa alertas de Dependabot y gestiona releases y PRs.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>cloudflare</b> y <b>vercel</b></th>
+			<td><kbd>/plugin install cloudflare@claude-plugins-official</kbd><br/><kbd>/plugin install vercel@claude-plugins-official</kbd></td>
+			<td>Gestiona despliegues pre-producción y producción, revisa logs de funciones serverless en vivo, configura DNS/Workers y diagnostica errores de build.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>sentry</b></th>
+			<td><kbd>/plugin install sentry@claude-plugins-official</kbd></td>
+			<td>Conecta Claude con los errores reales de producción en Sentry: lee el <i>stacktrace</i>, localiza el commit culpable y genera el test y el parche.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>kubernetes-operations</b> (Marketplace <kbd>wshobson/agents</kbd>)</th>
+			<td><kbd>/plugin marketplace add wshobson/agents</kbd><br/><kbd>/plugin install kubernetes-operations@wshobson-agents</kbd></td>
+			<td>Incluye subagentes y skills especializados en manifiestos de Kubernetes, Helm Charts, Kustomize, políticas de red (NetworkPolicies) y diagnóstico de clústeres.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>cloud-infrastructure</b> y <b>cicd-automation</b> (Marketplace <kbd>wshobson/agents</kbd>)</th>
+			<td><kbd>/plugin install cloud-infrastructure@wshobson-agents</kbd><br/><kbd>/plugin install cicd-automation@wshobson-agents</kbd></td>
+			<td>Automatiza módulos de Terraform/OpenTofu, arquitecturas AWS/GCP/Azure, Dockerfiles multi-etapa y pipelines de despliegue continuo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>agent-sdk-dev</b></th>
+			<td><kbd>/plugin install agent-sdk-dev@claude-plugins-official</kbd></td>
+			<td>Añade <kbd>/new-sdk-app</kbd> para crear tus propios demonios o scripts DevOps automatizados en Python o TypeScript con el Claude Agent SDK.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 4. Plugins esenciales para DevOps, CI/CD, Kubernetes, Terraform, Cloud y monitorización de errores.</span>

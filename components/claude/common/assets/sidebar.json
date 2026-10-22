@@ -40,14 +40,47 @@
             ]
         },
         {
-            "text" : "Memoria Skills Subagentes y MCP",
+            "text" : "Memoria Skills y Subagentes",
             "content" : [
                 {
-                    "text" : "4.1. Memoria (CLAUDE.md) y Skills",
+                    "text" : "4.1. Memoria y Reglas (CLAUDE.md)",
                     "content" : "component-claude-memoria-skills"
                 },
                 {
-                    "text" : "4.2. Subagentes, MCP, Hooks y Comparativa",
+                    "text" : "4.2. Skills y Comandos Personalizados",
+                    "content" : "component-claude-skills-creacion"
+                },
+                {
+                    "text" : "4.3. Repositorios y Catálogo de Skills",
+                    "content" : "component-claude-repositorios-skills"
+                },
+                {
+                    "text" : "4.4. Subagentes en Claude (.claude/agents)",
+                    "content" : "component-claude-subagentes"
+                }
+            ]
+        },
+        {
+            "text" : "Plugins MCP Hooks y Comparativa",
+            "content" : [
+                {
+                    "text" : "5.1. Plugins: Qué son y Cómo crearlos",
+                    "content" : "component-claude-plugins-marketplaces"
+                },
+                {
+                    "text" : "5.2. Marketplaces y Catálogo de Plugins",
+                    "content" : "component-claude-catalogo-plugins"
+                },
+                {
+                    "text" : "5.3. Servidores MCP (.mcp.json)",
+                    "content" : "component-claude-mcp"
+                },
+                {
+                    "text" : "5.4. Hooks y Permisos (settings.json)",
+                    "content" : "component-claude-hooks-settings"
+                },
+                {
+                    "text" : "5.5. Comparativa: Gemini vs Claude",
                     "content" : "component-claude-subagentes-mcp-hooks"
                 }
             ]
@@ -59,12 +92,16 @@
             "href" : "https://docs.anthropic.com/"
         },
         {
-            "text" : "Guía de Claude Code",
-            "href" : "https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview"
+            "text" : "Buscador Mundial de Skills (skills.sh)",
+            "href" : "https://skills.sh"
         },
         {
-            "text" : "Estándar Abierto MCP",
-            "href" : "https://modelcontextprotocol.io/"
+            "text" : "Repositorio Oficial de Skills",
+            "href" : "https://github.com/anthropics/skills"
+        },
+        {
+            "text" : "Marketplace Oficial de Plugins",
+            "href" : "https://github.com/anthropics/claude-plugins-official"
         }
     ]
 }

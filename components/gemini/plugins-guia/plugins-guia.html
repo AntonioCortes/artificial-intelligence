@@ -1,0 +1,91 @@
+<h1 class="title">Plugins en Antigravity: Qué son, Cómo Funcionan y Cómo Crearlos</h1>
+
+<h2>1. ¿Qué es exactamente un Plugin en Google Antigravity y qué hace?</h2>
+
+<p>Hasta ahora hemos visto que puedes personalizar tu agente con piezas individuales: <b>Reglas</b> (<kbd>GEMINI.md</kbd> / <kbd>AGENTS.md</kbd>), <b>Skills</b> (<kbd>SKILL.md</kbd>), <b>Hooks</b> (<kbd>hooks.json</kbd>) y <b>Servidores MCP</b> (<kbd>mcp_config.json</kbd>). Pero ¿qué pasa si quieres instalar de golpe un "kit completo de DevOps con Kubernetes" o un "kit completo de desarrollo Full Stack" que incluya al mismo tiempo sus servidores MCP, sus skills paso a paso, sus reglas de código y sus hooks de validación?</p>
+
+<p>Para eso existen los <b>Plugins</b>. Un <b>Plugin</b> es un paquete todo-en-uno con su propio espacio de nombres (<i>namespace</i>) que agrupa <b>Skills + Reglas + Hooks + Servidores MCP</b> dentro de una única carpeta distribuible (<kbd>.agents/plugins/&lt;nombre&gt;/</kbd> o <kbd>~/.gemini/config/plugins/&lt;nombre&gt;/</kbd>). Cuando instalas o activas un plugin, Antigravity realiza tres acciones automáticas:</p>
+
+<ol>
+	<li><b>Ingesta Automática (Automatic Ingestion):</b> Carga al instante todos los servidores MCP definidos en el <kbd>mcp_config.json</kbd> del plugin, registra sus hooks de <kbd>hooks.json</kbd>, fusiona sus reglas de <kbd>rules/AGENTS.md</kbd> y añade sus <kbd>skills/</kbd> al catálogo bajo demanda.</li>
+	<li><b>Aislamiento de Nombres (Namespacing):</b> Evita colisiones de nombres si dos plugins distintos incluyen herramientas o skills con nombres parecidos.</li>
+	<li><b>Activación o Desactivación con un solo comando:</b> Puedes encender o apagar todo el paquete con <kbd>/plugins</kbd> o <kbd>agy plugin enable / disable</kbd> (lo cual guarda el estado en tu <kbd>config.json</kbd>) sin tener que borrar ningún archivo.</li>
+</ol>
+
+<img class="center-horizontal" src="components/gemini/plugins-catalogo/assets/img/anatomia-plugin-antigravity.svg"/>
+<span class="center-horizontal caption">Figura 1. Los 3 formatos de plugins que acepta agy plugin install (izquierda) y todos los componentes que empaqueta un Plugin por dentro (derecha).</span>
+
+<h2>2. La Triple Compatibilidad de Antigravity: Plugins Nativos, Gemini CLI y Claude Code</h2>
+
+<p>Una ventaja enorme de <b>Google Antigravity (<kbd>agy</kbd>)</b> es que su instalador de plugins (<kbd>agy plugin install</kbd> y <kbd>agy plugin import</kbd>) es <b>compatible con tres formatos distintos</b>:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Formato de Plugin</th>
+			<th scope="col">Archivo de Manifiesto</th>
+			<th scope="col">Cómo lo procesa Antigravity</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>1. Plugin Nativo Antigravity</b></th>
+			<td><kbd>plugin.json</kbd>, <kbd>.antigravity-plugin/plugin.json</kbd> o <kbd>.gemini-plugin/plugin.json</kbd></td>
+			<td>Se carga de forma directa leyendo <kbd>skills/</kbd>, <kbd>rules/AGENTS.md</kbd>, <kbd>hooks.json</kbd> (en la raíz del plugin) y <kbd>mcp_config.json</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>2. Extensión de Gemini CLI</b></th>
+			<td><kbd>gemini-extension.json</kbd></td>
+			<td>Al ejecutar <kbd>agy plugin install</kbd>, Antigravity importa la extensión y adapta su estructura automáticamente.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>3. Plugin de Claude Code</b></th>
+			<td><kbd>.claude-plugin/plugin.json</kbd></td>
+			<td>Al ejecutar <kbd>agy plugin install</kbd> (o <kbd>agy plugin import claude</kbd>), Antigravity prepara automáticamente sus archivos (por ejemplo, mueve <kbd>hooks/hooks.json</kbd> a la raíz <kbd>hooks.json</kbd>) e importa sus skills, reglas y servidores MCP.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Los tres formatos de paquetes de plugins compatibles con Google Antigravity.</span>
+
+<h2>3. Comandos para Gestionar tus Plugins (<kbd>/plugins</kbd> y <kbd>agy plugin</kbd>)</h2>
+
+<div class="center-horizontal">
+<pre><code class="language-bash">
+# 1. Dentro del chat interactivo de Antigravity (TUI), escribe:
+/plugins                                    # Abre el gestor visual de plugins instalados
+/reload                                     # Recarga plugins, skills y reglas en caliente
+
+# 2. Desde tu terminal de Linux/macOS usando los subcomandos de agy:
+agy plugin list                             # Lista todos los plugins descubiertos y su estado (enabled/disabled)
+agy plugin install ./ruta/a/mi-plugin       # Instala un plugin nativo, extensión Gemini o plugin de Claude
+agy plugin import claude                    # Importa plugins desde tu configuración de Claude Code
+agy plugin enable nombre-del-plugin         # Activa un plugin (guarda "enabled": true en config.json)
+agy plugin disable nombre-del-plugin        # Desactiva un plugin sin desinstalarlo
+agy plugin validate ./ruta/a/mi-plugin      # Verifica que la estructura y JSON del plugin sean válidos
+agy plugin uninstall nombre-del-plugin      # Elimina un plugin instalado
+</code></pre>
+</div>
+<span class="center-horizontal caption">Comandos interactivos y de consola para listar, instalar, importar, validar, activar y desactivar plugins.</span>
+
+<h2>4. Cómo Crear tu Propio Plugin Paso a Paso (<kbd>plugin.json</kbd> y <kbd>plugins.json</kbd>)</h2>
+
+<p>Crear un plugin para ti o para tu equipo de desarrollo es tan sencillo como crear una subcarpeta dentro de <kbd>.agents/plugins/</kbd> con un archivo <kbd>plugin.json</kbd>:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-plaintext">
+.agents/plugins/fullstack-devops-kit/
+├── plugin.json              # Obligatorio: { "name": "fullstack-devops-kit" }
+├── mcp_config.json          # Opcional: Conecta Postgres, Playwright y Docker automáticamente
+├── hooks.json               # Opcional: Ejecuta linter tras editar y bloquea comandos peligrosos
+├── rules/
+│   └── AGENTS.md            # Opcional: Reglas consolidadas de arquitectura Full Stack y DevOps
+└── skills/
+    ├── auditoria-docker/
+    │   └── SKILL.md         # Opcional: Checklist para Dockerfiles multi-stage y docker-compose
+    └── revision-api/
+        └── SKILL.md         # Opcional: Checklist para endpoints REST, validación y tests
+</code></pre>
+</div>
+<span class="center-horizontal caption">Estructura oficial de carpetas de un Plugin en Google Antigravity.</span>
+
+<p>Además, si guardas tus plugins en una carpeta compartida fuera de <kbd>.agents/plugins/</kbd>, puedes registrarlos mediante el archivo <kbd>.agents/plugins.json</kbd> usando exactamente el mismo formato de <kbd>entries</kbd>, <kbd>inherits</kbd>, <kbd>include_only</kbd> y <kbd>exclude</kbd> que vimos en <kbd>skills.json</kbd>.</p>

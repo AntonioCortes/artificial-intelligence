@@ -1,4 +1,4 @@
-<h1 class="title">Skills (Habilidades) y Subagentes en Antigravity</h1>
+<h1 class="title">Skills (Habilidades) en Antigravity: Qué son y Cómo Crearlas</h1>
 
 <h2>1. ¿Qué es una Skill (Habilidad) explicada desde cero?</h2>
 
@@ -9,12 +9,12 @@
 <p>Las <b>Skills</b> solucionan esto mediante un sistema llamado <b>Progressive Disclosure (Revelación Progresiva)</b>:</p>
 
 <ol>
-	<li>Al arrancar la conversación, el agente solo ve una lista muy cortita con el <b>nombre</b> y la <b>descripción de 2 líneas</b> de cada Skill disponible.</li>
+	<li>Al arrancar la conversación, el agente solo ve una lista muy cortita con el <b>nombre</b> y la <b>descripción de 2 líneas</b> de cada Skill disponible (puedes verlas todas escribiendo <kbd>/skills</kbd>).</li>
 	<li>Cuando tú le pides algo relacionado con una de esas habilidades, el agente piensa: <i>"¡Ajá! Para esta tarea existe la Skill X"</i>, y solo entonces abre y lee el archivo <b>SKILL.md</b> completo.</li>
 </ol>
 
 <img class="center-horizontal" src="components/gemini/skills-subagentes/assets/img/arquitectura-skills-subagentes.svg"/>
-<span class="center-horizontal caption">Figura 1. Funcionamiento de las Skills por carga progresiva (izquierda) y delegación de tareas en Subagentes (derecha).</span>
+<span class="center-horizontal caption">Figura 1. Funcionamiento de las Skills por carga progresiva bajo demanda (Progressive Disclosure).</span>
 
 <h2>2. ¿Cómo se crea una Skill paso a paso? Estructura de carpetas</h2>
 
@@ -68,52 +68,40 @@ Sigue estos pasos en orden estricto cuando el usuario solicite una nueva vista:
 </div>
 <span class="center-horizontal caption">Ejemplo real de un archivo SKILL.md que enseña al agente un flujo de trabajo repetible.</span>
 
-<h2>3. ¿Qué son los Subagentes y cómo se usan?</h2>
+<h2>3. Configuración Avanzada con <kbd>skills.json</kbd> y Orden de Prioridad</h2>
 
-<p>Cuando tú hablas con Antigravity, estás hablando con el <b>Agente Principal</b>. Pero ¿qué ocurre si la tarea requiere leer 80 archivos para investigar un problema, o crear 4 módulos independientes a la vez? Si el agente principal leyera los 80 archivos directamente en tu chat, llenaría toda tu ventana de contexto con miles de líneas de código irrelevante.</p>
+<p>Si en tu empresa o equipo guardáis las Skills en carpetas no estándar o en repositorios compartidos fuera del proyecto, puedes declarar dónde buscarlas y cuáles filtrar creando el archivo <kbd>.agents/skills.json</kbd> (o el global <kbd>~/.gemini/config/skills.json</kbd>):</p>
 
-<p>Para evitarlo, el agente principal puede invocar <b>Subagentes (Subagents)</b>. Un subagente es un <b>agente ayudante que se ejecuta en segundo plano con su propia ventana de contexto separada</b>, realiza el trabajo específico que se le ha encargado y, al terminar, le envía un mensaje al agente principal con el resumen o resultado listo.</p>
+<div class="center-horizontal">
+<pre><code class="language-json">
+{
+  "inherits": [
+    {
+      "path": "/ruta/compartida/empresa/skills.json",
+      "include_only": ["auditoria-seguridad", "estilo-corporativo"],
+      "exclude": ["skill-antigua"]
+    }
+  ],
+  "entries": [
+    {
+      "path": "tools/ia/skills",
+      "exclude": ["experimental-.*"]
+    },
+    {
+      "path": "~/mis-skills-personales"
+    }
+  ]
+}
+</code></pre>
+</div>
+<span class="center-horizontal caption">Archivo .agents/skills.json usando herencia (inherits) y filtros include_only / exclude.</span>
 
-<table class="table table-striped table-hover">
-	<thead>
-		<tr>
-			<th scope="col">Tipo de Subagente</th>
-			<th scope="col">Permisos y Capacidades</th>
-			<th scope="col">Para qué se utiliza</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<th scope="row"><b>research</b> (Investigador)</th>
-			<td>Solo lectura (lee archivos, busca en el código y en la web, pero no modifica nada).</td>
-			<td>Explorar repositorios grandes, buscar dónde está definida una función o investigar documentación sin ensuciar tu chat principal.</td>
-		</tr>
-		<tr>
-			<th scope="row"><b>self</b> (Clon autónomo)</th>
-			<td>Hereda todas las herramientas del agente principal (lectura, escritura y terminal).</td>
-			<td>Realizar subtareas completas de programación en paralelo (por ejemplo, cuando usas el comando <b>/teamwork</b>).</td>
-		</tr>
-		<tr>
-			<th scope="row"><b>image-generator</b></th>
-			<td>Especializado en generación y edición visual.</td>
-			<td>Generar o editar imágenes e ilustraciones a partir de una descripción y devolver la ruta del archivo guardado.</td>
-		</tr>
-		<tr>
-			<th scope="row"><b>Subagentes definidos a medida</b></th>
-			<td>Configurables por el agente (con o sin permisos de escritura, MCP, etc.).</td>
-			<td>Durante una sesión compleja, el agente puede definir un nuevo rol especializado (ej. <i>Auditor de Seguridad</i> o <i>Tester de UI</i>) e invocarlo repetidamente.</td>
-		</tr>
-	</tbody>
-</table>
-<span class="center-horizontal caption">Tabla 1. Subagentes integrados y personalizados disponibles en Google Antigravity.</span>
+<p>Cuando Antigravity descubre varias Skills con el mismo nombre en distintas ubicaciones, aplica este <b>orden de prioridad de mayor a menor</b>:</p>
 
-<h3>3.1. Modos de Espacio de Trabajo (Workspace) y Comunicación entre Subagentes</h3>
-
-<p>Cuando el agente principal de Antigravity lanza un subagente, puede elegir tanto el <b>modelo</b> que usará ese subagente (<kbd>inherit</kbd> para usar el mismo modelo del padre, <kbd>flash_lite</kbd> o <kbd>flash</kbd> para subtareas rápidas, o <kbd>pro</kbd> para tareas complejas) como el <b>modo de espacio de trabajo (Workspace Mode)</b> en el que operará:</p>
-
-<ul>
-	<li><b>Modo <kbd>inherit</kbd> (Por defecto):</b> El subagente trabaja directamente sobre la misma carpeta de tu proyecto que el agente principal. Ideal cuando varios subagentes crean archivos en carpetas distintas o investigan el código.</li>
-	<li><b>Modo <kbd>branch</kbd> (Rama aislada clonada):</b> Crea una copia aislada del proyecto para ese subagente, de modo que pueda hacer experimentos o cambios sin tocar tu carpeta principal hasta que termine.</li>
-	<li><b>Modo <kbd>share</kbd> (Repositorio compartido estilo Git Worktree):</b> Crea un espacio de trabajo independiente compartiendo el almacenamiento interno del repositorio Git, permitiendo trabajar en ramas distintas simultáneamente sin duplicar el peso del disco.</li>
-	<li><b>Comunicación entre Agentes (<kbd>send_message</kbd>):</b> Cada subagente lanzado recibe un identificador único de conversación (<kbd>conversationId</kbd>). Si necesitas que un subagente continúe o amplíe el trabajo que acaba de hacer, el agente principal no lanza uno nuevo desde cero: le envía un mensaje directo a ese mismo subagente conservando toda su memoria previa.</li>
-</ul>
+<ol>
+	<li><b>1º Proyecto Actual (Workspace Discovery):</b> <kbd>.agents/skills/</kbd> dentro de tu repositorio.</li>
+	<li><b>2º Declaradas en el Proyecto:</b> Rutas listadas en <kbd>.agents/skills.json</kbd>.</li>
+	<li><b>3º Globales de Usuario:</b> <kbd>~/.gemini/config/skills/</kbd>.</li>
+	<li><b>4º Integradas de Fábrica (Built-in):</b> Como <kbd>agy-customizations</kbd> y <kbd>antigravity-guide</kbd>.</li>
+	<li><b>5º Declaradas en JSON Globales:</b> Rutas listadas en <kbd>~/.gemini/config/skills.json</kbd>.</li>
+</ol>

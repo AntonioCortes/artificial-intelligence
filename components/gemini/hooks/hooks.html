@@ -1,0 +1,106 @@
+<h1 class="title">Hooks del Ciclo de Vida (hooks.json) en Google Antigravity</h1>
+
+<h2>1. ¿Qué son los Hooks (<kbd>hooks.json</kbd>) y por qué son diferentes de las Reglas?</h2>
+
+<p>En el apartado de Reglas (<kbd>GEMINI.md</kbd>) vimos que puedes pedirle al agente por escrito cosas como: <i>"Por favor, ejecuta siempre el linter después de editar un archivo"</i>. Sin embargo, una regla de texto depende de que el modelo de IA la recuerde y decida seguirla. ¿Qué pasa si necesitas una <b>garantía determinista al 100%</b> (por ejemplo, bloquear siempre un comando peligroso en producción o pasar automáticamente un formateador de código tras cada edición)?</p>
+
+<p>Para eso existen los <b>Hooks (Ganchos del Ciclo de Vida)</b>. Un <b>Hook</b> es un script o comando automático que tú configuras en el archivo <kbd>.agents/hooks.json</kbd> (o en el global <kbd>~/.gemini/config/hooks.json</kbd>) para que el sistema de Antigravity lo ejecute obligatoriamente <b>antes o después de una acción concreta del agente</b>.</p>
+
+<h2>2. Todos los Eventos del Ciclo de Vida soportados en <kbd>hooks.json</kbd></h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Evento del Hook</th>
+			<th scope="col">Cuándo se dispara exactamente</th>
+			<th scope="col">Qué puede hacer tu script en ese momento</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>SessionStart</b></th>
+			<td>Una sola vez al iniciar una conversación nueva.</td>
+			<td>Comprobar que Docker o la base de datos local están levantados o inyectar variables de contexto iniciales.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>PreToolUse</b></th>
+			<td>Justo <b>antes</b> de que el agente ejecute una herramienta (ej. <kbd>run_command</kbd>, <kbd>edit_file</kbd>, <kbd>write_file</kbd>).</td>
+			<td>Permitir (<kbd>"allow"</kbd>), bloquear (<kbd>"deny"</kbd>), obligar a pedir confirmación al usuario (<kbd>"ask"</kbd>) o incluso modificar los argumentos de la herramienta al vuelo (<kbd>"overwrite"</kbd>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>PostToolUse</b></th>
+			<td>Justo <b>después</b> de que una herramienta termine de ejecutarse.</td>
+			<td>Ejecutar automáticamente Prettier, ESLint, <kbd>terraform fmt</kbd> o un validador de sintaxis sobre el archivo recién modificado.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>PreInvocation</b></th>
+			<td>Justo antes de cada llamada al modelo de lenguaje Gemini.</td>
+			<td>Inyectar recordatorios efímeros (<kbd>ephemeralMessage</kbd>) para ese turno sin contaminar el historial permanente.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>PostInvocation</b></th>
+			<td>Justo después de que el modelo genere su respuesta.</td>
+			<td>Registrar métricas de auditoría o validar el contenido generado.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Stop</b></th>
+			<td>Cuando el agente intenta dar por terminada su tarea y detenerse.</td>
+			<td>Ejecutar la suite de tests o el compilador; si algún test falla, el hook devuelve <kbd>"decision": "continue"</kbd> con el error para obligar al agente a arreglarlo antes de parar.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Los 6 eventos del ciclo de vida disponibles en el archivo hooks.json de Antigravity.</span>
+
+<h2>3. Ejemplo Práctico de <kbd>.agents/hooks.json</kbd> para Full Stack y DevOps</h2>
+
+<p>En este ejemplo configuramos dos hooks muy útiles: uno en <kbd>PreToolUse</kbd> que audita los comandos de terminal antes de ejecutarlos, y otro en <kbd>Stop</kbd> que verifica que todos los archivos JSON y componentes del proyecto sean válidos antes de que el agente dé por terminada su respuesta:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-json">
+{
+  "seguridad-y-calidad-equipo": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/auditar-comando-devops.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm test",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+</div>
+<span class="center-horizontal caption">Ejemplo real de archivo .agents/hooks.json combinando un guardarraíl preventivo (PreToolUse) y un verificador final (Stop).</span>
+
+<h2>4. Cómo responde un Script de Hook (Protocolo JSON por <kbd>stdin</kbd> y <kbd>stdout</kbd>)</h2>
+
+<p>Cuando Antigravity dispara tu script de hook, le envía por la entrada estándar (<kbd>stdin</kbd>) un objeto JSON con todos los detalles de la herramienta que se va a ejecutar (nombre de la herramienta, argumentos, directorio actual, ID de sesión). Tu script solo tiene que imprimir por salida estándar (<kbd>stdout</kbd>) un JSON indicando su decisión:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-json">
+{
+  "hookSpecificOutput": {
+    "hookEventName": "PreToolUse",
+    "permissionDecision": "deny",
+    "permissionDecisionReason": "Bloqueado por seguridad: no se permite ejecutar kubectl delete en el namespace de producción."
+  }
+}
+</code></pre>
+</div>
+<span class="center-horizontal caption">Respuesta JSON de un hook en PreToolUse bloqueando un comando destructivo y explicando el motivo al agente.</span>

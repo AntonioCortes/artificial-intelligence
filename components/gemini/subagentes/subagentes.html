@@ -1,0 +1,82 @@
+<h1 class="title">Subagentes y Trabajo en Equipo en Google Antigravity</h1>
+
+<h2>1. ¿Qué son los Subagentes y por qué son tan importantes?</h2>
+
+<p>Cuando tú hablas con Antigravity, estás hablando con el <b>Agente Principal</b>. Pero ¿qué ocurre si la tarea requiere leer 80 archivos para investigar un problema, o crear 4 módulos independientes a la vez? Si el agente principal leyera los 80 archivos directamente en tu chat, llenaría toda tu ventana de contexto con miles de líneas de código irrelevante.</p>
+
+<p>Para evitarlo, el agente principal puede definir e invocar <b>Subagentes (Subagents)</b>. Un subagente es un <b>agente ayudante autónomo que se ejecuta en segundo plano con su propia ventana de contexto separada</b>, realiza el trabajo específico que se le ha encargado y, al terminar, le envía un mensaje al agente principal con el resumen o resultado listo.</p>
+
+<h2>2. Tipos de Subagentes disponibles en Antigravity</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Tipo de Subagente</th>
+			<th scope="col">Permisos y Capacidades</th>
+			<th scope="col">Para qué se utiliza</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>research</b> (Investigador)</th>
+			<td>Solo lectura (lee archivos, busca en el código y en la web, pero no modifica nada).</td>
+			<td>Explorar repositorios grandes, buscar dónde está definida una función o investigar documentación técnica sin ensuciar tu chat principal.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>self</b> (Clon autónomo)</th>
+			<td>Hereda todas las herramientas del agente principal (lectura, escritura y terminal).</td>
+			<td>Realizar subtareas completas de programación en paralelo (por ejemplo, cuando usas el comando <b>/teamwork</b>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>image-generator</b></th>
+			<td>Especializado en generación y edición visual.</td>
+			<td>Generar o editar imágenes e ilustraciones a partir de una descripción y devolver la ruta del archivo guardado.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Subagentes definidos a medida (<kbd>define_subagent</kbd>)</b></th>
+			<td>Configurables por el agente (con o sin permisos de escritura, MCP, subagentes propios, etc.).</td>
+			<td>Durante una sesión compleja, el agente puede definir un nuevo rol especializado (ej. <i>Auditor de Seguridad DevOps</i> o <i>Tester de UI</i>) e invocarlo repetidamente.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Subagentes integrados y personalizados disponibles en Google Antigravity.</span>
+
+<h2>3. Modos de Espacio de Trabajo (Workspace Modes) de los Subagentes</h2>
+
+<p>Cuando el agente principal de Antigravity lanza un subagente, puede elegir tanto el <b>modelo</b> que usará ese subagente (<kbd>inherit</kbd> para usar el mismo modelo del padre, <kbd>flash_lite</kbd> o <kbd>flash</kbd> para subtareas rápidas, o <kbd>pro</kbd> para tareas complejas) como el <b>modo de espacio de trabajo (Workspace Mode)</b> en el que operará para que varios subagentes no se pisen entre sí:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Modo de Workspace</th>
+			<th scope="col">Cómo funciona sobre tus archivos</th>
+			<th scope="col">Cuándo es ideal usarlo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><kbd>inherit</kbd> (Por defecto)</th>
+			<td>El subagente trabaja directamente sobre la misma carpeta de tu proyecto que el agente principal.</td>
+			<td>Cuando el subagente solo investiga código o cuando varios subagentes crean archivos en carpetas distintas que no entran en conflicto.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>branch</kbd> (Clon aislado)</th>
+			<td>Crea una copia aislada (rama clonada) del espacio de trabajo para ese subagente.</td>
+			<td>Cuando quieres que el subagente haga experimentos arriesgados o refactorizaciones grandes sin tocar tu carpeta principal.</td>
+		</tr>
+		<tr>
+			<th scope="row"><kbd>share</kbd> (Compartido estilo Git Worktree)</th>
+			<td>Crea un espacio de trabajo independiente compartiendo el almacenamiento interno del repositorio Git.</td>
+			<td>Permite a varios subagentes trabajar en ramas distintas simultáneamente sin duplicar el espacio en disco.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Los 3 modos de aislamiento de archivos al lanzar subagentes en Antigravity.</span>
+
+<h2>4. Comunicación entre Agentes y Comando <kbd>/teamwork</kbd></h2>
+
+<ul>
+	<li><b>Comunicación bidireccional (<kbd>send_message</kbd>):</b> Cada subagente lanzado recibe un identificador único de conversación (<kbd>conversationId</kbd>). Si necesitas que un subagente continúe o amplíe el trabajo que acaba de hacer, el agente principal no lanza uno nuevo desde cero: le envía un mensaje directo a ese mismo subagente conservando toda su memoria previa.</li>
+	<li><b>Gestión en vivo (<kbd>/subagents</kbd>):</b> Puedes ver en cualquier momento qué subagentes están trabajando en paralelo o detenerlos desde el panel auxiliar de Antigravity 2.0 o con la herramienta de gestión de subagentes.</li>
+	<li><b>El atajo <kbd>/teamwork</kbd>:</b> Si tienes un proyecto grande (por ejemplo, construir el Frontend, el Backend y los manifiestos de Docker/Kubernetes de un proyecto), puedes escribir <kbd>/teamwork</kbd> seguido de tu objetivo para que el agente principal coordine automáticamente un equipo de subagentes trabajando en paralelo.</li>
+</ul>

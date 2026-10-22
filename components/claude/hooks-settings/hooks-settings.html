@@ -1,0 +1,118 @@
+<h1 class="title">Hooks del Ciclo de Vida y Permisos en Claude (.claude/settings.json)</h1>
+
+<h2>1. ¿Dónde se configuran los Permisos y los Hooks en Claude Code?</h2>
+
+<p>En Claude Code, tanto las reglas de seguridad de qué herramientas pueden ejecutarse sin preguntar (<kbd>permissions</kbd>) como los disparadores automáticos del ciclo de vida (<kbd>hooks</kbd>) se configuran en el archivo <b><kbd>.claude/settings.json</kbd></b> (que se sube a Git para compartirlo con el equipo), en <b><kbd>.claude/settings.local.json</kbd></b> (privado para tu máquina) o en <b><kbd>~/.claude/settings.json</kbd></b> (global para tu usuario).</p>
+
+<p>También puedes gestionarlos mediante menús interactivos dentro del chat escribiendo los comandos <kbd>/permissions</kbd>, <kbd>/hooks</kbd> o <kbd>/config</kbd>.</p>
+
+<h2>2. Configuración de Listas de Permisos (<kbd>allow</kbd>, <kbd>ask</kbd> y <kbd>deny</kbd>)</h2>
+
+<p>Para no tener que aprobar manualmente cada comando seguro que usas a diario (como <kbd>npm run</kbd>, <kbd>git status</kbd> o <kbd>docker ps</kbd>) y al mismo tiempo blindar archivos sensibles como <kbd>.env</kbd>, puedes definir reglas granulares con comodines (<kbd>*</kbd>):</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Tipo de Regla</th>
+			<th scope="col">Sintaxis de Ejemplo</th>
+			<th scope="col">Qué efecto tiene</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>allow</b> (Permitir siempre)</th>
+			<td><kbd>"Bash(npm run *)"</kbd>, <kbd>"Bash(git diff *)"</kbd></td>
+			<td>Autoriza a Claude a ejecutar cualquier script de <kbd>npm run</kbd> o ver diferencias de Git automáticamente sin interrumpirte.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>ask</b> (Preguntar siempre)</th>
+			<td><kbd>"Bash(git push *)"</kbd>, <kbd>"Bash(docker compose up *)"</kbd></td>
+			<td>Obliga a pedirte confirmación explícita antes de subir cambios al repositorio remoto o levantar contenedores.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>deny</b> (Bloquear siempre)</th>
+			<td><kbd>"Read(./.env*)"</kbd>, <kbd>"Bash(rm -rf *)"</kbd>, <kbd>"Bash(kubectl delete *)"</kbd></td>
+			<td>Prohíbe terminantemente que Claude lea tus archivos de secretos <kbd>.env</kbd> o ejecute comandos destructivos.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Reglas de permisos allow, ask y deny en .claude/settings.json.</span>
+
+<h2>3. Eventos de Hooks en Claude Code (<kbd>PreToolUse</kbd>, <kbd>PostToolUse</kbd>, <kbd>Stop</kbd>...)</h2>
+
+<p>Los <b>Hooks</b> en Claude Code te permiten ejecutar comandos de consola, peticiones HTTP o incluso evaluaciones rápidas con un prompt de IA en momentos clave de la sesión:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Evento del Hook</th>
+			<th scope="col">Cuándo se ejecuta</th>
+			<th scope="col">Caso de uso típico en Desarrollo y DevOps</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>PreToolUse</b></th>
+			<td>Antes de que Claude ejecute una herramienta (ej. <kbd>Bash</kbd>, <kbd>Edit</kbd>, <kbd>Write</kbd>).</td>
+			<td>Validar argumentos o bloquear ediciones en archivos protegidos (si el script devuelve código de salida <kbd>2</kbd>, bloquea la acción y le muestra el error a Claude).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>PostToolUse</b></th>
+			<td>Inmediatamente después de que una herramienta se ejecute con éxito.</td>
+			<td>Ejecutar automáticamente <kbd>npx prettier --write</kbd>, <kbd>eslint --fix</kbd> o <kbd>terraform fmt</kbd> cada vez que Claude edita o crea un archivo.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>UserPromptSubmit</b></th>
+			<td>Cuando envías un mensaje en el chat, antes de que Claude lo procese.</td>
+			<td>Inyectar contexto dinámico o validar que no estás pegando claves secretas por error.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>Stop</b> / <b>SubagentStop</b></th>
+			<td>Cuando el agente principal o un subagente termina su respuesta.</td>
+			<td>Comprobar que los tests pasan antes de permitir que dé la tarea por finalizada.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>SessionStart</b> / <b>Notification</b></th>
+			<td>Al arrancar la sesión o cuando Claude necesita tu atención.</td>
+			<td>Enviar una notificación de escritorio o sonido cuando Claude termina una tarea larga.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Eventos del ciclo de vida soportados por el sistema de Hooks de Claude Code.</span>
+
+<h2>4. Ejemplo Completo de archivo <kbd>.claude/settings.json</kbd></h2>
+
+<div class="center-horizontal">
+<pre><code class="language-json">
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(git status)",
+      "Bash(git diff *)"
+    ],
+    "ask": [
+      "Bash(git push *)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Read(./.env*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx prettier --write ."
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+</div>
+<span class="center-horizontal caption">Archivo .claude/settings.json combinando permisos de seguridad y formateo automático tras cada edición.</span>

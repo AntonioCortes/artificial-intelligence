@@ -21,11 +21,19 @@
             "text" : "Ecosistema Gemini y Antigravity",
             "content" : [
                 {
-                    "text" : "2.1. Modelos y Superficies (IDE, App, CLI)",
+                    "text" : "2.1. Modelos de Gemini y Thinking",
+                    "content" : "component-gemini-modelos"
+                },
+                {
+                    "text" : "2.2. Superficies: IDE, App 2.0 y CLI",
                     "content" : "component-gemini-modelos-superficies"
                 },
                 {
-                    "text" : "2.2. Artefactos, Sandbox y Permisos",
+                    "text" : "2.3. Artefactos en Antigravity",
+                    "content" : "component-gemini-artefactos"
+                },
+                {
+                    "text" : "2.4. Sandbox, Permisos y Background",
                     "content" : "component-gemini-artefactos-permisos"
                 }
             ]
@@ -44,23 +52,52 @@
             ]
         },
         {
-            "text" : "Personalización Skills y MCP",
+            "text" : "Reglas Skills y Subagentes",
             "content" : [
                 {
                     "text" : "4.1. Reglas (GEMINI.md y AGENTS.md)",
                     "content" : "component-gemini-reglas-memoria"
                 },
                 {
-                    "text" : "4.2. Skills (Habilidades) y Subagentes",
+                    "text" : "4.2. Skills: Qué son y Cómo crearlas",
                     "content" : "component-gemini-skills-subagentes"
                 },
                 {
-                    "text" : "4.3. Servidores MCP, Hooks y Plugins",
+                    "text" : "4.3. Repositorios y Catálogo de Skills",
+                    "content" : "component-gemini-catalogo-skills"
+                },
+                {
+                    "text" : "4.4. Subagentes y Trabajo en Equipo",
+                    "content" : "component-gemini-subagentes"
+                }
+            ]
+        },
+        {
+            "text" : "MCP Hooks Plugins y Comparativa",
+            "content" : [
+                {
+                    "text" : "5.1. Servidores MCP (mcp_config.json)",
                     "content" : "component-gemini-mcp-hooks-plugins"
                 },
                 {
-                    "text" : "4.4. Config JSON y Python SDK",
+                    "text" : "5.2. Hooks del Ciclo de Vida (hooks.json)",
+                    "content" : "component-gemini-hooks"
+                },
+                {
+                    "text" : "5.3. Plugins: Qué son y Cómo crearlos",
+                    "content" : "component-gemini-plugins-guia"
+                },
+                {
+                    "text" : "5.4. Repositorios y Catálogo de Plugins",
+                    "content" : "component-gemini-plugins-catalogo"
+                },
+                {
+                    "text" : "5.5. Python SDK y Sidecars",
                     "content" : "component-gemini-config-sdk"
+                },
+                {
+                    "text" : "5.6. Comparativa: Gemini vs Claude",
+                    "content" : "component-gemini-comparativa"
                 }
             ]
         }
@@ -71,8 +108,12 @@
             "href" : "https://antigravity.google/docs"
         },
         {
-            "text" : "Guía de Skills en Antigravity",
-            "href" : "https://antigravity.google/docs/skills"
+            "text" : "Buscador Mundial de Skills (skills.sh)",
+            "href" : "https://skills.sh"
+        },
+        {
+            "text" : "Galería Oficial Extensiones Gemini",
+            "href" : "https://geminicli.com/extensions"
         },
         {
             "text" : "Model Context Protocol (MCP)",

@@ -1,33 +1,21 @@
-<h1 class="title">Artefactos, Sandbox, Permisos y Tareas en Segundo Plano</h1>
+<h1 class="title">Sandbox de Terminal, Políticas de Permisos y Tareas en Segundo Plano</h1>
 
-<h2>1. ¿Qué son los Artefactos (Artifacts) en Antigravity?</h2>
-
-<p>Cuando trabajas con el agente de <b>Google Antigravity</b> en una tarea grande, no sería cómodo que te soltara un informe de 500 líneas mezclado entre los mensajes cortos del chat, ni tampoco que te llenara la carpeta de tu proyecto de archivos temporales de borradores. Por eso existen los <b>Artefactos (Artifacts)</b>.</p>
-
-<p>Los <b>Artefactos</b> son documentos Markdown especiales (<kbd>.md</kbd>) que el agente crea y actualiza en una carpeta interna separada de tu código (<kbd>brain/&lt;id-conversacion&gt;/</kbd>) y que puedes ver cómodamente en el panel lateral de Antigravity. Sirven para:</p>
-
-<ul>
-	<li><b>Planes de Ejecución Interactivos:</b> Cuando el agente diseña un plan antes de programar, puede presentártelo como un Artefacto ejecutable con un botón <b>"Proceed" (Proceder)</b> para que lo revises y le des luz verde con un clic.</li>
-	<li><b>Informes, Diagramas Mermaid y Carruseles:</b> Dentro de los artefactos el agente puede incluir diagramas de flujo (<kbd>mermaid</kbd>), tablas comparativas, bloques de alerta destacados (<kbd>[!NOTE]</kbd>, <kbd>[!TIP]</kbd>, <kbd>[!IMPORTANT]</kbd>, <kbd>[!WARNING]</kbd>, <kbd>[!CAUTION]</kbd>), enlaces clicables a líneas exactas de tus archivos y carruseles de diapositivas (<kbd>carousel</kbd>).</li>
-	<li><b>Carpeta <kbd>scratch/</kbd> para pruebas rápidas:</b> Si el agente necesita crear un pequeño script temporal para probar algo o verificar unos datos sin ensuciar las carpetas de tu proyecto web, lo guarda dentro de <kbd>brain/&lt;id-conversacion&gt;/scratch/</kbd>.</li>
-</ul>
-
-<img class="center-horizontal" src="components/gemini/artefactos-permisos/assets/img/flujo-sandbox-artefactos-tareas.svg"/>
-<span class="center-horizontal caption">Figura 1. Los tres pilares operativos de Antigravity: Artefactos, Terminal Sandbox y Tareas asíncronas en segundo plano.</span>
-
-<h2>2. ¿Qué es el Terminal Sandbox y cómo protege tu ordenador?</h2>
+<h2>1. ¿Qué es el Terminal Sandbox y cómo protege tu ordenador?</h2>
 
 <p>Una duda muy lógica cuando empiezas a usar agentes que ejecutan comandos en la terminal es: <i>"¿Y si el agente se equivoca de comando y borra algo de otra carpeta de mi ordenador?"</i>. Para que puedas trabajar con total tranquilidad y sin tener que aprobar manualmente cada mínimo comando, Antigravity ejecuta los comandos dentro de una <b>Caja de Arena segura (Terminal Sandbox)</b>:</p>
 
+<img class="center-horizontal" src="components/gemini/artefactos-permisos/assets/img/flujo-sandbox-artefactos-tareas.svg"/>
+<span class="center-horizontal caption">Figura 1. Funcionamiento del Terminal Sandbox, control de permisos y ejecución de tareas asíncronas en segundo plano.</span>
+
 <ol>
-	<li><b>Modo Sandbox Estándar (Activo por defecto):</b> Dentro del Sandbox, los comandos tienen permiso de lectura y escritura <b>únicamente dentro de la carpeta de tu proyecto actual</b>, en la carpeta de artefactos y en <kbd>/tmp</kbd>, y no tienen acceso a internet ni al resto de archivos privados de tu ordenador. Gracias a este aislamiento, el agente puede ejecutar pruebas, validar JSONs o listar archivos <b>automáticamente sin interrumpirte para pedir permiso</b>.</li>
-	<li><b>Salir del Sandbox (Con tu permiso explícito):</b> Si un comando concreto necesita obligatoriamente conectarse a internet (por ejemplo, para descargar paquetes con <kbd>npm install</kbd>) o levantar un puerto de red, el agente solicita ejecutar solo ese paso fuera del Sandbox y Antigravity te muestra un aviso claro para que lo apruebes.</li>
-	<li><b>Aprobación Inteligente por Prefijo ("Always Allow"):</b> Cuando apruebas un comando con la opción <i>"Permitir siempre"</i> (por ejemplo, apruebas <kbd>npm test</kbd>), Antigravity recuerda ese prefijo para que futuras ejecuciones de <kbd>npm test ...</kbd> no vuelvan a preguntarte.</li>
+	<li><b>Modo Sandbox Estándar (Activo por defecto — <kbd>BypassSandbox: false</kbd>):</b> Dentro del Sandbox, los comandos tienen permiso de lectura y escritura <b>únicamente dentro de la carpeta de tu proyecto actual</b>, en la carpeta de artefactos y en <kbd>/tmp</kbd>, y no tienen acceso a internet ni al resto de archivos privados de tu ordenador. Gracias a este aislamiento, el agente puede ejecutar pruebas, validar JSONs o listar archivos <b>automáticamente sin interrumpirte para pedir permiso</b>.</li>
+	<li><b>Salir del Sandbox (<kbd>BypassSandbox: true</kbd> — Con tu permiso explícito):</b> Si un comando concreto necesita obligatoriamente conectarse a internet (por ejemplo, para descargar paquetes con <kbd>npm install</kbd> o hacer <kbd>git push</kbd>) o levantar un puerto de red, el agente solicita ejecutar únicamente ese comando fuera del Sandbox y Antigravity te muestra un aviso claro para que lo apruebes.</li>
+	<li><b>Aprobación Inteligente por Prefijo ("Always Allow"):</b> Cuando apruebas un comando con la opción <i>"Permitir siempre"</i> (por ejemplo, apruebas <kbd>npm test</kbd>), Antigravity recuerda ese prefijo binario para que futuras ejecuciones de <kbd>npm test ...</kbd> no vuelvan a preguntarte.</li>
 </ol>
 
-<h2>3. Configuración de Permisos y Políticas (Global vs Por Proyecto)</h2>
+<h2>2. Configuración de Permisos y Políticas (Global vs Por Proyecto)</h2>
 
-<p>Desde el panel de <b>Settings (Ajustes)</b> de Antigravity puedes personalizar el nivel de autonomía del agente tanto de forma global (para todo tu ordenador) como de forma específica para un proyecto concreto:</p>
+<p>Desde el panel de <b>Settings (Ajustes)</b> de Antigravity (o con el comando <kbd>/permissions</kbd>) puedes personalizar el nivel de autonomía del agente tanto de forma global (para todo tu ordenador) como de forma específica para un proyecto concreto:</p>
 
 <table class="table table-striped table-hover">
 	<thead>
@@ -70,14 +58,14 @@
 		</tr>
 	</tbody>
 </table>
-<span class="center-horizontal caption">Tabla 1. Controles de seguridad y permisos configurables en Antigravity.</span>
+<span class="center-horizontal caption">Tabla 1. Controles de seguridad y políticas de permisos configurables en Antigravity.</span>
 
-<h2>4. Tareas en Segundo Plano (Background Tasks), Daemons y Despertar Reactivo</h2>
+<h2>3. Tareas en Segundo Plano (Background Tasks), Daemons y Despertar Reactivo</h2>
 
-<p>¿Qué pasa cuando el agente necesita arrancar un servidor web local (que se queda encendido indefinidamente) o ejecutar una batería de tests que tarda 3 minutos? En Antigravity el agente no se queda "congelado":</p>
+<p>¿Qué pasa cuando el agente necesita arrancar un servidor web local (que se queda encendido indefinidamente) o ejecutar una batería de tests o un build de Docker que tarda varios minutos? En Antigravity el agente no se queda "congelado":</p>
 
 <ul>
-	<li><b>Paso automático a Background:</b> Si un comando tarda más del tiempo de espera inicial, pasa automáticamente a ejecutarse como una <b>Tarea en Segundo Plano (Background Task)</b>.</li>
-	<li><b>Procesos Daemon (Servidores en vivo):</b> El agente puede arrancar servidores de desarrollo o vigilantes de archivos (<i>watchers</i>) en modo <b>Daemon</b> para que sigan corriendo en segundo plano mientras él sigue trabajando.</li>
-	<li><b>Despertar Reactivo (Reactive Wakeup):</b> Ni tú ni el agente tenéis que estar preguntando cada 5 segundos si una tarea o un subagente ha terminado. En cuanto una tarea en segundo plano finaliza o un temporizador programado con <kbd>/schedule</kbd> se cumple, el sistema notifica y despierta automáticamente al agente con el resultado.</li>
+	<li><b>Paso automático a Background (<kbd>WaitMsBeforeAsync</kbd>):</b> Si un comando tarda más del tiempo de espera inicial, pasa automáticamente a ejecutarse como una <b>Tarea en Segundo Plano (Background Task)</b> que puedes consultar o detener en cualquier momento con el comando <kbd>/tasks</kbd>.</li>
+	<li><b>Procesos Daemon (<kbd>IsDaemon: true</kbd>):</b> El agente puede arrancar servidores de desarrollo (<kbd>npm run dev</kbd>), túneles o vigilantes de archivos (<i>watchers</i>) en modo <b>Daemon</b> para que sigan corriendo indefinidamente en segundo plano mientras él continúa programando.</li>
+	<li><b>Despertar Reactivo (Reactive Wakeup):</b> Ni tú ni el agente tenéis que estar haciendo bucles de espera (<i>polling</i>) para saber si un comando largo o un subagente ha terminado. En cuanto la tarea en segundo plano finaliza o un temporizador programado con <kbd>/schedule</kbd> se cumple, el sistema despierta automáticamente al agente y le entrega el resultado.</li>
 </ul>

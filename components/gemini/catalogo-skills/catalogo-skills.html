@@ -1,0 +1,304 @@
+<h1 class="title">Dónde Conseguir Skills: Mejores Repositorios y Catálogo para Full Stack y DevOps</h1>
+
+<h2>1. El Buscador Mundial <kbd>skills.sh</kbd> y el Gestor <kbd>npx skills</kbd> (El "npm" de las Skills)</h2>
+
+<p>Como tanto <b>Google Antigravity</b> como <b>Claude Code</b> comparten el estándar abierto <b>SKILL.md</b>, la comunidad y Vercel Labs han creado un buscador centralizado llamado <b><a href="https://skills.sh" target="_blank">skills.sh</a></b> y una herramienta de consola universal (<kbd>npx skills</kbd>) que funciona exactamente igual que <kbd>npm</kbd> pero para descargar e instalar Skills desde cualquier repositorio de GitHub directamente en tu carpeta <kbd>.agents/skills/</kbd> o <kbd>.claude/skills/</kbd>.</p>
+
+<img class="center-horizontal" src="components/gemini/catalogo-skills/assets/img/flujo-repositorios-skills-gemini.svg"/>
+<span class="center-horizontal caption">Figura 1. Cómo buscar, descargar y conectar repositorios públicos de Skills (SKILL.md) en Google Antigravity.</span>
+
+<div class="center-horizontal">
+<pre><code class="language-bash">
+# 1. Buscar skills de DevOps, Docker, Kubernetes o React desde tu propia terminal:
+npx skills find devops
+npx skills find kubernetes
+npx skills find react
+
+# 2. Instalar automáticamente un repositorio o skill concreta en tu proyecto:
+npx skills add anthropics/skills
+npx skills add vercel-labs/agent-skills
+npx skills add supabase/agent-skills
+npx skills add ahmedasmar/devops-claude-skills
+npx skills add antonbabenko/terraform-skill
+
+# 3. Actualizar todas tus skills instaladas a su última versión:
+npx skills update
+</code></pre>
+</div>
+<span class="center-horizontal caption">Uso del gestor universal npx skills para buscar e instalar skills de cualquier repositorio de GitHub.</span>
+
+<h2>2. Los 12 Repositorios de Skills Más Famosos para Desarrollo Full Stack y DevOps</h2>
+
+<p>Si quieres ir directo a las fuentes más fiables y con más estrellas en GitHub, estos son los <b>12 repositorios y portales imprescindibles</b> donde puedes descargar todas las Skills de desarrollo y DevOps:</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Repositorio / Portal</th>
+			<th scope="col">Especialidad Principal</th>
+			<th scope="col">Qué contiene y cómo instalarlo</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>1. <a href="https://skills.sh" target="_blank">skills.sh</a></b></th>
+			<td>Buscador y Ranking Mundial de Skills</td>
+			<td>El directorio interactivo más grande del ecosistema. Permite buscar por tecnología (Docker, K8s, Next.js, Postgres, Terraform), ver cuáles son las más descargadas y copiar el comando <kbd>npx skills add &lt;autor/repo&gt;</kbd> con un clic.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>2. <a href="https://github.com/anthropics/skills" target="_blank">anthropics/skills</a></b></th>
+			<td>Oficial de Anthropic (Web, Testing E2E, MCP y Docs)</td>
+			<td>Contiene las skills oficiales <kbd>frontend-design</kbd>, <kbd>webapp-testing</kbd> (Playwright), <kbd>mcp-builder</kbd>, <kbd>web-artifacts-builder</kbd>, <kbd>skill-creator</kbd> y generación documental (<kbd>pdf</kbd>, <kbd>xlsx</kbd>, <kbd>docx</kbd>, <kbd>pptx</kbd>).<br/><b>Comando:</b> <kbd>npx skills add anthropics/skills</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>3. <a href="https://github.com/ahmedasmar/devops-claude-skills" target="_blank">ahmedasmar/devops-claude-skills</a></b></th>
+			<td>100% DevOps, SRE, Cloud, K8s y CI/CD</td>
+			<td>El repositorio de referencia específico para <b>DevOps</b>: incluye skills listas para <b>Docker</b>, <b>Kubernetes</b>, <b>Helm</b>, <b>Terraform</b>, <b>GitHub Actions</b>, <b>GitLab CI</b>, <b>Ansible</b>, <b>Prometheus/Grafana</b> y diagnóstico de servidores Linux.<br/><b>Comando:</b> <kbd>npx skills add ahmedasmar/devops-claude-skills</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>4. <a href="https://github.com/antonbabenko/terraform-skill" target="_blank">antonbabenko/terraform-skill</a></b></th>
+			<td>Infraestructura como Código (Terraform / OpenTofu)</td>
+			<td>Creado por Anton Babenko (AWS Hero y autor de <kbd>terraform-aws-modules</kbd>). Enseña al agente arquitectura modular de Terraform, buenas prácticas de estado remoto, validación automática con <kbd>terraform fmt/validate/tflint</kbd> y testing de IaC.<br/><b>Comando:</b> <kbd>npx skills add antonbabenko/terraform-skill</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>5. <a href="https://github.com/vercel-labs/agent-skills" target="_blank">vercel-labs/agent-skills</a></b></th>
+			<td>Oficial de Vercel (Frontend, React, Next.js y UI)</td>
+			<td>Incluye <kbd>react-best-practices</kbd> (más de 40 reglas de rendimiento en React/Next.js), <kbd>web-design-guidelines</kbd> (auditoría de más de 100 reglas de UI y accesibilidad) y despliegues Cloud.<br/><b>Comando:</b> <kbd>npx skills add vercel-labs/agent-skills</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>6. <a href="https://github.com/supabase/agent-skills" target="_blank">supabase/agent-skills</a></b></th>
+			<td>Oficial de Supabase (PostgreSQL, SQL y Backend)</td>
+			<td>Contiene <kbd>supabase-postgres-best-practices</kbd>: optimización de consultas SQL, diseño de índices, políticas <i>Row Level Security (RLS)</i>, funciones SQL, triggers y migraciones seguras.<br/><b>Comando:</b> <kbd>npx skills add supabase/agent-skills</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>7. <a href="https://github.com/Jeffallan/claude-skills" target="_blank">Jeffallan/claude-skills</a></b></th>
+			<td>65+ Skills Full Stack y DevOps en 11 categorías</td>
+			<td>Uno de los packs más completos para desarrolladores Full Stack: cubre React, Vue, Angular, Node.js, NestJS, FastAPI, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, Terraform y CI/CD.<br/><b>Comando:</b> <kbd>npx skills add Jeffallan/claude-skills</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>8. <a href="https://github.com/obra/superpowers" target="_blank">obra/superpowers</a></b></th>
+			<td>Metodología de Ingeniería (TDD, Debugging y Git)</td>
+			<td>El repositorio más famoso de disciplina de ingeniería agéntica: aporta <kbd>test-driven-development</kbd>, <kbd>systematic-debugging</kbd>, <kbd>writing-plans</kbd>, <kbd>using-git-worktrees</kbd> y <kbd>verification-before-completion</kbd>.<br/><b>Comando:</b> <kbd>npx skills add obra/superpowers</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>9. <a href="https://github.com/trailofbits/skills" target="_blank">trailofbits/skills</a></b></th>
+			<td>Oficial de Trail of Bits (Ciberseguridad y DevSecOps)</td>
+			<td>Más de 20 skills de auditoría de seguridad profesional: <kbd>semgrep</kbd>, <kbd>static-analysis</kbd>, <kbd>differential-review</kbd>, <kbd>insecure-defaults</kbd> y detección de vulnerabilidades OWASP en código e infraestructura.<br/><b>Comando:</b> <kbd>npx skills add trailofbits/skills</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>10. <a href="https://github.com/cloudflare/skills" target="_blank">cloudflare/skills</a></b></th>
+			<td>Oficial de Cloudflare (Edge, Workers, DNS y Redes)</td>
+			<td>Skills oficiales para desarrollar y desplegar en Cloudflare Workers, almacenamiento R2, bases de datos D1, KV, colas y configuración de seguridad WAF/CDN.<br/><b>Comando:</b> <kbd>npx skills add cloudflare/skills</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>11. <a href="https://github.com/alirezarezvani/claude-skills" target="_blank">alirezarezvani/claude-skills</a></b></th>
+			<td>Colección de +150 Skills (Full Stack, Cloud y SRE)</td>
+			<td>Incluye paquetes específicos como <kbd>senior-fullstack</kbd>, <kbd>devops-engineer</kbd>, <kbd>aws-solution-architect</kbd>, <kbd>kubernetes-specialist</kbd> y <kbd>ci-cd-pipeline-builder</kbd>.<br/><b>Comando:</b> <kbd>npx skills add alirezarezvani/claude-skills</kbd></td>
+		</tr>
+		<tr>
+			<th scope="row"><b>12. <a href="https://github.com/VoltAgent/awesome-agent-skills" target="_blank">VoltAgent/awesome-agent-skills</a></b> y <b><a href="https://github.com/travisvn/awesome-claude-skills" target="_blank">travisvn/awesome-claude-skills</a></b></th>
+			<td>Mega-Índices Curados (+1.000 Skills)</td>
+			<td>Las dos enciclopedias recopilatorias más grandes en GitHub, organizadas por lenguaje, framework y plataforma Cloud, con enlaces directos a cada carpeta <kbd>SKILL.md</kbd>.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 1. Los 12 repositorios y directorios más famosos del mundo para conseguir Skills de desarrollo Full Stack y DevOps.</span>
+
+<h2>3. Cómo Conectar estos Repositorios en Antigravity con <kbd>.agents/skills.json</kbd></h2>
+
+<p>Además de poder usar <kbd>npx skills add</kbd>, recuerda que en Antigravity puedes clonar esos repositorios en una carpeta central de tu ordenador y elegir qué skills activar en cada proyecto mediante <kbd>.agents/skills.json</kbd>:</p>
+
+<div class="center-horizontal">
+<pre><code class="language-bash">
+# Clonas tus repositorios favoritos de Full Stack y DevOps:
+mkdir -p ~/skills-catalog
+git clone https://github.com/anthropics/skills.git ~/skills-catalog/anthropic
+git clone https://github.com/vercel-labs/agent-skills.git ~/skills-catalog/vercel
+git clone https://github.com/supabase/agent-skills.git ~/skills-catalog/supabase
+git clone https://github.com/ahmedasmar/devops-claude-skills.git ~/skills-catalog/devops
+git clone https://github.com/antonbabenko/terraform-skill.git ~/skills-catalog/terraform
+git clone https://github.com/obra/superpowers.git ~/skills-catalog/superpowers
+</code></pre>
+</div>
+<span class="center-horizontal caption">Clonado local de los principales repositorios de Full Stack y DevOps.</span>
+
+<div class="center-horizontal">
+<pre><code class="language-json">
+{
+  "entries": [
+    {
+      "path": "~/skills-catalog/anthropic/skills",
+      "include_only": ["frontend-design", "webapp-testing", "mcp-builder", "skill-creator"]
+    },
+    {
+      "path": "~/skills-catalog/vercel/skills"
+    },
+    {
+      "path": "~/skills-catalog/supabase/skills"
+    },
+    {
+      "path": "~/skills-catalog/devops"
+    },
+    {
+      "path": "~/skills-catalog/terraform"
+    },
+    {
+      "path": "~/skills-catalog/superpowers/skills"
+    }
+  ]
+}
+</code></pre>
+</div>
+<span class="center-horizontal caption">Archivo .agents/skills.json (o ~/.gemini/config/skills.json) que carga automáticamente las skills seleccionadas.</span>
+
+<h2>4. Catálogo Detallado de Skills (Full Stack y DevOps) indicando Dónde Conseguir Cada Una</h2>
+
+<h3>4.1. Skills para Frontend, UI/UX y Arquitectura Web</h3>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Skill</th>
+			<th scope="col">Dónde conseguirla (Repositorio y Comando)</th>
+			<th scope="col">Qué hace por ti en el día a día</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>frontend-design</b></th>
+			<td>Repo: <kbd>anthropics/skills</kbd><br/><kbd>npx skills add anthropics/skills</kbd></td>
+			<td>Aplica principios profesionales de tipografía, jerarquía visual, paletas de color cohesivas, micro-interacciones CSS y diseño adaptable (<i>responsive</i>).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>react-best-practices</b></th>
+			<td>Repo: <kbd>vercel-labs/agent-skills</kbd><br/><kbd>npx skills add vercel-labs/agent-skills</kbd></td>
+			<td>Más de 40 reglas creadas por Vercel para evitar <i>re-renders</i> innecesarios, separar Server/Client Components, optimizar bundles y eliminar cascadas de peticiones.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>web-design-guidelines</b></th>
+			<td>Repo: <kbd>vercel-labs/agent-skills</kbd><br/><kbd>npx skills add vercel-labs/agent-skills</kbd></td>
+			<td>Audita más de 100 reglas de interfaz de usuario: accesibilidad WCAG (ARIA, contraste, navegación por teclado), formularios y estados vacíos o de error.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>shadcn-ui / tailwind-patterns</b></th>
+			<td>Repo: <kbd>Jeffallan/claude-skills</kbd><br/><kbd>npx skills add Jeffallan/claude-skills</kbd></td>
+			<td>Estandariza la creación de sistemas de diseño y componentes reutilizables con Tailwind CSS, Radix UI / shadcn y variables CSS nativas.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>web-artifacts-builder</b></th>
+			<td>Repo: <kbd>anthropics/skills</kbd><br/><kbd>npx skills add anthropics/skills</kbd></td>
+			<td>Construye prototipos interactivos autocontenidos (HTML + CSS + JS / React + Tailwind) ideales para maquetar dashboards complejos.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 2. Skills para desarrollo Frontend indicando su repositorio exacto de descarga.</span>
+
+<h3>4.2. Skills para Backend, APIs, Microservicios y Bases de Datos</h3>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Skill</th>
+			<th scope="col">Dónde conseguirla (Repositorio y Comando)</th>
+			<th scope="col">Qué hace por ti en el día a día</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>supabase-postgres-best-practices</b></th>
+			<td>Repo: <kbd>supabase/agent-skills</kbd><br/><kbd>npx skills add supabase/agent-skills</kbd></td>
+			<td>Diseña tablas normalizadas en PostgreSQL, elige índices óptimos (B-Tree, GIN, parciales), analiza <kbd>EXPLAIN ANALYZE</kbd>, configura RLS y redacta migraciones seguras.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>api-designer / backend-architect</b></th>
+			<td>Repo: <kbd>Jeffallan/claude-skills</kbd><br/><kbd>npx skills add Jeffallan/claude-skills</kbd></td>
+			<td>Aplica buenas prácticas en contratos de API REST y GraphQL (paginación, códigos HTTP semánticos, validación con Zod/Pydantic, idempotencia y OpenAPI 3.1).</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>senior-fullstack</b></th>
+			<td>Repo: <kbd>alirezarezvani/claude-skills</kbd><br/><kbd>npx skills add alirezarezvani/claude-skills</kbd></td>
+			<td>Guía integral para conectar arquitecturas Frontend (Next.js/React/TS) con Backend (Node/Python/Go), ORM (Prisma/Drizzle) y autenticación segura.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>mcp-builder</b></th>
+			<td>Repo: <kbd>anthropics/skills</kbd><br/><kbd>npx skills add anthropics/skills</kbd></td>
+			<td>Te guía paso a paso para crear tus propios servidores MCP en TypeScript o Python que conecten la IA con las APIs o microservicios de tu empresa.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 3. Skills para Backend, APIs y Bases de Datos con su repositorio de origen.</span>
+
+<h3>4.3. Skills para DevOps, Docker, Kubernetes, Terraform, CI/CD y Linux</h3>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Skill</th>
+			<th scope="col">Dónde conseguirla (Repositorio y Comando)</th>
+			<th scope="col">Qué procedimiento DevOps automatiza</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>docker-specialist / container-hardening</b></th>
+			<td>Repo: <kbd>ahmedasmar/devops-claude-skills</kbd><br/><kbd>npx skills add ahmedasmar/devops-claude-skills</kbd></td>
+			<td>Escribe <kbd>Dockerfile</kbd> multi-etapa ultraligeros, ordena capas para caché, fuerza usuario no-root, configura <kbd>healthchecks</kbd> en <kbd>docker-compose.yml</kbd> y audita <kbd>.dockerignore</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>kubernetes-specialist / helm-charts</b></th>
+			<td>Repo: <kbd>ahmedasmar/devops-claude-skills</kbd><br/><kbd>npx skills add ahmedasmar/devops-claude-skills</kbd></td>
+			<td>Genera y audita manifiestos K8s y Charts de Helm verificando <kbd>requests/limits</kbd>, <kbd>livenessProbe</kbd>, <kbd>readinessProbe</kbd>, <kbd>NetworkPolicy</kbd> y diagnóstico de pods caídos.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>terraform-skill</b></th>
+			<td>Repo: <kbd>antonbabenko/terraform-skill</kbd><br/><kbd>npx skills add antonbabenko/terraform-skill</kbd></td>
+			<td>Estructura módulos de Terraform/OpenTofu para AWS/GCP/Azure, estado remoto bloqueado y bucle automático de validación con <kbd>terraform fmt</kbd>, <kbd>validate</kbd> y <kbd>tflint</kbd>.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>ci-cd-pipeline-builder (GitHub Actions / GitLab CI)</b></th>
+			<td>Repo: <kbd>ahmedasmar/devops-claude-skills</kbd> y <kbd>alirezarezvani/claude-skills</kbd></td>
+			<td>Construye y depura workflows en <kbd>.github/workflows/</kbd> con caché de dependencias, matrices paralelas, escaneo de secretos y despliegues por entornos.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>monitoring-observability (Prometheus &amp; Grafana)</b></th>
+			<td>Repo: <kbd>ahmedasmar/devops-claude-skills</kbd><br/><kbd>npx skills add ahmedasmar/devops-claude-skills</kbd></td>
+			<td>Configura métricas OpenTelemetry, consultas PromQL, reglas de alerta en Alertmanager, paneles JSON de Grafana y centralización de logs con Loki.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>ansible-playbooks &amp; linux-troubleshooting</b></th>
+			<td>Repo: <kbd>ahmedasmar/devops-claude-skills</kbd><br/><kbd>npx skills add ahmedasmar/devops-claude-skills</kbd></td>
+			<td>Automatiza aprovisionamiento de servidores con roles de Ansible idempotentes, servicios <kbd>systemd</kbd>, proxies inversos Nginx/Caddy y scripts Bash seguros.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 4. Skills especializadas en DevOps e Infraestructura con su repositorio exacto en GitHub.</span>
+
+<h3>4.4. Skills para Testing E2E, TDD, Depuración y Seguridad (DevSecOps)</h3>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Skill</th>
+			<th scope="col">Dónde conseguirla (Repositorio y Comando)</th>
+			<th scope="col">Qué hace por ti en el día a día</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row"><b>webapp-testing</b></th>
+			<td>Repo: <kbd>anthropics/skills</kbd><br/><kbd>npx skills add anthropics/skills</kbd></td>
+			<td>Arranca tu servidor local, abre un navegador real con Playwright, interactúa con botones y desplegables, captura pantallas y verifica que no haya errores en la consola JS.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>test-driven-development</b> y <b>systematic-debugging</b></th>
+			<td>Repo: <kbd>obra/superpowers</kbd><br/><kbd>npx skills add obra/superpowers</kbd></td>
+			<td>Aplica el ciclo estricto <i>Red-Green-Refactor</i> para tests y un método científico en 4 pasos para encontrar la causa raíz de bugs complejos sin dar palos de ciego.</td>
+		</tr>
+		<tr>
+			<th scope="row"><b>semgrep / differential-review / static-analysis</b></th>
+			<td>Repo: <kbd>trailofbits/skills</kbd><br/><kbd>npx skills add trailofbits/skills</kbd></td>
+			<td>Audita las diferencias de código (<i>git diff</i>) buscando vulnerabilidades de seguridad, secretos expuestos, inyecciones SQL/XSS y configuraciones inseguras antes de fusionar un PR.</td>
+		</tr>
+	</tbody>
+</table>
+<span class="center-horizontal caption">Tabla 5. Skills de pruebas E2E, TDD, depuración y auditoría de seguridad con sus repositorios oficiales.</span>
